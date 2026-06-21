@@ -76,29 +76,25 @@
 }
 
 body {
-  background: #C8C3BA;            /* abu-abu — latar phone shell */
-  display: flex;
-  justify-content: center;
-  padding: 20px 0;
+  background: var(--iv);
   min-height: 100vh;
   font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
 
 /* ================================================
-   3. PHONE SHELL
-   Kotak berbentuk HP di tengah layar
+   3. KONTAINER UTAMA
+   Dulu berbentuk "bingkai HP" untuk mockup,
+   sekarang full-width seperti website biasa.
    ================================================ */
 .phone {
-  width: 375px;
+  width: 100%;
+  max-width: 480px;     /* tetap dibatasi biar nyaman dibaca di tablet/desktop */
+  margin: 0 auto;
   background: var(--iv);
-  border-radius: 40px;
-  overflow: hidden;
-  box-shadow: 0 24px 64px rgba(0, 0, 0, .3);
-  border: 8px solid #1a1a1a;
   display: flex;
   flex-direction: column;
-  height: 780px;
+  min-height: 100vh;
   position: relative;
 }
 
@@ -189,17 +185,18 @@ body {
    ================================================ */
 .pages {
   flex: 1;
-  overflow: hidden;
+  overflow: visible;
   position: relative;
+  padding-bottom: 76px;   /* ruang aman supaya konten tidak tertutup bottom nav fixed */
 }
 
 .page {
-  position: absolute;
-  inset: 0;
-  overflow-y: auto;
+  position: static;          /* ikut alur normal halaman, bukan absolute lagi */
+  overflow-y: visible;
   background: var(--iv);
   display: none;             /* sembunyikan semua halaman */
   flex-direction: column;
+  min-height: 60vh;
 }
 .page.active {
   display: flex;             /* tampilkan halaman yang aktif */
@@ -215,12 +212,20 @@ body {
    ================================================ */
 .bnav {
   background: var(--wh);
-  border-top: 1px solid rgba(0, 0, 0, .07);
+  border-top: 1px solid var(--iv3);
   display: flex;
   justify-content: space-around;
   align-items: flex-end;
   padding: 6px 0 10px;
   flex-shrink: 0;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  max-width: 480px;
+  margin: 0 auto;
+  z-index: 50;
+  box-shadow: 0 -2px 12px rgba(0, 0, 0, .06);
 }
 
 /* Item nav biasa */
@@ -305,7 +310,7 @@ body {
 
 /* Overlay gelap di belakang sheet */
 .sheet-overlay {
-  position: absolute;
+  position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0);
   pointer-events: none;
@@ -319,10 +324,12 @@ body {
 
 /* Laci sheet */
 .sheet {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
+  max-width: 480px;
+  margin: 0 auto;
   background: var(--wh);
   border-radius: 20px 20px 0 0;
   padding: 0 0 16px;
@@ -1602,15 +1609,7 @@ body {
    ================================================ */
 @media (min-width: 1024px) {
 
-  /* ---- Body — background halaman penuh ---- */
-  body {
-    background: var(--iv2);
-    padding: 0;
-    display: block; /* lepas dari mode "center flex" ala mobile */
-  }
-
   /* ---- Sembunyikan elemen khusus mobile ---- */
-  .sb,                 /* status bar jam & baterai palsu */
   .bnav,                /* bottom nav */
   .sheet,               /* menu laci bawah */
   .sheet-overlay {      /* overlay gelap menu laci */
@@ -1619,17 +1618,6 @@ body {
 
   /* ---- Tampilkan menu navigasi desktop ---- */
   .dnav { display: flex; }
-
-  /* ---- Lepas bingkai "HP" — jadi website biasa ---- */
-  .phone {
-    width: 100%;
-    max-width: none;
-    height: auto;
-    min-height: 100vh;
-    border: none;
-    border-radius: 0;
-    box-shadow: none;
-  }
 
   /* ---- Header jadi navbar lebar, menempel di atas ---- */
   .hdr {
@@ -1642,17 +1630,6 @@ body {
   .hlogo img  { width: 40px; height: 40px; }
   .hbrand     { font-size: 17px; }
   .hsub       { font-size: 10px; }
-
-  /* ---- Sistem halaman — lepas dari mode "kotak HP terpotong" ---- */
-  .pages {
-    overflow: visible;
-    height: auto;
-  }
-  .page {
-    position: static;   /* tidak lagi absolute — ikut alur normal halaman */
-    overflow-y: visible;
-    min-height: 60vh;
-  }
 
   /* ---- Setiap section dibatasi lebar maksimal & ditengahkan ----
      Supaya teks tidak terlalu lebar dibaca di layar besar */
