@@ -893,6 +893,84 @@ body {
   border: 1px solid rgba(255, 255, 255, .15);
 }
 
+/* ===== Card kas per-komunitas (versi ringkas, ditumpuk) ===== */
+.kastot {
+  background: linear-gradient(135deg, #1E4230, var(--gr));
+  border-radius: var(--r);
+  padding: 14px 15px;
+  margin-bottom: 14px;
+}
+.kastot-lbl {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, .55);
+  margin-bottom: 3px;
+}
+.kastot-val {
+  font-family: 'Lora', serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #fff;
+}
+.kastot-sub {
+  font-size: 10px;
+  color: rgba(255, 255, 255, .5);
+  margin-top: 2px;
+}
+
+.kaskom {
+  background: var(--wh);
+  border-radius: var(--rs);
+  padding: 12px 13px;
+  margin-bottom: 9px;
+  border: 1px solid rgba(0, 0, 0, .06);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.kaskom-ico {
+  width: 38px;
+  height: 38px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+  background: #e8f5e9;
+}
+.kaskom-body { flex: 1; min-width: 0; }
+.kaskom-nm {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--tx);
+  margin-bottom: 1px;
+}
+.kaskom-bend {
+  font-size: 10px;
+  color: var(--tx3);
+}
+.kaskom-right { text-align: right; flex-shrink: 0; }
+.kaskom-saldo {
+  font-size: 13px;
+  font-weight: 700;
+  color: #2e7d32;
+  margin-bottom: 4px;
+}
+.kaskom-btn {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--gr);
+  text-decoration: none;
+  background: #e8f5e9;
+  padding: 4px 9px;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+
 /* Item transaksi */
 .trx {
   background: var(--wh);
