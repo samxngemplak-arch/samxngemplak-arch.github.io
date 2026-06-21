@@ -123,6 +123,7 @@ async function muatDataUMKM() {
 let currentPage = 'beranda';
 let history     = [];
 let menuOpen    = false;
+let currentUMKM = null; /* UMKM yang sedang dibuka di halaman detail — dipakai shareUMKM() */
 
 /* Peta nama halaman → id elemen HTML
    Contoh: 'agenda' → cari elemen id="p-agenda" */
@@ -205,6 +206,11 @@ function nav(key) {
   if (key === 'umkm') {
     renderGrid('');
   }
+
+  /* Kalau pindah ke halaman Agenda, render daftar lengkap dulu */
+  if (key === 'agenda') {
+    renderAgendaPage();
+  }
 }
 
 /**
@@ -238,6 +244,11 @@ function goBack() {
   /* Kalau kembali ke halaman UMKM, render grid lagi */
   if (currentPage === 'umkm') {
     renderGrid('');
+  }
+
+  /* Kalau kembali ke halaman Agenda, render daftar lengkap lagi */
+  if (currentPage === 'agenda') {
+    renderAgendaPage();
   }
 }
 
@@ -365,6 +376,9 @@ function showUMKM(id) {
     return;
   }
 
+  /* Simpan sebagai UMKM aktif — dipakai fungsi shareUMKM() */
+  currentUMKM = u;
+
   /**
    * Helper kecil — isi elemen HTML dengan aman.
    * Kalau elemennya tidak ada di halaman, cuma kasih
@@ -398,6 +412,13 @@ function showUMKM(id) {
 
   /* ── Tombol Maps ── */
   isiLink('ud-map-btn', u.maps);
+
+  /* ── Link "Lihat Review di Google Maps" — reuse link Maps yang sama.
+     CATATAN: ini mengarahkan ke profil Maps usaha (kalau linknya sudah
+     diisi link asli oleh Zen), BUKAN review yang ditampilkan langsung
+     di website ini. Kita gak fetch data review asli dari Google API
+     karena itu butuh API key berbayar + backend — lihat diskusi PR. ── */
+  isiLink('ud-review-link', u.maps);
 
   /* ── Info operasional (alamat, jam, telepon) ── */
   isiTeks('ud-alamat', u.alamat);
@@ -440,8 +461,62 @@ function showUMKM(id) {
     }).join('');
   }
 
+  /* ── Render testimoni warga (cek dulu array-nya ada) ──
+     Beda dari "Review Google" — ini testimoni manual yang
+     dikumpulkan Zen dari pembeli asli, bukan API Google. */
+  const testimoniEl = document.getElementById('ud-testimoni');
+  if (testimoniEl) {
+    const list = u.testimoni || [];
+    if (!list.length) {
+      testimoniEl.innerHTML = `<div style="font-size:11px; color:var(--tx3); padding:4px 0 8px">Belum ada testimoni warga untuk usaha ini.</div>`;
+    } else {
+      testimoniEl.innerHTML = list.map(function(t) {
+        return `
+          <div class="rv">
+            <div class="rv-top">
+              <span class="rv-name">${t.nama}</span>
+              <span class="rv-date">${t.tanggal}</span>
+            </div>
+            <div class="rv-txt">${t.teks}</div>
+          </div>`;
+      }).join('');
+    }
+  }
+
   /* Pindah ke halaman detail */
   nav('umkm-detail');
+}
+
+/**
+ * Bagikan halaman UMKM yang sedang dibuka.
+ * Pakai Web Share API native (didukung mayoritas browser HP modern —
+ * Chrome Android, Safari iOS) supaya warga bisa share langsung ke
+ * WhatsApp/lainnya tanpa perlu library tambahan (gratis, no dependency).
+ * Kalau browser tidak mendukung (jarang, biasanya browser desktop lama),
+ * fallback ke copy link ke clipboard.
+ */
+function shareUMKM() {
+  if (!currentUMKM) return;
+
+  const shareData = {
+    title: `${currentUMKM.name} — SIMBAH Ngemplak`,
+    text: `Cek ${currentUMKM.name} (${currentUMKM.cat}) di Dusun Ngemplak`,
+    url: window.location.href
+  };
+
+  if (navigator.share) {
+    navigator.share(shareData).catch(function() {
+      /* User membatalkan share — tidak perlu tindakan apa-apa */
+    });
+  } else if (navigator.clipboard) {
+    navigator.clipboard.writeText(window.location.href).then(function() {
+      alert('Link halaman ini sudah disalin. Silakan tempel (paste) ke WhatsApp atau aplikasi lain.');
+    }).catch(function() {
+      alert('Tidak bisa menyalin link otomatis. Silakan salin alamat dari address bar browser.');
+    });
+  } else {
+    alert('Browser ini belum mendukung fitur share otomatis. Silakan salin alamat dari address bar browser.');
+  }
 }
 
 
@@ -461,24 +536,45 @@ function filterUMKM(cat) {
 
 
 /* ================================================
-   8. DATA PENCARIAN GLOBAL
-   Data Agenda & Inventaris disalin manual di sini
-   supaya bisa dicari di kotak Search header.
-   (UMKM tidak perlu disalin — sudah ada di array UMKM)
+   8. DATA AGENDA — Sumber Tunggal
+   ------------------------------------------------
+   Dulu data agenda ditulis 2x manual: sekali sebagai
+   HTML statis di index.html, sekali lagi sebagai
+   AGENDA_SEARCH di sini (khusus search). Akibatnya
+   gampang gak sinkron — itu sebabnya tanggal di
+   halaman Agenda sempat "basi" (masih nunjuk 2025).
 
-   CATATAN UNTUK MAINTENANCE:
-   Kalau menambah/ubah item Agenda atau Inventaris di
-   index.html, samakan juga datanya di sini supaya
-   search tetap akurat.
+   SEKARANG: HANYA edit array AGENDA di bawah ini.
+   - Beranda (3 agenda terdekat)
+   - Halaman Agenda (daftar lengkap per bulan)
+   - Search global
+   ...semuanya otomatis render dari array ini. Index.html
+   tidak lagi punya card agenda hardcoded.
+
+   FORMAT TANGGAL: WAJIB "YYYY-MM-DD" (contoh: "2026-07-15").
+   Ini supaya JS bisa baca tanggalnya dan otomatis:
+   - Sembunyikan/pindahkan acara yang sudah lewat
+   - Generate label bulan ("Juli 2026") otomatis,
+     tidak perlu ditulis manual lagi
+
+   CARA TAMBAH AGENDA BARU:
+   Copy salah satu blok { ... }, paste di akhir
+   sebelum tanda ] penutup, ganti isinya. Urutan
+   tidak harus kronologis — JS otomatis mengurutkan.
+
+   tag yang dikenali (untuk warna badge):
+   'Kerja Bakti', 'Kliwonan', 'Rapat' → badge hijau
+   'Posyandu', 'Hajatan'              → badge emas
+   (lihat fungsi tagClass() di bawah kalau mau nambah)
    ================================================ */
-const AGENDA_SEARCH = [
-  { title: 'Kerja Bakti RT 01 & 02', meta: '8 Jun · Pertigaan Utama', tag: 'Kerja Bakti' },
-  { title: 'Posyandu Balita', meta: '12 Jun · Balai Dusun', tag: 'Posyandu' },
-  { title: 'Hajatan Anak Pak Sunar', meta: '15 Jun · Rumah Pak Sunar RT 02', tag: 'Hajatan' },
-  { title: 'Pengajian Kliwonan', meta: '20 Jun · Mushola Al-Ikhlas', tag: 'Kliwonan' },
-  { title: 'Musyawarah Dusun', meta: '28 Jun · Balai Dusun', tag: 'Rapat' },
-  { title: 'Posyandu Balita', meta: '10 Jul · Balai Dusun', tag: 'Posyandu' },
-  { title: 'Pengajian Kliwonan', meta: '18 Jul · Mushola Al-Ikhlas', tag: 'Kliwonan' },
+const AGENDA = [
+  { title: 'Kerja Bakti RT 01 & 02', date: '2026-06-08', time: '07.00 WIB', lokasi: 'Pertigaan Utama', tag: 'Kerja Bakti' },
+  { title: 'Posyandu Balita',        date: '2026-06-12', time: '08.00 WIB', lokasi: 'Balai Dusun', tag: 'Posyandu' },
+  { title: 'Hajatan Anak Pak Sunar', date: '2026-06-15', time: '09.00 WIB', lokasi: 'Rumah Pak Sunar RT 02', tag: 'Hajatan' },
+  { title: 'Pengajian Kliwonan',     date: '2026-06-20', time: "Ba'da Isya", lokasi: 'Mushola Al-Ikhlas', tag: 'Kliwonan' },
+  { title: 'Musyawarah Dusun',       date: '2026-06-28', time: '19.30 WIB', lokasi: 'Balai Dusun', tag: 'Rapat' },
+  { title: 'Posyandu Balita',        date: '2026-07-10', time: '08.00 WIB', lokasi: 'Balai Dusun', tag: 'Posyandu' },
+  { title: 'Pengajian Kliwonan',     date: '2026-07-18', time: "Ba'da Isya", lokasi: 'Mushola Al-Ikhlas', tag: 'Kliwonan' },
 ];
 
 const INVENTARIS_SEARCH = [
@@ -488,6 +584,106 @@ const INVENTARIS_SEARCH = [
   { title: 'Kursi Plastik', meta: '100 unit · Pengelola: Pak Kamijan' },
   { title: 'Meja Lipat', meta: '20 unit · Pengelola: Pak Kamijan' },
 ];
+
+/** Map tag agenda → kelas badge warna (lihat .tg/.tb di style.css) */
+function tagClass(tag) {
+  const hijau = ['Kerja Bakti', 'Kliwonan', 'Rapat'];
+  return hijau.indexOf(tag) !== -1 ? 'tg' : 'tb';
+}
+
+/** Nama bulan Indonesia, dipakai generate label otomatis */
+const NAMA_BULAN = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+const NAMA_BULAN_SINGKAT = ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
+
+/**
+ * Ambil daftar agenda yang BELUM lewat, terurut dari yang terdekat.
+ * "Belum lewat" dihitung per-hari (bukan jam), jadi acara HARI INI
+ * masih tampil sampai besok paginya.
+ */
+function getAgendaMendatang() {
+  const hariIni = new Date();
+  hariIni.setHours(0, 0, 0, 0);
+
+  return AGENDA
+    .filter(function(a) {
+      const tgl = new Date(a.date + 'T00:00:00');
+      return tgl >= hariIni;
+    })
+    .sort(function(a, b) { return new Date(a.date) - new Date(b.date); });
+}
+
+/** Render 1 card agenda (dipakai Beranda & halaman Agenda) */
+function renderCardAgenda(a) {
+  const tgl = new Date(a.date + 'T00:00:00');
+  const hari = String(tgl.getDate()).padStart(2, '0');
+  const bulan = NAMA_BULAN_SINGKAT[tgl.getMonth()];
+  return `
+    <div class="ag">
+      <div class="ag-dt"><div class="ag-d">${hari}</div><div class="ag-m">${bulan}</div></div>
+      <div class="ag-info">
+        <div class="ag-ttl">${a.title}</div>
+        <div class="ag-meta">📍 ${a.lokasi} · ⏰ ${a.time}</div>
+      </div>
+      <span class="ag-tag ${tagClass(a.tag)}">${a.tag}</span>
+    </div>`;
+}
+
+/** Render 3 agenda terdekat di Beranda */
+function renderAgendaBeranda() {
+  const el = document.getElementById('agenda-beranda-list');
+  if (!el) return;
+
+  const mendatang = getAgendaMendatang().slice(0, 3);
+
+  if (!mendatang.length) {
+    el.innerHTML = `<div style="text-align:center; padding:20px 0; font-size:12px; color:var(--tx3)">Belum ada agenda terjadwal.</div>`;
+    return;
+  }
+  el.innerHTML = mendatang.map(renderCardAgenda).join('');
+}
+
+/**
+ * Render daftar agenda lengkap di halaman Agenda, dikelompokkan
+ * per bulan dengan label otomatis ("Juni 2026", dst). Acara yang
+ * sudah lewat TIDAK ditampilkan di sini (sesuai keputusan auto-hide).
+ */
+function renderAgendaPage() {
+  const el = document.getElementById('agenda-page-list');
+  if (!el) return;
+
+  const mendatang = getAgendaMendatang();
+
+  if (!mendatang.length) {
+    el.innerHTML = `
+      <div style="text-align:center; padding:40px 16px; color:var(--tx3)">
+        <div style="font-size:32px; margin-bottom:8px">📅</div>
+        <div style="font-size:13px; font-weight:600; color:var(--tx)">Belum ada agenda mendatang</div>
+        <div style="font-size:11px; margin-top:4px">Cek lagi nanti, atau tambahkan agenda baru di data.</div>
+      </div>`;
+    return;
+  }
+
+  /* Kelompokkan per bulan (key: "2026-06") supaya label bulan
+     cuma muncul sekali per kelompok, bukan per-card */
+  let html = '';
+  let bulanTerakhir = null;
+
+  mendatang.forEach(function(a) {
+    const tgl = new Date(a.date + 'T00:00:00');
+    const keyBulan = tgl.getFullYear() + '-' + tgl.getMonth();
+
+    if (keyBulan !== bulanTerakhir) {
+      if (bulanTerakhir !== null) html += '</div>'; /* tutup wrapper bulan sebelumnya */
+      html += `<div class="ag-month-lbl">${NAMA_BULAN[tgl.getMonth()]} ${tgl.getFullYear()}</div>`;
+      html += `<div style="padding:0 16px">`;
+      bulanTerakhir = keyBulan;
+    }
+    html += renderCardAgenda(a);
+  });
+  html += '</div>'; /* tutup wrapper bulan terakhir */
+
+  el.innerHTML = html;
+}
 
 
 /* ================================================
@@ -550,17 +746,19 @@ function runSearch(query) {
       </button>`;
   });
 
-  /* --- Cari di Agenda --- */
-  const agendaHasil = AGENDA_SEARCH.filter(function(a) {
+  /* --- Cari di Agenda (hanya yang belum lewat) --- */
+  const agendaHasil = getAgendaMendatang().filter(function(a) {
     return a.title.toLowerCase().includes(q) || a.tag.toLowerCase().includes(q);
   });
   agendaHasil.forEach(function(a) {
+    const tgl = new Date(a.date + 'T00:00:00');
+    const metaTgl = String(tgl.getDate()).padStart(2, '0') + ' ' + NAMA_BULAN_SINGKAT[tgl.getMonth()] + ' · ' + a.lokasi;
     html += `
       <button class="src-item" onclick="nav('agenda')">
         <span class="src-ico">📅</span>
         <span class="src-body">
           <span class="src-ttl">${a.title}</span>
-          <span class="src-meta">Agenda · ${a.meta}</span>
+          <span class="src-meta">Agenda · ${metaTgl}</span>
         </span>
       </button>`;
   });
@@ -609,6 +807,11 @@ function goToUMKM(id) {
    renderGrid() akan dipanggil otomatis di dalam
    fungsi ini setelah data selesai dimuat. */
 muatDataUMKM();
+
+/* Render Agenda Terdekat di Beranda saat halaman pertama dimuat.
+   (Halaman Agenda penuh di-render saat nav('agenda') dipanggil,
+   tidak perlu di-render di sini karena belum aktif/terlihat.) */
+renderAgendaBeranda();
 
 /* Pasang event listener ke kotak pencarian */
 document.getElementById('search-input')?.addEventListener('input', function(e) {

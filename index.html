@@ -129,37 +129,14 @@
 
       <div class="div8"></div>
 
-      <!-- Agenda Terdekat -->
+      <!-- Agenda Terdekat — diisi otomatis oleh JS (lihat renderAgendaBeranda() di script.js) -->
       <div class="sec">
         <div class="sec-hdr">
           <div class="sec-ttl">Agenda Terdekat</div>
           <button class="sec-lnk" onclick="nav('agenda')">Semua →</button>
         </div>
         <div class="bline"></div>
-        <div class="ag">
-          <div class="ag-dt"><div class="ag-d">08</div><div class="ag-m">Jun</div></div>
-          <div class="ag-info">
-            <div class="ag-ttl">Kerja Bakti RT 01 & 02</div>
-            <div class="ag-meta">📍 Pertigaan Utama · 07.00 WIB</div>
-          </div>
-          <span class="ag-tag tg">Kerja Bakti</span>
-        </div>
-        <div class="ag">
-          <div class="ag-dt"><div class="ag-d">12</div><div class="ag-m">Jun</div></div>
-          <div class="ag-info">
-            <div class="ag-ttl">Posyandu Balita</div>
-            <div class="ag-meta">📍 Balai Dusun · 08.00 WIB</div>
-          </div>
-          <span class="ag-tag tb">Posyandu</span>
-        </div>
-        <div class="ag">
-          <div class="ag-dt"><div class="ag-d">20</div><div class="ag-m">Jun</div></div>
-          <div class="ag-info">
-            <div class="ag-ttl">Pengajian Kliwonan</div>
-            <div class="ag-meta">📍 Mushola Al-Ikhlas · Ba'da Isya</div>
-          </div>
-          <span class="ag-tag tg">Kliwonan</span>
-        </div>
+        <div id="agenda-beranda-list"></div>
       </div>
 
       <div class="div8"></div>
@@ -344,73 +321,8 @@
         <div class="psub">Jadwal kegiatan & pengumuman warga</div>
       </div>
 
-      <!-- Isi agenda -->
-      <div style="flex:1; overflow-y:auto; padding-bottom:20px">
-        <div class="ag-month-lbl">Juni 2025</div>
-
-        <div style="padding:0 16px">
-          <div class="ag">
-            <div class="ag-dt"><div class="ag-d">08</div><div class="ag-m">Jun</div></div>
-            <div class="ag-info">
-              <div class="ag-ttl">Kerja Bakti RT 01 & 02</div>
-              <div class="ag-meta">📍 Pertigaan Utama · ⏰ 07.00 WIB</div>
-            </div>
-            <span class="ag-tag tg">Kerja Bakti</span>
-          </div>
-          <div class="ag">
-            <div class="ag-dt"><div class="ag-d">12</div><div class="ag-m">Jun</div></div>
-            <div class="ag-info">
-              <div class="ag-ttl">Posyandu Balita</div>
-              <div class="ag-meta">📍 Balai Dusun · ⏰ 08.00 WIB</div>
-            </div>
-            <span class="ag-tag tb">Posyandu</span>
-          </div>
-          <div class="ag">
-            <div class="ag-dt"><div class="ag-d">15</div><div class="ag-m">Jun</div></div>
-            <div class="ag-info">
-              <div class="ag-ttl">Hajatan Anak Pak Sunar</div>
-              <div class="ag-meta">📍 Rumah Pak Sunar RT 02 · ⏰ 09.00 WIB</div>
-            </div>
-            <span class="ag-tag tb">Hajatan</span>
-          </div>
-          <div class="ag">
-            <div class="ag-dt"><div class="ag-d">20</div><div class="ag-m">Jun</div></div>
-            <div class="ag-info">
-              <div class="ag-ttl">Pengajian Kliwonan</div>
-              <div class="ag-meta">📍 Mushola Al-Ikhlas · ⏰ Ba'da Isya</div>
-            </div>
-            <span class="ag-tag tg">Kliwonan</span>
-          </div>
-          <div class="ag">
-            <div class="ag-dt"><div class="ag-d">28</div><div class="ag-m">Jun</div></div>
-            <div class="ag-info">
-              <div class="ag-ttl">Musyawarah Dusun</div>
-              <div class="ag-meta">📍 Balai Dusun · ⏰ 19.30 WIB</div>
-            </div>
-            <span class="ag-tag tg">Rapat</span>
-          </div>
-        </div>
-
-        <div class="ag-month-lbl">Juli 2025</div>
-        <div style="padding:0 16px">
-          <div class="ag">
-            <div class="ag-dt"><div class="ag-d">10</div><div class="ag-m">Jul</div></div>
-            <div class="ag-info">
-              <div class="ag-ttl">Posyandu Balita</div>
-              <div class="ag-meta">📍 Balai Dusun · ⏰ 08.00 WIB</div>
-            </div>
-            <span class="ag-tag tb">Posyandu</span>
-          </div>
-          <div class="ag">
-            <div class="ag-dt"><div class="ag-d">18</div><div class="ag-m">Jul</div></div>
-            <div class="ag-info">
-              <div class="ag-ttl">Pengajian Kliwonan</div>
-              <div class="ag-meta">📍 Mushola Al-Ikhlas · ⏰ Ba'da Isya</div>
-            </div>
-            <span class="ag-tag tg">Kliwonan</span>
-          </div>
-        </div>
-      </div>
+      <!-- Isi agenda — diisi otomatis oleh JS (lihat renderAgendaPage() di script.js) -->
+      <div style="flex:1; overflow-y:auto; padding-bottom:20px" id="agenda-page-list"></div>
 
     </div><!-- /p-agenda -->
 
@@ -438,6 +350,9 @@
         <button class="fchip">Pertukangan</button>
         <button class="fchip">Jasa</button>
         <button class="fchip">Pertanian</button>
+        <button class="fchip">Perkebunan</button>
+        <button class="fchip">Kerajinan</button>
+        <button class="fchip">Lainnya</button>
       </div>
 
       <!-- Grid UMKM — diisi oleh JavaScript -->
@@ -457,7 +372,7 @@
         <button class="ud-back" onclick="goBack()">
           <svg viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
         </button>
-        <button class="ud-share">
+        <button class="ud-share" onclick="shareUMKM()">
           <svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.59 13.51l6.83 3.98M15.41 6.51l-6.82 3.98"/></svg>
         </button>
       </div>
@@ -505,11 +420,14 @@
             </div>
           </div>
 
-          <!-- Peta lokasi -->
+          <!-- Peta lokasi + Review Google -->
           <a class="mapsbox" id="ud-maps-link" href="#" target="_blank">
             <div class="mico">🗺️</div>
             <div class="mlbl">Buka di Google Maps</div>
             <div class="maddr" id="ud-maps-addr">-</div>
+          </a>
+          <a class="kas-detail" id="ud-review-link" href="#" target="_blank" style="display:block; margin-bottom:8px">
+            ⭐ Lihat Rating & Review Asli di Google Maps →
           </a>
 
           <!-- Galeri -->
@@ -522,6 +440,14 @@
           <div class="ud-sec">
             <div class="ud-sec-ttl">Produk & Jasa</div>
             <div class="prow" id="ud-products"></div>
+          </div>
+
+          <!-- Testimoni Warga (BUKAN review Google asli — testimoni manual
+               dari pembeli yang dikumpulkan langsung. Untuk review Google
+               asli, arahkan ke tombol "Lihat di Google Maps" di atas). -->
+          <div class="ud-sec" id="ud-testimoni-sec">
+            <div class="ud-sec-ttl">Testimoni Warga</div>
+            <div id="ud-testimoni"></div>
           </div>
 
           <!-- Sosmed & Marketplace -->

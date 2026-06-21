@@ -1,6 +1,5 @@
 {
-  "_petunjuk": "Untuk menambah UMKM baru, copy salah satu blok { ... } di bawah, paste di akhir sebelum tanda ] penutup, lalu ganti semua isinya. JANGAN lupa koma (,) setelah tanda } kecuali itu blok PALING TERAKHIR.",
-
+  "_petunjuk": "Untuk menambah UMKM baru, copy salah satu blok { ... } di bawah, paste di akhir sebelum tanda ] penutup, lalu ganti semua isinya. JANGAN lupa koma (,) setelah tanda } kecuali itu blok PALING TERAKHIR. CATATAN field 'maps': isi dengan link Google Maps ASLI lokasi usaha (bukan link generik) — link ini juga dipakai sebagai tombol 'Lihat Review di Google Maps' di halaman detail. CATATAN field 'testimoni': array opsional testimoni warga asli (bukan dari Google), format [{nama, teks, tanggal}]. Boleh dikosongkan [] kalau belum ada.",
   "umkm": [
     {
       "id": 0,
@@ -19,12 +18,41 @@
       "yt": "https://youtube.com",
       "sp": "https://shopee.co.id",
       "tp": "https://tokopedia.com",
-      "galeri": ["🍪", "🥮", "🍡", "🎂", "🧁"],
+      "galeri": [
+        "🍪",
+        "🥮",
+        "🍡",
+        "🎂",
+        "🧁"
+      ],
       "products": [
-        { "e": "🥮", "n": "Klepon",    "p": "Rp 2.000/biji" },
-        { "e": "🍡", "n": "Lupis",     "p": "Rp 3.000/biji" },
-        { "e": "🎂", "n": "Kue Lapis", "p": "Rp 25.000"     },
-        { "e": "🧁", "n": "Cupcake",   "p": "Rp 5.000"      }
+        {
+          "e": "🥮",
+          "n": "Klepon",
+          "p": "Rp 2.000/biji"
+        },
+        {
+          "e": "🍡",
+          "n": "Lupis",
+          "p": "Rp 3.000/biji"
+        },
+        {
+          "e": "🎂",
+          "n": "Kue Lapis",
+          "p": "Rp 25.000"
+        },
+        {
+          "e": "🧁",
+          "n": "Cupcake",
+          "p": "Rp 5.000"
+        }
+      ],
+      "testimoni": [
+        {
+          "nama": "Bu Endang",
+          "teks": "Kue-nya selalu fresh, langganan tiap ada acara di RT.",
+          "tanggal": "Mei 2026"
+        }
       ]
     },
     {
@@ -38,13 +66,47 @@
       "alamat": "RT 02, Dusun Ngemplak, Desa Samping, Kemiri, Purworejo",
       "jam": "Senin–Sabtu 07.00–17.00 WIB",
       "maps": "https://maps.google.com",
-      "ig": "#", "fb": "#", "tt": "#", "yt": "#", "sp": "#", "tp": "#",
-      "galeri": ["🪑", "🛏️", "🚪", "🗄️", "🪞"],
+      "ig": "#",
+      "fb": "#",
+      "tt": "#",
+      "yt": "#",
+      "sp": "#",
+      "tp": "#",
+      "galeri": [
+        "🪑",
+        "🛏️",
+        "🚪",
+        "🗄️",
+        "🪞"
+      ],
       "products": [
-        { "e": "🪑", "n": "Kursi Jati",  "p": "Rp 350.000"   },
-        { "e": "🛏️", "n": "Dipan Kayu",  "p": "Rp 800.000"   },
-        { "e": "🚪", "n": "Pintu Ukir",  "p": "Rp 1.200.000" },
-        { "e": "🗄️", "n": "Lemari",      "p": "Rp 950.000"   }
+        {
+          "e": "🪑",
+          "n": "Kursi Jati",
+          "p": "Rp 350.000"
+        },
+        {
+          "e": "🛏️",
+          "n": "Dipan Kayu",
+          "p": "Rp 800.000"
+        },
+        {
+          "e": "🚪",
+          "n": "Pintu Ukir",
+          "p": "Rp 1.200.000"
+        },
+        {
+          "e": "🗄️",
+          "n": "Lemari",
+          "p": "Rp 950.000"
+        }
+      ],
+      "testimoni": [
+        {
+          "nama": "Pak Joko",
+          "teks": "Lemari pesanan saya rapi banget, sesuai ukuran yang diminta.",
+          "tanggal": "April 2026"
+        }
       ]
     },
     {
@@ -58,14 +120,42 @@
       "alamat": "RT 01, Dusun Ngemplak, Desa Samping, Kemiri, Purworejo",
       "jam": "Setiap hari 05.00–12.00 WIB",
       "maps": "https://maps.google.com",
-      "ig": "#", "fb": "#", "tt": "#", "yt": "#", "sp": "#", "tp": "#",
-      "galeri": ["🌿", "🫚", "🔴", "🌱", "🫙"],
+      "ig": "#",
+      "fb": "#",
+      "tt": "#",
+      "yt": "#",
+      "sp": "#",
+      "tp": "#",
+      "galeri": [
+        "🌿",
+        "🫚",
+        "🔴",
+        "🌱",
+        "🫙"
+      ],
       "products": [
-        { "e": "🌿", "n": "Kunyit Asam",  "p": "Rp 5.000/btl" },
-        { "e": "🫚", "n": "Beras Kencur", "p": "Rp 5.000/btl" },
-        { "e": "🔴", "n": "Jahe Merah",   "p": "Rp 7.000/btl" },
-        { "e": "🌱", "n": "Temulawak",    "p": "Rp 6.000/btl" }
-      ]
+        {
+          "e": "🌿",
+          "n": "Kunyit Asam",
+          "p": "Rp 5.000/btl"
+        },
+        {
+          "e": "🫚",
+          "n": "Beras Kencur",
+          "p": "Rp 5.000/btl"
+        },
+        {
+          "e": "🔴",
+          "n": "Jahe Merah",
+          "p": "Rp 7.000/btl"
+        },
+        {
+          "e": "🌱",
+          "n": "Temulawak",
+          "p": "Rp 6.000/btl"
+        }
+      ],
+      "testimoni": []
     },
     {
       "id": 3,
@@ -78,13 +168,47 @@
       "alamat": "RT 02, Dusun Ngemplak, Desa Samping, Kemiri, Purworejo",
       "jam": "Pesan min. 2 hari sebelumnya",
       "maps": "https://maps.google.com",
-      "ig": "#", "fb": "#", "tt": "#", "yt": "#", "sp": "#", "tp": "#",
-      "galeri": ["🍱", "🍛", "🥗", "🍢", "🥘"],
+      "ig": "#",
+      "fb": "#",
+      "tt": "#",
+      "yt": "#",
+      "sp": "#",
+      "tp": "#",
+      "galeri": [
+        "🍱",
+        "🍛",
+        "🥗",
+        "🍢",
+        "🥘"
+      ],
       "products": [
-        { "e": "🍛", "n": "Nasi Kotak",    "p": "Rp 15.000/pcs" },
-        { "e": "🥗", "n": "Tumpeng Mini",  "p": "Rp 200.000"    },
-        { "e": "🍢", "n": "Sate Komplit",  "p": "Rp 35.000/prs" },
-        { "e": "🥘", "n": "Gudeg Kenduri", "p": "Rp 25.000/prs" }
+        {
+          "e": "🍛",
+          "n": "Nasi Kotak",
+          "p": "Rp 15.000/pcs"
+        },
+        {
+          "e": "🥗",
+          "n": "Tumpeng Mini",
+          "p": "Rp 200.000"
+        },
+        {
+          "e": "🍢",
+          "n": "Sate Komplit",
+          "p": "Rp 35.000/prs"
+        },
+        {
+          "e": "🥘",
+          "n": "Gudeg Kenduri",
+          "p": "Rp 25.000/prs"
+        }
+      ],
+      "testimoni": [
+        {
+          "nama": "Bu Wati",
+          "teks": "Catering buat hajatan anak saya enak, porsi pas, tepat waktu.",
+          "tanggal": "Maret 2026"
+        }
       ]
     },
     {
@@ -98,14 +222,42 @@
       "alamat": "RT 01, Dusun Ngemplak, Desa Samping",
       "jam": "Senin–Sabtu 08.00–17.00 WIB",
       "maps": "https://maps.google.com",
-      "ig": "#", "fb": "#", "tt": "#", "yt": "#", "sp": "#", "tp": "#",
-      "galeri": ["🔧", "🚧", "🪟", "🏗️", "🔩"],
+      "ig": "#",
+      "fb": "#",
+      "tt": "#",
+      "yt": "#",
+      "sp": "#",
+      "tp": "#",
+      "galeri": [
+        "🔧",
+        "🚧",
+        "🪟",
+        "🏗️",
+        "🔩"
+      ],
       "products": [
-        { "e": "🚧", "n": "Pagar Besi", "p": "Rp 180.000/m"  },
-        { "e": "🪟", "n": "Teralis",    "p": "Rp 150.000/m"  },
-        { "e": "🏗️", "n": "Kanopi",     "p": "Rp 200.000/m²" },
-        { "e": "🔩", "n": "Reparasi",   "p": "Hubungi WA"    }
-      ]
+        {
+          "e": "🚧",
+          "n": "Pagar Besi",
+          "p": "Rp 180.000/m"
+        },
+        {
+          "e": "🪟",
+          "n": "Teralis",
+          "p": "Rp 150.000/m"
+        },
+        {
+          "e": "🏗️",
+          "n": "Kanopi",
+          "p": "Rp 200.000/m²"
+        },
+        {
+          "e": "🔩",
+          "n": "Reparasi",
+          "p": "Hubungi WA"
+        }
+      ],
+      "testimoni": []
     },
     {
       "id": 5,
@@ -118,14 +270,42 @@
       "alamat": "RT 01, Dusun Ngemplak",
       "jam": "Musim panen: Jan & Jul",
       "maps": "https://maps.google.com",
-      "ig": "#", "fb": "#", "tt": "#", "yt": "#", "sp": "#", "tp": "#",
-      "galeri": ["🌾", "🍚", "🌿", "🌾", "📦"],
+      "ig": "#",
+      "fb": "#",
+      "tt": "#",
+      "yt": "#",
+      "sp": "#",
+      "tp": "#",
+      "galeri": [
+        "🌾",
+        "🍚",
+        "🌿",
+        "🌾",
+        "📦"
+      ],
       "products": [
-        { "e": "🍚", "n": "Beras Putih",  "p": "Rp 12.000/kg" },
-        { "e": "🌾", "n": "Ketan Putih",  "p": "Rp 14.000/kg" },
-        { "e": "🟤", "n": "Ketan Hitam",  "p": "Rp 15.000/kg" },
-        { "e": "📦", "n": "Gabah",        "p": "Rp 5.000/kg"  }
-      ]
+        {
+          "e": "🍚",
+          "n": "Beras Putih",
+          "p": "Rp 12.000/kg"
+        },
+        {
+          "e": "🌾",
+          "n": "Ketan Putih",
+          "p": "Rp 14.000/kg"
+        },
+        {
+          "e": "🟤",
+          "n": "Ketan Hitam",
+          "p": "Rp 15.000/kg"
+        },
+        {
+          "e": "📦",
+          "n": "Gabah",
+          "p": "Rp 5.000/kg"
+        }
+      ],
+      "testimoni": []
     }
   ]
 }
