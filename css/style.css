@@ -1786,80 +1786,125 @@ body {
 }
 .sejarah-disclaimer {
   background: var(--brl);
+  border: 1.5px solid var(--br);
   border-radius: var(--rs);
-  padding: 10px 12px;
-  font-size: 11px;
+  padding: 12px 14px;
+  margin-bottom: 14px;
+}
+.sd-label {
+  font-size: 12px;
+  font-weight: 700;
   color: var(--br);
-  line-height: 1.6;
-  margin-bottom: 12px;
+  margin-bottom: 5px;
+}
+.sd-text {
+  font-size: 12px;
+  color: var(--tx);
+  line-height: 1.65;
+}
+.sd-text strong {
+  color: var(--br);
 }
 .sejarah-catatan {
-  font-size: 10.5px;
+  font-size: 11px;
   color: var(--tx3);
-  line-height: 1.6;
+  line-height: 1.7;
   margin-top: 16px;
   padding-top: 12px;
   border-top: 1px solid var(--iv2);
+}
+.sejarah-link-wa {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #fff;
+  background: #25D366;
+  padding: 6px 12px;
+  border-radius: 8px;
+  text-decoration: none;
 }
 
 
 /* ================================================
    19. FOOTER
+   ------------------------------------------------
+   Struktur baru (versi "low-profile"): grid 2 kolom
+   di desktop (kiri: brand+sosmed, kanan: alamat+kontak),
+   otomatis jadi 1 kolom stack di mobile lewat CSS Grid
+   (tidak perlu HTML terpisah untuk mobile/desktop).
    ================================================ */
 .footer {
   background: var(--gr);
   padding: 24px 18px;
   flex-shrink: 0;
 }
+
+.ft-grid {
+  display: grid;
+  grid-template-columns: 1fr; /* mobile: 1 kolom */
+  gap: 22px;
+  margin-bottom: 18px;
+}
+
+.ft-col { min-width: 0; }
+
 .ft-brand {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
-.ft-logo { width: 34px; height: 34px; object-fit: contain; }
-.ft-name { font-family: 'Lora', serif; font-size: 15px; font-weight: 700; color: #fff; }
-.ft-sub  { font-size: 9px; color: rgba(255, 255, 255, .55); }
+.ft-logo { width: 34px; height: 34px; object-fit: contain; flex-shrink: 0; }
+.ft-name { font-family: 'Lora', serif; font-size: 15px; font-weight: 700; color: #fff; line-height: 1.2; }
+.ft-sub  { font-size: 9px; color: rgba(255, 255, 255, .5); margin-top: 2px; }
 
 .ft-desc {
   font-size: 11.5px;
   color: rgba(255, 255, 255, .6);
   line-height: 1.7;
-  margin-bottom: 18px;
+  margin-bottom: 12px;
+}
+
+.ft-tagline {
+  font-size: 11px;
+  color: rgba(255, 255, 255, .4);
+  font-style: italic;
+  padding-top: 11px;
+  margin-bottom: 14px;
+  border-top: 1px solid rgba(255, 255, 255, .1);
 }
 
 .ft-addr {
   font-size: 11.5px;
-  color: rgba(255, 255, 255, .6);
+  color: rgba(255, 255, 255, .55);
   line-height: 1.7;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 
-.ft-contact    { margin-bottom: 4px; }
+.ft-contact    { display: flex; flex-direction: column; gap: 9px; }
 .ft-citem {
   display: flex;
   align-items: center;
   gap: 9px;
-  margin-bottom: 10px;
   text-decoration: none;
 }
 .ft-cico {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  opacity: .85;
+  color: rgba(255, 255, 255, .4);
 }
-.ft-cico svg { width: 16px; height: 16px; }
-.ft-cval { font-size: 11.5px; color: rgba(255, 255, 255, .75); font-weight: 500; }
+.ft-cico svg { width: 15px; height: 15px; }
+.ft-cval { font-size: 11.5px; color: rgba(255, 255, 255, .7); font-weight: 500; }
 
-.ft-social-ttl { font-size: 9px; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: rgba(255, 255, 255, .4); margin-bottom: 10px; }
-.ft-socials    { display: flex; gap: 10px; margin-bottom: 20px; }
+.ft-socials    { display: flex; gap: 8px; }
 .ft-soc {
-  width: 34px;
-  height: 34px;
+  width: 30px;
+  height: 30px;
   background: transparent;
   border-radius: 50%;
   display: flex;
@@ -1867,13 +1912,12 @@ body {
   justify-content: center;
   cursor: pointer;
   text-decoration: none;
-  border: 1.4px solid rgba(255, 255, 255, .4);
+  border: 1.4px solid rgba(255, 255, 255, .35);
   transition: background .15s ease, border-color .15s ease;
 }
 .ft-soc:hover { background: rgba(255, 255, 255, .12); border-color: rgba(255, 255, 255, .65); }
-.ft-soc svg { width: 16px; height: 16px; display: block; }
+.ft-soc svg { width: 14px; height: 14px; display: block; }
 
-.ft-managed { font-size: 10px; color: rgba(255, 255, 255, .4); margin-bottom: 4px; }
 .ft-copy {
   font-size: 9px;
   color: rgba(255, 255, 255, .3);
@@ -1958,7 +2002,7 @@ body {
   /* ---- Setiap section dibatasi lebar maksimal & ditengahkan ----
      Supaya teks tidak terlalu lebar dibaca di layar besar */
   .hero, .sec, .ticker, .filter-row, .ugrid,
-  .phdr, .tentang-hero, .footer {
+  .phdr, .tentang-hero, .tentang-tabs, .footer {
     max-width: 1100px;
     margin-left: auto;
     margin-right: auto;
@@ -2090,8 +2134,12 @@ body {
   }
   .bg-area-nyuwun { padding-top: 24px; }
 
-  /* ---- Footer — sedikit lebih lega ---- */
+  /* ---- Footer — sedikit lebih lega, grid 2 kolom ---- */
   .footer { padding: 32px 40px; }
+  .ft-grid {
+    grid-template-columns: 3fr 2fr;
+    gap: 48px;
+  }
 }
 
 
