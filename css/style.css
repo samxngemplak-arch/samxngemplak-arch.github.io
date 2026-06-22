@@ -548,6 +548,25 @@ body {
   flex-shrink: 0;
 }
 
+/* ================================================
+   WRAPPER LAYOUT 2-KOLOM DESKTOP (Beranda)
+   ------------------------------------------------
+   Default (MOBILE): display:contents membuat div ini
+   "tidak terlihat" oleh browser secara struktural —
+   5 section di dalamnya (Agenda, UMKM, Kas, Inventaris,
+   Nyuwun Tulung) tetap dianggap anak langsung dari
+   parent-nya, tampil stacked vertikal SAMA SEPERTI
+   SEBELUM wrapper ini ada. Tidak ada perubahan visual
+   apapun di mobile.
+
+   Override-nya ada di @media (min-width:1024px) di
+   bagian RESPONSIVE DESKTOP — di sana baru jadi grid
+   2 kolom sungguhan.
+   ================================================ */
+.beranda-grid-desktop {
+  display: contents;
+}
+
 /* Header halaman dalam (agenda, kas, dll) */
 .phdr {
   background: var(--gr);
@@ -1797,8 +1816,13 @@ body {
   }
   .ug-img  { height: 130px; font-size: 44px; }
 
-  /* ---- Kartu UMKM horizontal (beranda) — lebih lebar ---- */
-  .urow { padding: 4px 40px 4px; max-width: 1100px; margin: 0 auto; }
+  /* ---- Kartu UMKM horizontal (beranda) — lebih lebar ----
+     CATATAN: padding & max-width di sini cocok untuk konteks
+     LAMA (1 kolom lebar penuh). Sekarang .urow ada di dalam
+     kolom kiri grid 2-kolom (lihat .beranda-grid-desktop di
+     bawah) yang sudah punya padding sendiri dari wrapper —
+     override-nya ada di bagian LAYOUT 2-KOLOM BERANDA di bawah. */
+  .urow { padding: 4px 0; }
   .ucard { min-width: 200px; }
   .uimg  { height: 120px; font-size: 42px; }
 
@@ -1814,6 +1838,75 @@ body {
     margin-right: auto;
   }
   .ud-cover { height: 220px; font-size: 90px; }
+
+  /* ====================================================
+     LAYOUT 2-KOLOM BERANDA (DESKTOP SAJA)
+     ----------------------------------------------------
+     Kolom kiri (lebar, ~2/3)  : UMKM Unggulan + Inventaris
+     Kolom kanan (sidebar,1/3) : Nyuwun Tulung → Agenda → Kas
+     (sidebar disusun dari yang paling mendesak/sering
+     dicek dulu — kontak darurat di atas, kas paling bawah)
+
+     Section di dalam wrapper ini di-reset max-width-nya
+     (jadi 100% mengisi kolom grid masing-masing) — TANPA
+     mengubah aturan .sec global yang masih dipakai
+     halaman lain (Agenda, Kas, dll yang tetap 1 kolom).
+     ==================================================== */
+  .beranda-grid-desktop {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-areas:
+      "umkm       nyuwun"
+      "inventaris agenda"
+      "inventaris kas";
+    column-gap: 24px;
+    align-items: start;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  .bg-area-umkm       { grid-area: umkm; }
+  .bg-area-inventaris { grid-area: inventaris; }
+  .bg-area-nyuwun     { grid-area: nyuwun; }
+  .bg-area-agenda     { grid-area: agenda; }
+  .bg-area-kas        { grid-area: kas; }
+
+  /* Section di dalam grid 2-kolom: lebar penuh kolom,
+     tanpa max-width/margin sendiri (beda dari .sec biasa
+     yang di luar wrapper ini, itu tetap max-width 1100px).
+     Selector ditarget hanya ke .sec yang LANGSUNG anak
+     wrapper (Agenda, Kas, Inventaris, Nyuwun) — TIDAK
+     menimpa .sec di dalam .bg-area-umkm yang sudah punya
+     padding-bottom:0 inline secara sengaja. */
+  .beranda-grid-desktop > .sec {
+    max-width: none;
+    margin: 0;
+    padding: 24px 0;
+  }
+  .bg-area-umkm {
+    max-width: none;
+    margin: 0;
+  }
+  .bg-area-umkm .sec {
+    padding: 24px 0 0; /* header tetap rapat ke urow di bawahnya */
+  }
+
+  /* Divider abu-abu (.div8) antar section TIDAK relevan lagi
+     di layout grid 2-kolom (soalnya posisinya udah diatur grid,
+     bukan stacking vertikal) — sembunyikan supaya tidak muncul
+     sebagai garis aneh memotong tengah grid. */
+  .bg-divider {
+    display: none;
+  }
+
+  /* Card di sidebar kanan (Nyuwun Tulung, Agenda, Kas) sedikit
+     dirapatkan paddingnya — supaya 3 section ini tidak terlalu
+     "renggang" dibanding 1 card besar UMKM di kolom kiri */
+  .bg-area-nyuwun, .bg-area-agenda, .bg-area-kas {
+    padding-top: 0;
+  }
+  .bg-area-nyuwun { padding-top: 24px; }
 
   /* ---- Footer — sedikit lebih lega ---- */
   .footer { padding: 32px 40px; }

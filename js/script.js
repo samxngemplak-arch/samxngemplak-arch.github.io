@@ -512,6 +512,30 @@ function showUMKM(id, updateUrl) {
     else { console.warn('⚠️ Elemen #' + elementId + ' tidak ditemukan di HTML'); }
   }
 
+  /**
+   * Khusus tombol sosmed/marketplace (IG, FB, TikTok, YouTube, Shopee,
+   * Tokopedia): kalau linknya belum diisi (kosong, "#", atau memang
+   * tidak ada di data), tombolnya DISEMBUNYIKAN otomatis — daripada
+   * nampilin tombol yang ternyata gak ke mana-mana.
+   *
+   * PENTING buat Zen: ini otomatis, tidak perlu setting apa-apa.
+   * Begitu link diisi link asli di umkm.json (contoh field "sp" diisi
+   * link Shopee), tombolnya akan MUNCUL SENDIRI saat halaman dibuka
+   * lagi. Tidak perlu sentuh HTML/CSS sama sekali.
+   */
+  function isiLinkSosmed(elementId, nilai) {
+    const el = document.getElementById(elementId);
+    if (!el) { console.warn('⚠️ Elemen #' + elementId + ' tidak ditemukan di HTML'); return; }
+
+    const isiKosong = !nilai || nilai === '#' || nilai.trim() === '';
+    if (isiKosong) {
+      el.style.display = 'none';
+    } else {
+      el.href = nilai;
+      el.style.display = ''; /* tampilkan lagi (jaga-jaga kalau sebelumnya disembunyikan UMKM lain) */
+    }
+  }
+
   /* ── Isi bagian atas (cover & nama) ── */
   const cover = document.getElementById('ud-cover');
   if (cover && cover.childNodes[0]) { cover.childNodes[0].textContent = u.emoji; }
@@ -543,13 +567,25 @@ function showUMKM(id, updateUrl) {
   isiLink('ud-maps-link', u.maps);
   isiTeks('ud-maps-addr', u.alamat);
 
-  /* ── Link sosmed & marketplace ── */
-  isiLink('ud-ig', u.ig);
-  isiLink('ud-fb', u.fb);
-  isiLink('ud-tt', u.tt);
-  isiLink('ud-yt', u.yt);
-  isiLink('ud-sp', u.sp);
-  isiLink('ud-tp', u.tp);
+  /* ── Link sosmed & marketplace — otomatis sembunyi kalau kosong ── */
+  isiLinkSosmed('ud-ig', u.ig);
+  isiLinkSosmed('ud-fb', u.fb);
+  isiLinkSosmed('ud-tt', u.tt);
+  isiLinkSosmed('ud-yt', u.yt);
+  isiLinkSosmed('ud-sp', u.sp);
+  isiLinkSosmed('ud-tp', u.tp);
+
+  /* Kalau SEMUA link sosmed kosong, sembunyikan seluruh section-nya
+     (judul + grid) — daripada nampilin judul "Media Sosial & Marketplace"
+     tanpa satu pun tombol di bawahnya. */
+  const semuaLinkSosmed = [u.ig, u.fb, u.tt, u.yt, u.sp, u.tp];
+  const adaYangKeisi = semuaLinkSosmed.some(function(link) {
+    return link && link !== '#' && link.trim() !== '';
+  });
+  const sosmedSec = document.getElementById('ud-sosmed-sec');
+  if (sosmedSec) {
+    sosmedSec.style.display = adaYangKeisi ? '' : 'none';
+  }
 
   /* ── Tombol WA kedua (di bagian bawah) ── */
   isiLink('ud-wa2', `https://wa.me/${u.phone}`);

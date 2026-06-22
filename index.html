@@ -129,8 +129,28 @@
 
       <div class="div8"></div>
 
+      <!-- ====================================================
+           WRAPPER LAYOUT 2-KOLOM DESKTOP
+           ----------------------------------------------------
+           Div ini MURNI untuk kebutuhan layout desktop (lihat
+           .beranda-grid-desktop di css/style.css, blok
+           @media min-width:1024px).
+
+           Di MOBILE: div ini "transparan" (display:contents),
+           5 section di dalamnya tetap tampil stacked vertikal
+           SAMA SEPERTI SEBELUMNYA — urutan & tampilan mobile
+           TIDAK BERUBAH SAMA SEKALI.
+
+           Di DESKTOP: jadi grid 2 kolom —
+           Kolom kiri (lebar)  : UMKM Unggulan + Inventaris
+           Kolom kanan (sidebar): Nyuwun Tulung → Agenda → Kas
+           (urutan sidebar disusun dari yang paling mendesak/
+           sering dicek duluan ke yang paling jarang)
+           ==================================================== -->
+      <div class="beranda-grid-desktop">
+
       <!-- Agenda Terdekat — diisi otomatis oleh JS (lihat renderAgendaBeranda() di script.js) -->
-      <div class="sec">
+      <div class="sec bg-area-agenda">
         <div class="sec-hdr">
           <div class="sec-ttl">Agenda Terdekat</div>
           <button class="sec-lnk" onclick="nav('agenda')">Semua →</button>
@@ -139,26 +159,28 @@
         <div id="agenda-beranda-list"></div>
       </div>
 
-      <div class="div8"></div>
+      <div class="div8 bg-divider"></div>
 
       <!-- UMKM Unggulan — diisi otomatis oleh JS (lihat renderUMKMBeranda() di script.js).
            Otomatis ambil beberapa UMKM pertama dari data/umkm.json, jadi kalau urutan/ID
            UMKM diubah, card ini ikut benar tanpa perlu edit HTML manual. -->
-      <div class="sec" style="padding-bottom:0">
-        <div class="sec-hdr">
-          <div class="sec-ttl">Lapak Warga</div>
-          <button class="sec-lnk" onclick="nav('umkm')">Semua →</button>
+      <div class="bg-area-umkm">
+        <div class="sec" style="padding-bottom:0">
+          <div class="sec-hdr">
+            <div class="sec-ttl">Lapak Warga</div>
+            <button class="sec-lnk" onclick="nav('umkm')">Semua →</button>
+          </div>
+          <div class="bline"></div>
         </div>
-        <div class="bline"></div>
-      </div>
-      <div style="padding:0 16px 16px">
-        <div class="urow" id="umkm-beranda-list"></div>
+        <div style="padding:0 16px 16px">
+          <div class="urow" id="umkm-beranda-list"></div>
+        </div>
       </div>
 
-      <div class="div8"></div>
+      <div class="div8 bg-divider"></div>
 
       <!-- Kas Ringkasan -->
-      <div class="sec">
+      <div class="sec bg-area-kas">
         <div class="sec-hdr">
           <div class="sec-ttl">Transparansi Kas</div>
           <button class="sec-lnk" onclick="nav('kas')">Detail →</button>
@@ -184,10 +206,10 @@
         </div>
       </div>
 
-      <div class="div8"></div>
+      <div class="div8 bg-divider"></div>
 
       <!-- Inventaris Ringkasan -->
-      <div class="sec">
+      <div class="sec bg-area-inventaris">
         <div class="sec-hdr">
           <div class="sec-ttl">Inventaris Dusun</div>
           <button class="sec-lnk" onclick="nav('inventaris')">Semua →</button>
@@ -210,10 +232,10 @@
         </div>
       </div>
 
-      <div class="div8"></div>
+      <div class="div8 bg-divider"></div>
 
       <!-- Nyuwun Tulung Ringkasan -->
-      <div class="sec">
+      <div class="sec bg-area-nyuwun">
         <div class="sec-hdr">
           <div class="sec-ttl">Nyuwun Tulung 📞</div>
           <button class="sec-lnk" onclick="nav('nyuwun')">Semua →</button>
@@ -238,6 +260,8 @@
           <a class="nt-wa" href="https://wa.me/6282241439784" target="_blank">💬 WA</a>
         </div>
       </div>
+
+      </div><!-- /beranda-grid-desktop -->
 
       <!-- Footer -->
       <div class="footer">
@@ -436,7 +460,7 @@
           </div>
 
           <!-- Sosmed & Marketplace -->
-          <div class="ud-sec">
+          <div class="ud-sec" id="ud-sosmed-sec">
             <div class="ud-sec-ttl">Media Sosial & Marketplace</div>
             <div class="sosmed-g">
               <a class="sb-btn" id="ud-ig" href="#" target="_blank">
