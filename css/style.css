@@ -1726,49 +1726,40 @@ body {
   font-style: italic;
 }
 
-/* Sejarah Dusun — collapsible. Default tertutup, isi LENGKAP
-   tetap ada di DOM (bukan dipotong), cuma disembunyikan secara
-   visual sampai tombol toggle diklik. */
-.sejarah-toggle {
+/* Sub-tab halaman Tentang Dusun — pola CSS IDENTIK dengan
+   .filter-row/.fchip (filter kategori UMKM) yang sudah terbukti
+   jalan di situs ini, supaya minim risiko gagal render. */
+.tentang-tabs {
   display: flex;
-  align-items: center;
-  width: 100%;
-  border: none;
-  background: none;
-  font-family: inherit;
-  cursor: pointer;
-  padding: 0;
-  text-align: left;
-}
-.sejarah-chevron {
-  width: 18px;
-  height: 18px;
-  stroke: var(--tx3);
-  fill: none;
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+  gap: 7px;
+  overflow-x: auto;
+  padding: 12px 16px;
+  scrollbar-width: none;
+  background: var(--wh);
+  border-bottom: 1px solid var(--iv2);
   flex-shrink: 0;
-  transition: transform .2s ease;
 }
-.sejarah-chevron.rotated {
-  transform: rotate(180deg);
-}
-.sejarah-preview {
+.tentang-tabs::-webkit-scrollbar { display: none; }
+
+.ttab {
   font-size: 12px;
-  color: var(--tx3);
-  line-height: 1.6;
-  font-style: italic;
-  margin-bottom: 4px;
+  font-weight: 600;
+  padding: 7px 14px;
+  border-radius: 20px;
+  border: 1.5px solid var(--iv3);
+  background: var(--wh);
+  color: var(--tx2);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all .15s;
+  font-family: inherit;
 }
-.sejarah-content {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height .3s ease;
+.ttab.active {
+  background: var(--gr);
+  color: #fff;
+  border-color: var(--gr);
 }
-.sejarah-content.open {
-  max-height: 6000px; /* cukup besar untuk menampung seluruh konten sejarah */
-}
+
 .sejarah-h {
   font-family: 'Lora', serif;
   font-size: 14px;

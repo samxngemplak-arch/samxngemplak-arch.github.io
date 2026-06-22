@@ -223,6 +223,13 @@ function nav(key) {
     renderAgendaPage();
   }
 
+  /* Kalau pindah ke halaman Tentang, reset ke tab Profil —
+     supaya konsisten, tidak nyangkut di tab terakhir yang
+     pernah dibuka sebelumnya. */
+  if (key === 'tentang') {
+    tentangTab('profil');
+  }
+
   /* Bersihkan parameter ?umkm=... dari URL kalau pindah ke halaman
      LAIN (bukan detail UMKM) — supaya URL gak nyangkut nunjuk UMKM
      lama padahal sudah pindah halaman lain. */
@@ -957,22 +964,29 @@ function goToUMKM(id) {
 
 
 /* ================================================
-   9B. TOGGLE SEJARAH DUSUN
-   Buka/tutup section Sejarah di halaman Tentang Dusun.
-   Default tertutup (lihat CSS .sejarah-content) supaya
-   halaman utama tetap ringkas — kontennya tetap LENGKAP,
-   cuma disembunyikan sampai tombol ini diklik.
+   9B. SUB-TAB HALAMAN TENTANG
+   ------------------------------------------------
+   4 tombol (Profil, Visi & Misi, Sejarah, Pengurus).
+   Klik 1 tombol -> tampilkan panel itu, sembunyikan
+   3 panel lain TOTAL (display:none, bukan animasi
+   collapse) — supaya sederhana dan minim risiko gagal
+   render di browser apapun.
    ================================================ */
-function toggleSejarah() {
-  const content = document.getElementById('sejarah-content');
-  const chevron = document.getElementById('sejarah-chevron');
-  const btn = document.getElementById('sejarah-toggle-btn');
-  if (!content || !chevron || !btn) return;
+const TENTANG_TABS = ['profil', 'visimisi', 'sejarah', 'pengurus'];
 
-  const sedangTerbuka = content.classList.contains('open');
-  content.classList.toggle('open');
-  chevron.classList.toggle('rotated');
-  btn.setAttribute('aria-expanded', String(!sedangTerbuka));
+function tentangTab(key) {
+  TENTANG_TABS.forEach(function(k) {
+    const panel = document.getElementById('tpanel-' + k);
+    const btn = document.getElementById('ttab-' + k);
+    if (panel) { panel.style.display = (k === key) ? '' : 'none'; }
+    if (btn) { btn.classList.toggle('active', k === key); }
+  });
+
+  /* Scroll konten halaman Tentang ke atas setiap ganti tab,
+     supaya orang tidak bingung kalau sebelumnya sudah scroll
+     jauh ke bawah di tab lain. */
+  const scrollArea = document.querySelector('#p-tentang > div');
+  if (scrollArea) { scrollArea.scrollTop = 0; }
 }
 
 

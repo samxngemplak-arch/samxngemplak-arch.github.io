@@ -735,79 +735,90 @@
           <div class="tentang-loc">📍 Desa Samping, Kemiri, Purworejo, Jawa Tengah</div>
         </div>
 
-        <!-- Profil -->
-        <div class="sec">
-          <div class="sec-hdr"><div class="sec-ttl">Profil Dusun</div></div>
-          <div class="bline"></div>
-          <p style="font-size:13px; color:var(--tx2); line-height:1.7">
-            Dusun Ngemplak merupakan salah satu wilayah pedukuhan yang berada di Desa Samping,
-            Kecamatan Kemiri, Kabupaten Purworejo, Provinsi Jawa Tengah. Dusun ini dikenal sebagai
-            lingkungan masyarakat yang menjunjung tinggi nilai gotong royong, kerukunan, serta
-            kehidupan sosial yang harmonis.
-          </p>
-          <p style="font-size:13px; color:var(--tx2); line-height:1.7; margin-top:10px">
-            Dalam bidang ekonomi, masyarakat memiliki mata pencaharian yang beragam — selain
-            pertanian, perkebunan, dan peternakan, warga juga mengembangkan usaha perdagangan,
-            jasa, industri rumahan, serta berbagai kegiatan ekonomi produktif lainnya.
-          </p>
-          <div class="motto-box">
-            <div class="motto-label">Motto Dusun</div>
-            <div class="motto-text">"Guyub Rukun, Maju Bebarengan."</div>
-          </div>
+        <!-- ====================================================
+             SUB-TAB HALAMAN TENTANG
+             ----------------------------------------------------
+             4 tombol: Profil | Visi & Misi | Sejarah | Pengurus.
+             Klik 1 tombol -> 1 panel tampil, 3 panel lain
+             disembunyikan TOTAL (display:none, bukan collapse
+             max-height) — supaya halaman tetap ringkas dan
+             setiap topik kelihatan terpisah jelas, bukan numpuk
+             jadi 1 scroll panjang.
+
+             Default saat halaman dibuka: tab "Profil" aktif.
+             Lihat fungsi tentangTab() di js/script.js.
+             ==================================================== -->
+        <div class="tentang-tabs">
+          <button class="ttab active" id="ttab-profil" onclick="tentangTab('profil')">Profil</button>
+          <button class="ttab" id="ttab-visimisi" onclick="tentangTab('visimisi')">Visi & Misi</button>
+          <button class="ttab" id="ttab-sejarah" onclick="tentangTab('sejarah')">Sejarah</button>
+          <button class="ttab" id="ttab-pengurus" onclick="tentangTab('pengurus')">Pengurus</button>
         </div>
 
-        <!-- Visi & Misi -->
-        <div class="sec">
-          <div class="sec-hdr"><div class="sec-ttl">Visi & Misi</div></div>
-          <div class="bline"></div>
-          <div class="visi-box">
-            <div class="visi-label">Visi</div>
-            <div class="visi-text">"Terwujudnya Dusun Ngemplak yang Aman, Rukun, Mandiri, Berbudaya, dan Sejahtera melalui Semangat Gotong Royong serta Partisipasi Masyarakat."</div>
-          </div>
-          <div class="misi-label">Misi</div>
-          <ul class="misi-list">
-            <li>Meningkatkan kualitas pelayanan kepada masyarakat secara transparan, cepat, dan responsif.</li>
-            <li>Mendorong pembangunan sarana dan prasarana yang bermanfaat bagi seluruh warga.</li>
-            <li>Mengembangkan potensi ekonomi masyarakat berbasis sumber daya lokal.</li>
-            <li>Menjaga keamanan, ketertiban, dan kerukunan antarwarga.</li>
-            <li>Melestarikan budaya, tradisi, dan kearifan lokal sebagai identitas dusun.</li>
-            <li>Mendorong keterlibatan generasi muda dalam pembangunan dan kegiatan sosial kemasyarakatan.</li>
-          </ul>
-        </div>
-
-        <!-- Data Wilayah — PLACEHOLDER, menunggu data asli dari pengelola -->
-        <div class="sec">
-          <div class="sec-hdr"><div class="sec-ttl">Data Wilayah</div></div>
-          <div class="bline"></div>
-          <div class="datawilayah-grid">
-            <div class="dw-item"><div class="dw-lbl">Jumlah RT</div><div class="dw-val dw-pending">Akan diperbarui</div></div>
-            <div class="dw-item"><div class="dw-lbl">Jumlah RW</div><div class="dw-val dw-pending">Akan diperbarui</div></div>
-            <div class="dw-item"><div class="dw-lbl">Kepala Keluarga</div><div class="dw-val dw-pending">Akan diperbarui</div></div>
-            <div class="dw-item"><div class="dw-lbl">Jumlah Penduduk</div><div class="dw-val dw-pending">Akan diperbarui</div></div>
-            <div class="dw-item"><div class="dw-lbl">Luas Wilayah</div><div class="dw-val dw-pending">Akan diperbarui</div></div>
-          </div>
-          <div style="font-size:10px; color:var(--tx3); margin-top:8px; line-height:1.5">
-            Data kependudukan & batas wilayah sedang dilengkapi oleh pengelola. Halaman ini akan diperbarui begitu data resmi tersedia.
-          </div>
-        </div>
-
-        <!-- Sejarah — collapsible, default tertutup supaya halaman utama tetap ringkas.
-             Isi LENGKAP sesuai dokumen sejarah asli, hanya presentasinya yang disembunyikan
-             di balik tombol expand — kontennya TIDAK diringkas/dipotong. -->
-        <div class="sec">
-          <button class="sejarah-toggle" id="sejarah-toggle-btn" onclick="toggleSejarah()">
-            <div class="sec-hdr" style="margin-bottom:0; flex:1">
-              <div class="sec-ttl">Sejarah Dusun</div>
+        <!-- ===== PANEL: PROFIL (aktif default) ===== -->
+        <div class="tentang-panel" id="tpanel-profil">
+          <div class="sec">
+            <p style="font-size:13px; color:var(--tx2); line-height:1.7">
+              Dusun Ngemplak merupakan salah satu wilayah pedukuhan yang berada di Desa Samping,
+              Kecamatan Kemiri, Kabupaten Purworejo, Provinsi Jawa Tengah. Dusun ini dikenal sebagai
+              lingkungan masyarakat yang menjunjung tinggi nilai gotong royong, kerukunan, serta
+              kehidupan sosial yang harmonis.
+            </p>
+            <p style="font-size:13px; color:var(--tx2); line-height:1.7; margin-top:10px">
+              Dalam bidang ekonomi, masyarakat memiliki mata pencaharian yang beragam — selain
+              pertanian, perkebunan, dan peternakan, warga juga mengembangkan usaha perdagangan,
+              jasa, industri rumahan, serta berbagai kegiatan ekonomi produktif lainnya.
+            </p>
+            <div class="motto-box">
+              <div class="motto-label">Motto Dusun</div>
+              <div class="motto-text">"Guyub Rukun, Maju Bebarengan."</div>
             </div>
-            <svg class="sejarah-chevron" id="sejarah-chevron" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
-          </button>
-          <div class="bline"></div>
-          <div class="sejarah-preview">
-            Sebagian besar sejarah Dusun Ngemplak diwariskan secara lisan oleh para sesepuh —
-            mulai dari asal-usul nama, para perintis dusun, masa Perang Jawa, hingga asal Masjid Al-Iman.
           </div>
 
-          <div class="sejarah-content" id="sejarah-content">
+          <div class="sec">
+            <div class="sec-hdr"><div class="sec-ttl">Data Wilayah</div></div>
+            <div class="bline"></div>
+            <div class="datawilayah-grid">
+              <div class="dw-item"><div class="dw-lbl">Jumlah RT</div><div class="dw-val dw-pending">Akan diperbarui</div></div>
+              <div class="dw-item"><div class="dw-lbl">Jumlah RW</div><div class="dw-val dw-pending">Akan diperbarui</div></div>
+              <div class="dw-item"><div class="dw-lbl">Kepala Keluarga</div><div class="dw-val dw-pending">Akan diperbarui</div></div>
+              <div class="dw-item"><div class="dw-lbl">Jumlah Penduduk</div><div class="dw-val dw-pending">Akan diperbarui</div></div>
+              <div class="dw-item"><div class="dw-lbl">Luas Wilayah</div><div class="dw-val dw-pending">Akan diperbarui</div></div>
+            </div>
+            <div style="font-size:10px; color:var(--tx3); margin-top:8px; line-height:1.5">
+              Data kependudukan & batas wilayah sedang dilengkapi oleh pengelola. Halaman ini akan diperbarui begitu data resmi tersedia.
+            </div>
+          </div>
+        </div>
+
+        <!-- ===== PANEL: VISI & MISI ===== -->
+        <div class="tentang-panel" id="tpanel-visimisi" style="display:none">
+          <div class="sec">
+            <div class="sec-hdr"><div class="sec-ttl">Visi</div></div>
+            <div class="bline"></div>
+            <div class="visi-box">
+              <div class="visi-text">"Terwujudnya Dusun Ngemplak yang Aman, Rukun, Mandiri, Berbudaya, dan Sejahtera melalui Semangat Gotong Royong serta Partisipasi Masyarakat."</div>
+            </div>
+          </div>
+          <div class="sec">
+            <div class="sec-hdr"><div class="sec-ttl">Misi</div></div>
+            <div class="bline"></div>
+            <ul class="misi-list">
+              <li>Meningkatkan kualitas pelayanan kepada masyarakat secara transparan, cepat, dan responsif.</li>
+              <li>Mendorong pembangunan sarana dan prasarana yang bermanfaat bagi seluruh warga.</li>
+              <li>Mengembangkan potensi ekonomi masyarakat berbasis sumber daya lokal.</li>
+              <li>Menjaga keamanan, ketertiban, dan kerukunan antarwarga.</li>
+              <li>Melestarikan budaya, tradisi, dan kearifan lokal sebagai identitas dusun.</li>
+              <li>Mendorong keterlibatan generasi muda dalam pembangunan dan kegiatan sosial kemasyarakatan.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- ===== PANEL: SEJARAH ===== -->
+        <div class="tentang-panel" id="tpanel-sejarah" style="display:none">
+          <div class="sec">
+            <div class="sec-hdr"><div class="sec-ttl">Sejarah Dusun</div></div>
+            <div class="bline"></div>
 
             <div class="sejarah-h">Asal-Usul Nama</div>
             <p class="sejarah-p">
@@ -916,29 +927,30 @@
               mendatang. Punya informasi atau arsip sejarah Dusun Ngemplak? Hubungi pengelola
               website untuk membantu melengkapi dokumentasi ini.
             </div>
-
           </div>
         </div>
 
-        <!-- Pengurus -->
-        <div class="sec">
-          <div class="sec-hdr"><div class="sec-ttl">Struktur Pengurus</div></div>
-          <div class="bline"></div>
-          <div class="org-card">
-            <div class="org-av av-g">👨‍💼</div>
-            <div><div class="org-role">Kepala Dusun</div><div class="org-name">Bpk. Rudi Santoso</div></div>
-          </div>
-          <div class="org-card">
-            <div class="org-av av-b">👨‍💼</div>
-            <div><div class="org-role">Ketua RW</div><div class="org-name">Bpk. Hendra Wijaya</div></div>
-          </div>
-          <div class="org-card">
-            <div class="org-av av-g">👨‍💼</div>
-            <div><div class="org-role">Ketua RT 01</div><div class="org-name">Bpk. Suparman</div></div>
-          </div>
-          <div class="org-card">
-            <div class="org-av av-g">👨‍💼</div>
-            <div><div class="org-role">Ketua RT 02</div><div class="org-name">Bpk. Widodo</div></div>
+        <!-- ===== PANEL: PENGURUS ===== -->
+        <div class="tentang-panel" id="tpanel-pengurus" style="display:none">
+          <div class="sec">
+            <div class="sec-hdr"><div class="sec-ttl">Struktur Pengurus</div></div>
+            <div class="bline"></div>
+            <div class="org-card">
+              <div class="org-av av-g">👨‍💼</div>
+              <div><div class="org-role">Kepala Dusun</div><div class="org-name">Bpk. Rudi Santoso</div></div>
+            </div>
+            <div class="org-card">
+              <div class="org-av av-b">👨‍💼</div>
+              <div><div class="org-role">Ketua RW</div><div class="org-name">Bpk. Hendra Wijaya</div></div>
+            </div>
+            <div class="org-card">
+              <div class="org-av av-g">👨‍💼</div>
+              <div><div class="org-role">Ketua RT 01</div><div class="org-name">Bpk. Suparman</div></div>
+            </div>
+            <div class="org-card">
+              <div class="org-av av-g">👨‍💼</div>
+              <div><div class="org-role">Ketua RT 02</div><div class="org-name">Bpk. Widodo</div></div>
+            </div>
           </div>
         </div>
 
