@@ -1999,21 +1999,41 @@ body {
   .hbrand     { font-size: 17px; }
   .hsub       { font-size: 10px; }
 
-  /* ---- Setiap section dibatasi lebar maksimal & ditengahkan ----
-     Supaya teks tidak terlalu lebar dibaca di layar besar */
+  /* ---- Section: BACKGROUND full-width, KONTEN dibatasi & center ----
+     Dulu pakai max-width:1100px + margin:auto LANGSUNG di section ini
+     — itu bikin BACKGROUND-nya juga ikut kebatasi, jadi di monitor lebar
+     (1440px+) keliatan seperti "kotak warna di tengah" dengan gap kosong
+     krem di kanan-kiri (paling jelas terlihat di .footer yang warnanya
+     solid hijau).
+
+     SEKARANG: section ini full-width (background otomatis mengisi
+     seluruh viewport), padding horizontal-nya pakai variable --side
+     yang dihitung otomatis via calc() supaya KONTEN tetap rapi di
+     tengah dengan lebar maksimal ~1100px — efek visual identik dengan
+     "max-width:1100px + margin:auto", tapi background full.
+
+     PENTING: --side dipakai di "padding-left/right" pada section yang
+     JUGA punya padding-top/bottom sendiri (override di bawah) — supaya
+     tidak konflik, padding atas/bawah tiap section TETAP ditulis
+     terpisah pakai shorthand "padding: atas SISI-VAR bawah" (lihat
+     .hero, .sec, dst di bawah), BUKAN shorthand "padding: X Y" polos. */
+  :root {
+    --side: max(40px, calc((100vw - 1100px) / 2));
+  }
   .hero, .sec, .ticker, .filter-row, .ugrid,
   .phdr, .tentang-hero, .tentang-tabs, .footer {
-    max-width: 1100px;
-    margin-left: auto;
-    margin-right: auto;
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
     width: 100%;
+    box-sizing: border-box;
   }
   .ugrid { display: grid; } /* pastikan grid tetap grid setelah max-width */
 
   /* ---- HERO — lebih besar & lega di desktop ---- */
   .hero {
-    padding: 56px 40px 64px;
-    border-radius: 0 0 24px 24px;
+    padding: 56px var(--side) 64px;
+    border-radius: 0;
   }
   .hero-ttl  { font-size: 38px; }
   .hero-tag  { font-size: 14px; max-width: 420px; }
@@ -2022,8 +2042,16 @@ body {
   .hstat .num { font-size: 22px; }
 
   /* ---- Section judul lebih besar ---- */
-  .sec { padding: 28px 40px; }
+  .sec { padding: 28px var(--side); }
   .sec-ttl { font-size: 19px; }
+
+  /* ---- Section lain yang juga butuh padding var(--side) di desktop ----
+     (sebelumnya cuma warisan padding mobile setelah max-width dihapus) */
+  .ticker     { padding: 7px var(--side); }
+  .filter-row { padding: 10px var(--side) 8px; }
+  .phdr       { padding: 10px var(--side) 14px; }
+  .tentang-hero { padding: 20px var(--side) 24px; }
+  .tentang-tabs { padding: 12px var(--side); }
 
   /* ---- Grid Layanan — 6 kolom sejajar (1 baris) ---- */
   .g23 {
@@ -2089,7 +2117,7 @@ body {
     align-items: start;
     max-width: 1100px;
     margin: 0 auto;
-    padding: 0 40px;
+    padding: 0 var(--side);
   }
 
   .bg-area-umkm       { grid-area: umkm; }
@@ -2134,11 +2162,12 @@ body {
   }
   .bg-area-nyuwun { padding-top: 24px; }
 
-  /* ---- Footer — sedikit lebih lega, grid 2 kolom ---- */
-  .footer { padding: 32px 40px; }
+  /* ---- Footer — sedikit lebih lega, grid 2 kolom, BACKGROUND full-width ---- */
+  .footer { padding: 32px var(--side); }
   .ft-grid {
     grid-template-columns: 3fr 2fr;
     gap: 48px;
+    max-width: 1100px; /* konten footer tetap dibatasi & center, background-nya full */
   }
 }
 
