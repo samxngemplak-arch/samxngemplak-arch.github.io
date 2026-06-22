@@ -1509,7 +1509,17 @@ body {
   transition: transform .12s;
 }
 .sb-btn:active { transform: scale(.93); }
-.sb-ico { font-size: 20px; }
+.sb-ico {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--grl);
+  color: var(--gr);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sb-ico svg { width: 17px; height: 17px; }
 .sb-lbl { font-size: 9px; font-weight: 600; color: var(--tx2); }
 
 /* Kartu review */

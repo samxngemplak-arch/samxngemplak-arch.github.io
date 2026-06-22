@@ -90,8 +90,14 @@ async function muatDataUMKM() {
     UMKM = hasil.umkm;
     console.log('✓ Data UMKM berhasil dimuat:', UMKM.length, 'usaha');
 
-    /* Render grid setelah data siap */
+    /* Render grid (halaman UMKM) + card unggulan (Beranda) setelah data siap */
     renderGrid('');
+    renderUMKMBeranda();
+
+    /* Cek apakah halaman ini dibuka lewat link share UMKM
+       (contoh: ?umkm=plandemic-space) — kalau iya, langsung
+       buka detail UMKM itu tanpa perlu klik apa-apa. */
+    bukaUMKMdariURL();
 
   } catch (error) {
     /* Kalau gagal — JANGAN biarkan halaman kosong putih.
@@ -107,6 +113,11 @@ async function muatDataUMKM() {
           <div style="font-size:13px; font-weight:600; margin-bottom:4px; color:#1A2E23">Data UMKM gagal dimuat</div>
           <div style="font-size:11px; line-height:1.5">Pastikan website dibuka lewat Laragon<br>(http://localhost/simbah/), bukan klik file langsung.</div>
         </div>`;
+    }
+
+    const beranda = document.getElementById('umkm-beranda-list');
+    if (beranda) {
+      beranda.innerHTML = `<div style="font-size:11px; color:#7A8E82; padding:8px 0">⚠️ Data UMKM gagal dimuat.</div>`;
     }
   }
 }
@@ -211,6 +222,13 @@ function nav(key) {
   if (key === 'agenda') {
     renderAgendaPage();
   }
+
+  /* Bersihkan parameter ?umkm=... dari URL kalau pindah ke halaman
+     LAIN (bukan detail UMKM) — supaya URL gak nyangkut nunjuk UMKM
+     lama padahal sudah pindah halaman lain. */
+  if (key !== 'umkm-detail' && window.location.search) {
+    window.history.pushState({}, '', window.location.pathname);
+  }
 }
 
 /**
@@ -249,6 +267,12 @@ function goBack() {
   /* Kalau kembali ke halaman Agenda, render daftar lengkap lagi */
   if (currentPage === 'agenda') {
     renderAgendaPage();
+  }
+
+  /* Bersihkan parameter ?umkm=... dari URL kalau yang dituju
+     bukan halaman detail UMKM (sama seperti di nav() di atas) */
+  if (currentPage !== 'umkm-detail' && window.location.search) {
+    window.history.pushState({}, '', window.location.pathname);
   }
 }
 
@@ -359,11 +383,94 @@ function renderGrid(filter) {
 }
 
 /**
+ * Render beberapa card "UMKM Unggulan" di Beranda (section "Lapak Warga").
+ * Diambil dari beberapa UMKM PERTAMA di data/umkm.json (urut sesuai array,
+ * bukan hardcoded ID) — supaya kalau Zen ubah urutan/ID UMKM di JSON
+ * (misal nanti nambah UMKM baru di awal), card ini OTOMATIS ikut benar,
+ * tidak perlu sentuh index.html sama sekali.
+ *
+ * Dulu ini hardcoded 4 card manual dengan showUMKM(0), showUMKM(1), dst —
+ * rawan nunjuk ke UMKM yang salah kalau ID berubah. Sekarang aman karena
+ * render dari data langsung.
+ */
+function renderUMKMBeranda() {
+  const el = document.getElementById('umkm-beranda-list');
+  if (!el) return;
+
+  const JUMLAH_TAMPIL = 4; /* berapa card yang muncul di Beranda — ubah di sini kalau mau lebih/kurang */
+  const list = UMKM.slice(0, JUMLAH_TAMPIL);
+
+  if (!list.length) {
+    el.innerHTML = `<div style="font-size:12px; color:var(--tx3); padding:8px 0">Belum ada UMKM terdaftar.</div>`;
+    return;
+  }
+
+  el.innerHTML = list.map(function(u) {
+    return `
+      <div class="ucard" onclick="showUMKM(${u.id})">
+        <div class="uimg">${u.emoji}<div class="uwa">💬</div></div>
+        <div class="uinfo"><div class="uname">${u.name}</div><div class="ucat">${u.cat}</div></div>
+      </div>`;
+  }).join('');
+}
+
+/**
+ * Ubah nama UMKM jadi "slug" URL yang pendek & enak dibaca.
+ * Contoh: "Plandemic Space" -> "plandemic-space"
+ * Dipakai supaya link share UMKM gak pakai ?umkm=6 (gak jelas),
+ * tapi ?umkm=plandemic-space (jelas, enak dibaca).
+ * Tidak perlu field manual baru di JSON — slug dihitung otomatis
+ * dari field "name" yang sudah ada.
+ */
+function slugify(name) {
+  return name
+    .toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '') /* hilangkan aksen kalau ada */
+    .replace(/[^a-z0-9\s]/g, '')
+    .trim()
+    .replace(/\s+/g, '-');
+}
+
+/**
+ * Cek apakah URL halaman ini punya parameter ?umkm=slug-nama.
+ * Kalau ada dan slug-nya cocok dengan salah satu UMKM, langsung
+ * buka halaman detail UMKM itu — supaya link yang di-share lewat
+ * tombol Share (lihat shareUMKM()) bisa langsung dibuka orang lain
+ * tanpa perlu cari manual dari daftar UMKM.
+ *
+ * Dipanggil sekali, tepat setelah data UMKM selesai dimuat
+ * (lihat akhir muatDataUMKM()).
+ */
+function bukaUMKMdariURL() {
+  const params = new URLSearchParams(window.location.search);
+  const slug = params.get('umkm');
+  if (!slug) return; /* tidak ada parameter umkm di URL — halaman dibuka normal */
+
+  const cocok = UMKM.find(function(item) { return slugify(item.name) === slug; });
+
+  if (!cocok) {
+    console.warn('⚠️ Link UMKM "' + slug + '" tidak ditemukan — mungkin nama usaha sudah berubah.');
+    return; /* slug tidak ketemu — biarkan saja di Beranda, tidak perlu alert mengganggu */
+  }
+
+  /* updateUrl=false karena URL sudah benar (orang ini yang
+     membuka link itu), tidak perlu pushState lagi */
+  showUMKM(cocok.id, false);
+}
+
+/**
  * Tampilkan halaman detail UMKM
  * Mengisi semua elemen halaman detail dengan data UMKM
  * @param {number} id - id UMKM (sesuai properti id di data)
+ * @param {boolean} updateUrl - true kalau perlu update URL browser
+ *                              (default true; di-set false saat
+ *                              dipanggil dari baca-URL-saat-load,
+ *                              supaya gak dobel-update URL yang
+ *                              sudah benar)
  */
-function showUMKM(id) {
+function showUMKM(id, updateUrl) {
+  if (updateUrl === undefined) updateUrl = true;
+
   /* Cari data UMKM berdasarkan id (pakai .find supaya
      tidak bergantung urutan array — lebih aman dari
      metode UMKM[id] yang dulu bisa salah index) */
@@ -378,6 +485,15 @@ function showUMKM(id) {
 
   /* Simpan sebagai UMKM aktif — dipakai fungsi shareUMKM() */
   currentUMKM = u;
+
+  /* Update URL browser jadi ?umkm=slug-nama, TANPA reload halaman.
+     Supaya kalau di-share, orang lain yang klik link ini langsung
+     diarahkan ke detail UMKM yang sama (lihat bukaUMKMdariURL()). */
+  if (updateUrl) {
+    const slug = slugify(u.name);
+    const urlBaru = window.location.pathname + '?umkm=' + slug;
+    window.history.pushState({ umkmId: u.id }, '', urlBaru);
+  }
 
   /**
    * Helper kecil — isi elemen HTML dengan aman.
@@ -498,10 +614,16 @@ function showUMKM(id) {
 function shareUMKM() {
   if (!currentUMKM) return;
 
+  /* Generate URL share secara eksplisit dari slug nama UMKM —
+     tidak mengandalkan window.location.href apa adanya, supaya
+     pasti benar walau ada perubahan urutan kode di masa depan. */
+  const slug = slugify(currentUMKM.name);
+  const urlShare = window.location.origin + window.location.pathname + '?umkm=' + slug;
+
   const shareData = {
     title: `${currentUMKM.name} — SIMBAH Ngemplak`,
     text: `Cek ${currentUMKM.name} (${currentUMKM.cat}) di Dusun Ngemplak`,
-    url: window.location.href
+    url: urlShare
   };
 
   if (navigator.share) {
@@ -509,7 +631,7 @@ function shareUMKM() {
       /* User membatalkan share — tidak perlu tindakan apa-apa */
     });
   } else if (navigator.clipboard) {
-    navigator.clipboard.writeText(window.location.href).then(function() {
+    navigator.clipboard.writeText(urlShare).then(function() {
       alert('Link halaman ini sudah disalin. Silakan tempel (paste) ke WhatsApp atau aplikasi lain.');
     }).catch(function() {
       alert('Tidak bisa menyalin link otomatis. Silakan salin alamat dari address bar browser.');
@@ -832,4 +954,36 @@ document.querySelectorAll('.fchip').forEach(function(chip) {
     const kategori = this.textContent === 'Semua' ? '' : this.textContent;
     filterUMKM(kategori);
   });
+});
+
+/**
+ * Tangani tombol Back/Forward BROWSER (bukan tombol "← Kembali" kita
+ * sendiri — itu sudah ditangani goBack()). Tanpa ini, kalau orang
+ * tekan back di browser setelah buka link share UMKM, URL berubah
+ * tapi tampilan halaman tidak ikut berubah (jadi tidak sinkron).
+ *
+ * Strategi paling aman & simpel: kalau event ini terpicu, baca ulang
+ * URL saat ini. Kalau ada ?umkm=slug yang valid, tampilkan detail-nya.
+ * Kalau tidak ada, pulangkan ke Beranda. Ini cukup untuk kasus paling
+ * umum (orang share link UMKM, ada yang buka, lalu back).
+ */
+window.addEventListener('popstate', function() {
+  const params = new URLSearchParams(window.location.search);
+  const slug = params.get('umkm');
+
+  if (slug) {
+    const cocok = UMKM.find(function(item) { return slugify(item.name) === slug; });
+    if (cocok) {
+      showUMKM(cocok.id, false);
+      return;
+    }
+  }
+
+  /* Tidak ada parameter umkm yang valid — pulangkan ke Beranda */
+  document.getElementById(pageMap[currentPage])?.classList.remove('active');
+  semuaIdNav.forEach(function(id) { document.getElementById(id)?.classList.remove('active'); });
+  currentPage = 'beranda';
+  history = [];
+  document.getElementById(pageMap['beranda'])?.classList.add('active');
+  (navMap['beranda'] || []).forEach(function(id) { document.getElementById(id)?.classList.add('active'); });
 });

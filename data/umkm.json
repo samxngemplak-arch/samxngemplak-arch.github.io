@@ -3,6 +3,54 @@
   "umkm": [
     {
       "id": 0,
+      "name": "Plandemic Space",
+      "cat": "Jasa",
+      "emoji": "💻",
+      "desc": "Layanan jasa teknologi & kebutuhan harian warga: servis HP, komputer, laptop, dan printer; jual-beli HP & laptop second; print, fotokopi, dan scan dokumen; penggilingan tepung beras; parut kelapa dan umbi; serta obras dan jahit ringan. Berawal dari inisiatif membantu warga mengakses internet saat pandemi, kini berkembang jadi pusat layanan digital dusun.",
+      "phone": "6282241439784",
+      "rating": "4.9",
+      "alamat": "Ngemplak 02/02, Dusun III, Samping, Kec. Kemiri, Kab. Purworejo, Jawa Tengah 54262",
+      "jam": "Buka 24 jam",
+      "maps": "https://maps.app.goo.gl/W6FxkN82ArRKb5NT9",
+      "ig": "https://www.instagram.com/zns.srr/",
+      "fb": "https://www.facebook.com/zainus.surur/",
+      "tt": "https://www.tiktok.com/@hisssdeneng",
+      "yt": "https://www.youtube.com/@Sururr",
+      "sp": "#",
+      "tp": "#",
+      "galeri": [
+        "💻",
+        "🖨️",
+        "🔧",
+        "📱",
+        "🧵"
+      ],
+      "products": [
+        {
+          "e": "💻",
+          "n": "Servis Laptop/PC",
+          "p": "Hubungi WA"
+        },
+        {
+          "e": "📱",
+          "n": "Servis HP",
+          "p": "Hubungi WA"
+        },
+        {
+          "e": "🖨️",
+          "n": "Print & Fotokopi",
+          "p": "Hubungi WA"
+        },
+        {
+          "e": "🌾",
+          "n": "Giling Tepung",
+          "p": "Hubungi WA"
+        }
+      ],
+      "testimoni": []
+    },
+    {
+      "id": 1,
       "name": "Kue Bu Sari",
       "cat": "Produk Lokal",
       "emoji": "🍪",
@@ -56,7 +104,7 @@
       ]
     },
     {
-      "id": 1,
+      "id": 2,
       "name": "Mebel Pak Harto",
       "cat": "Pertukangan",
       "emoji": "🪑",
@@ -110,7 +158,7 @@
       ]
     },
     {
-      "id": 2,
+      "id": 3,
       "name": "Jamu Bu Wati",
       "cat": "Produk Lokal",
       "emoji": "🌿",
@@ -158,7 +206,7 @@
       "testimoni": []
     },
     {
-      "id": 3,
+      "id": 4,
       "name": "Catering Mbok Rum",
       "cat": "Warung",
       "emoji": "🍱",
@@ -212,7 +260,7 @@
       ]
     },
     {
-      "id": 4,
+      "id": 5,
       "name": "Bengkel Las Pak Agus",
       "cat": "Jasa",
       "emoji": "🔧",
@@ -260,7 +308,7 @@
       "testimoni": []
     },
     {
-      "id": 5,
+      "id": 6,
       "name": "Sawah Pak Karto",
       "cat": "Pertanian",
       "emoji": "🌾",
