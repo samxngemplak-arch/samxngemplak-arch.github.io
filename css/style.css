@@ -690,8 +690,8 @@ body {
   display: flex;
   align-items: center;
   gap: 8px;
-  overflow: hidden;
   flex-shrink: 0;
+  overflow: hidden; /* sembunyikan teks di luar area ticker */
 }
 .tick-ico {
   width: 18px;
@@ -705,17 +705,33 @@ body {
   flex-shrink: 0;
   color: #fff;
   font-weight: 700;
+  position: relative; /* supaya z-index aktif, tampil di atas teks yg lewat */
+  z-index: 1;
+}
+.tick-scroll {
+  /* wrapper scroll — overflow hidden di sini supaya teks tidak
+     terlihat di area ikon toa (ikon toa tetap di luar, z-index
+     lebih tinggi). Mask gradient: fade dari kiri (dekat ikon)
+     dan dari kanan (ujung viewport). */
+  flex: 1;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 88%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 6%, black 88%, transparent 100%);
 }
 .tick-txt {
   font-size: 10px;
   color: var(--br);
   font-weight: 600;
   white-space: nowrap;
-  animation: tick 28s linear infinite;
+  display: inline-block;
+  /* Mulai dari luar kanan, geser sampai keluar di kiri.
+     translateX(100%) = mulai di tepi kanan .tick-scroll.
+     translateX(-100%) = keluar di kiri (teks sudah full melewati area). */
+  animation: tick 32s linear infinite;
 }
 @keyframes tick {
   0%   { transform: translateX(100%); }
-  100% { transform: translateX(-200%); }
+  100% { transform: translateX(-100%); }
 }
 
 
@@ -2158,10 +2174,11 @@ body {
   .tentang-tabs { padding: 12px var(--side); }
 
   /* ---- Grid Layanan — 6 kolom sejajar (1 baris) ---- */
+  /* .g23 ada di dalam .sec yang sudah punya padding: 28px var(--side).
+     Cukup stretch full width dari .sec — tidak perlu max-width/margin
+     lagi di sini, nanti dobel dan konten jadi lebih sempit dari hero. */
   .g23 {
     grid-template-columns: repeat(6, 1fr);
-    max-width: 1100px;
-    margin: 0 auto;
   }
   .sico  { width: 50px; height: 50px; font-size: 22px; }
   .srv span { font-size: 11px; }
@@ -2230,7 +2247,11 @@ body {
     align-items: start;
     max-width: 1100px;
     margin: 0 auto;
-    padding: 0 var(--side);
+    /* padding horizontal TIDAK dipakai di sini — sudah ditangani oleh
+       var(--side) di .sec global dan padding parent .pages. Kalau
+       ditambah lagi di sini jadinya dobel dan konten menjorok ke kanan
+       dibanding hero/ticker/layanan-warga di atasnya. */
+    padding: 0;
   }
 
   .bg-area-umkm       { grid-area: umkm; }
