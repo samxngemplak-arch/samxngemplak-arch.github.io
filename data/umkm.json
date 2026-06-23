@@ -134,45 +134,6 @@
       "testimoni": []
     },
     {
-      "id": 3,
-      "name": "Gembong Bibit Murah",
-      "cat": "Perkebunan",
-      "emoji": "🌿",
-      "desc": "Bibit tanaman dengan harga terjangkau langsung dari petani. Tersedia berbagai jenis bibit sayuran, buah, dan tanaman produktif untuk kebutuhan rumah tangga maupun usaha.",
-      "phone": "6285328014388",
-      "rating": "4.5",
-      "ulasan": 2,
-      "alamat": "Desa Samping, Kec. Kemiri, Kab. Purworejo",
-      "jam": "Buka 24 jam",
-      "maps": "https://www.google.com/maps/place/Gembong+bibit+murah/data=!4m7!3m6!1s0x2e7ac179f4944ce1:0xd442ff5126a3892e!8m2!3d-7.6651032!4d109.8782988!16s%2Fg%2F11tjw4_n34",
-      "ig": "#",
-      "fb": "#",
-      "tt": "#",
-      "yt": "#",
-      "sp": "#",
-      "tp": "#",
-      "galeri": [
-        "🌿",
-        "🌱",
-        "🪴",
-        "🌾",
-        "🍀"
-      ],
-      "products": [
-        {
-          "e": "🌿",
-          "n": "Bibit Sayur",
-          "p": "Hubungi WA"
-        },
-        {
-          "e": "🌱",
-          "n": "Bibit Buah",
-          "p": "Hubungi WA"
-        }
-      ],
-      "testimoni": []
-    },
-    {
       "id": 4,
       "name": "Jamil Bibit",
       "cat": "Perkebunan",
@@ -349,7 +310,7 @@
       "cat": "Perkebunan",
       "emoji": "🌳",
       "desc": "Pembibitan tanaman di Dusun Ngemplak RT 01/02. Menyediakan bibit tanaman pilihan untuk kebutuhan pertanian dan penghijauan.",
-      "phone": "",
+      "phone": "6285328014388",
       "rating": "0",
       "ulasan": 0,
       "alamat": "Ngemplak RT 01/02, Desa Samping, Kec. Kemiri, Kab. Purworejo",
@@ -370,7 +331,7 @@
         {
           "e": "🌳",
           "n": "Bibit Tanaman",
-          "p": "Lihat di Maps"
+          "p": "Hubungi WA"
         }
       ],
       "testimoni": []
@@ -413,7 +374,7 @@
       "cat": "Perkebunan",
       "emoji": "🌾",
       "desc": "Penyedia bibit tanaman untuk petani dan masyarakat umum. Tersedia berbagai jenis bibit dengan harga langsung dari petani.",
-      "phone": "",
+      "phone": "6282133648356",
       "rating": "5.0",
       "ulasan": 6,
       "alamat": "Desa Samping, Kec. Kemiri, Kab. Purworejo",
@@ -434,7 +395,7 @@
         {
           "e": "🌾",
           "n": "Bibit Tanaman",
-          "p": "Lihat di Maps"
+          "p": "Hubungi WA"
         }
       ],
       "testimoni": []
@@ -445,7 +406,7 @@
       "cat": "Perkebunan",
       "emoji": "🌶️",
       "desc": "Spesialis bibit cabai dan tanaman hortikultura. Menyediakan bibit cabai unggul berkualitas untuk petani dan penghobi berkebun.",
-      "phone": "",
+      "phone": "6285280348690",
       "rating": "4.1",
       "ulasan": 7,
       "alamat": "Desa Samping, Kec. Kemiri, Kab. Purworejo",
@@ -467,7 +428,7 @@
         {
           "e": "🌶️",
           "n": "Bibit Cabai",
-          "p": "Hubungi via Maps"
+          "p": "Hubungi WA"
         }
       ],
       "testimoni": []
