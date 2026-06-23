@@ -517,6 +517,7 @@
         <button class="fchip">Pertukangan</button>
         <button class="fchip">Jasa</button>
         <button class="fchip">Pertanian</button>
+        <button class="fchip">Peternakan</button>
         <button class="fchip">Perkebunan</button>
         <button class="fchip">Kerajinan</button>
         <button class="fchip">Lainnya</button>
@@ -1266,8 +1267,10 @@
      Kalau nomor WA ganti, cukup ubah 1 baris di script.js (const WA_UTAMA). */
   (function () {
     var wa = typeof WA_UTAMA !== 'undefined' ? WA_UTAMA : '6282241439784';
-    document.querySelectorAll('a[href*="{{WA}}"]').forEach(function (el) {
-      el.href = el.href.replace('%7B%7BWA%7D%7D', wa).replace('{{WA}}', wa);
+    /* Selector diperluas pakai "tel:" juga karena browser encode {} jadi %7B%7D
+       sehingga href*="{{WA}}" tidak match untuk link tel: */
+    document.querySelectorAll('a[href*="{{WA}}"], a[href*="%7B%7BWA%7D%7D"]').forEach(function (el) {
+      el.href = el.href.replace(/%7B%7BWA%7D%7D/g, wa).replace(/\{\{WA\}\}/g, wa);
     });
   })();
 </script>

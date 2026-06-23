@@ -25,6 +25,16 @@
    ================================================ */
 const WA_UTAMA = '6282241439784';
 
+/* ================================================
+   KONSTANTA KAS — UPDATE DI SINI KALAU ADA PERUBAHAN
+   ------------------------------------------------
+   KAS_UPDATE : tanggal terakhir saldo diperbarui
+                (format bebas, contoh: "23 Juni 2026")
+   KAS_TOTAL  : total gabungan semua kas (string Rupiah)
+   ================================================ */
+const KAS_UPDATE = '23 Juni 2026';
+const KAS_TOTAL  = 'Rp 905.000';
+
 
 /* ================================================
    1. DATA UMKM
@@ -659,7 +669,7 @@ function showUMKM(id, updateUrl) {
   /* ── Info operasional (alamat, jam, telepon) ── */
   isiTeks('ud-alamat', u.alamat);
   isiTeks('ud-jam', u.jam);
-  isiTeks('ud-phone', '+' + u.phone);
+  isiTeks('ud-phone', u.phone ? '+' + u.phone : '-');
   const mapsBox = document.getElementById('ud-maps-link');
   if (mapsBox) {
     if (adaMaps) { mapsBox.href = u.maps; mapsBox.style.display = ''; }
@@ -1244,6 +1254,27 @@ function tentangTab(key) {
    renderGrid() akan dipanggil otomatis di dalam
    fungsi ini setelah data selesai dimuat. */
 muatDataUMKM();
+
+/* Inject data kas ke semua elemen yang menampilkan saldo & tanggal update.
+   Cukup ubah KAS_UPDATE dan KAS_TOTAL di atas (konstanta) — semua bagian
+   (beranda ringkasan + halaman kas penuh) otomatis ikut benar. */
+(function injectKas() {
+  /* Saldo — beranda & halaman kas */
+  document.querySelectorAll('.kas-sal, .kastot-val').forEach(function(el) {
+    el.textContent = KAS_TOTAL;
+  });
+  /* Keterangan update — beranda ringkasan */
+  document.querySelectorAll('.kas-upd').forEach(function(el) {
+    el.textContent = 'Diperbarui: ' + KAS_UPDATE;
+  });
+  /* Sub-header halaman kas penuh (psub) */
+  var psub = document.querySelector('#p-kas .psub');
+  if (psub) psub.textContent = 'Keuangan Dusun Ngemplak · Diperbarui ' + KAS_UPDATE;
+  /* Keterangan gabungan di kastot */
+  document.querySelectorAll('.kastot-sub').forEach(function(el) {
+    el.textContent = 'Gabungan 4 kas komunitas · Diperbarui ' + KAS_UPDATE;
+  });
+})();
 
 /* Render Agenda Terdekat di Beranda saat halaman pertama dimuat.
    (Halaman Agenda penuh di-render saat nav('agenda') dipanggil,
