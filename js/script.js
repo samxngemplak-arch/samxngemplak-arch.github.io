@@ -637,21 +637,34 @@ function showUMKM(id, updateUrl) {
     if (waBtn2) waBtn2.style.display = 'none';
   }
 
-  /* ── Tombol Maps ── */
-  isiLink('ud-map-btn', u.maps);
+  /* ── Tombol Maps — sembunyikan kalau maps kosong atau belum diisi ── */
+  const adaMaps = u.maps && u.maps !== '#' && u.maps.trim() !== '';
+  const mapBtn = document.getElementById('ud-map-btn');
+  if (mapBtn) {
+    if (adaMaps) { mapBtn.href = u.maps; mapBtn.style.display = ''; }
+    else { mapBtn.style.display = 'none'; }
+  }
 
   /* ── Link "Lihat Review di Google Maps" — reuse link Maps yang sama.
      CATATAN: ini mengarahkan ke profil Maps usaha (kalau linknya sudah
      diisi link asli oleh Zen), BUKAN review yang ditampilkan langsung
      di website ini. Kita gak fetch data review asli dari Google API
      karena itu butuh API key berbayar + backend — lihat diskusi PR. ── */
-  isiLink('ud-review-link', u.maps);
+  const reviewLink = document.getElementById('ud-review-link');
+  if (reviewLink) {
+    if (adaMaps) { reviewLink.href = u.maps; reviewLink.style.display = ''; }
+    else { reviewLink.style.display = 'none'; }
+  }
 
   /* ── Info operasional (alamat, jam, telepon) ── */
   isiTeks('ud-alamat', u.alamat);
   isiTeks('ud-jam', u.jam);
   isiTeks('ud-phone', '+' + u.phone);
-  isiLink('ud-maps-link', u.maps);
+  const mapsBox = document.getElementById('ud-maps-link');
+  if (mapsBox) {
+    if (adaMaps) { mapsBox.href = u.maps; mapsBox.style.display = ''; }
+    else { mapsBox.style.display = 'none'; }
+  }
   isiTeks('ud-maps-addr', u.alamat);
 
   /* ── Link sosmed & marketplace — otomatis sembunyi kalau kosong ── */
