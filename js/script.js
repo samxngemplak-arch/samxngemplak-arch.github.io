@@ -16,6 +16,17 @@
 
 
 /* ================================================
+   0. KONSTANTA GLOBAL
+   ------------------------------------------------
+   Nomor WA utama dipakai di seluruh file — kalau
+   ganti nomor, cukup ubah di SINI, semua tombol
+   WA di halaman otomatis ikut benar.
+   Format: internasional tanpa + (62xxx...)
+   ================================================ */
+const WA_UTAMA = '6282241439784';
+
+
+/* ================================================
    1. DATA UMKM
    Semua data UMKM disimpan di sini sebagai array.
    Nanti kalau sudah pakai PHP+MySQL, data ini
@@ -922,7 +933,7 @@ function renderInventarisPage() {
         <div class="sec-hdr"><div class="sec-ttl">${kelompok}</div></div>
         <div class="bline"></div>
         ${items.map(renderCardInventaris).join('')}
-        <a class="pj-wa" href="https://wa.me/6282241439784" target="_blank">💬 Hubungi Pengelola (${pj})</a>
+        <a class="pj-wa" href="https://wa.me/${WA_UTAMA}" target="_blank">💬 Hubungi Pengelola (${pj})</a>
       </div>`;
   }).join('');
 }

@@ -166,8 +166,8 @@
         <div class="hero-ttl">Balai Dusun<br><span>Digital</span> Ngemplak</div>
         <div class="hero-tag">Informasi & layanan warga dalam satu genggaman.</div>
         <div class="hero-stats">
-          <div class="hstat"><div class="num">±600</div><div class="lbl">Warga</div></div>
-          <div class="hstat"><div class="num">18+</div><div class="lbl">UMKM</div></div>
+          <div class="hstat"><div class="num">~500</div><div class="lbl">Warga</div></div>
+          <div class="hstat"><div class="num">~40</div><div class="lbl">UMKM</div></div>
           <div class="hstat"><div class="num">2</div><div class="lbl">RT</div></div>
         </div>
       </div>
@@ -181,35 +181,44 @@
         </div>
       </div>
 
-      <!-- Grid Layanan -->
+      <!-- Grid Layanan — Opsi B: 2 hero utama + 4 mini sekunder.
+           Hero (UMKM + Agenda) diberi border hijau & ukuran lebih besar
+           supaya mata langsung nangkap prioritas. 4 mini di bawahnya
+           tetap bisa diklik tapi secara visual lebih "mundur". -->
       <div class="sec">
         <div class="sec-hdr">
           <div class="sec-ttl">Layanan Warga</div>
         </div>
         <div class="bline"></div>
-        <div class="g23">
-          <div class="srv" onclick="nav('umkm')">
-            <div class="sico ib">🏪</div>
+
+        <!-- 2 card hero — UMKM & Agenda (prioritas utama) -->
+        <div class="g-hero">
+          <div class="srv-hero" onclick="nav('umkm')">
+            <div class="sico ig">🏪</div>
             <span>Lapak Warga</span>
           </div>
-          <div class="srv" onclick="nav('agenda')">
+          <div class="srv-hero" onclick="nav('agenda')">
             <div class="sico ig">📅</div>
-            <span>Agenda</span>
+            <span>Agenda Dusun</span>
           </div>
-          <div class="srv" onclick="nav('kas')">
-            <div class="sico ig">💰</div>
-            <span>Kas Dusun</span>
-          </div>
-          <div class="srv" onclick="nav('inventaris')">
-            <div class="sico ib">📦</div>
-            <span>Inventaris</span>
-          </div>
-          <div class="srv" onclick="nav('nyuwun')">
-            <div class="sico ig">📞</div>
+        </div>
+
+        <!-- 4 card mini — layanan sekunder -->
+        <div class="g-mini">
+          <div class="srv-mini" onclick="nav('nyuwun')">
+            <div class="sico-mini ig">📞</div>
             <span>Nyuwun Tulung</span>
           </div>
-          <div class="srv" onclick="nav('tentang')">
-            <div class="sico ib">🏡</div>
+          <div class="srv-mini" onclick="nav('kas')">
+            <div class="sico-mini ib">💰</div>
+            <span>Kas Dusun</span>
+          </div>
+          <div class="srv-mini" onclick="nav('inventaris')">
+            <div class="sico-mini ib">📦</div>
+            <span>Inventaris</span>
+          </div>
+          <div class="srv-mini" onclick="nav('tentang')">
+            <div class="sico-mini ib">🏡</div>
             <span>Tentang</span>
           </div>
         </div>
@@ -259,7 +268,7 @@
         <div class="potensi-grid">
           <div class="pot-item">
             <div class="pot-ico">🏪</div>
-            <div class="pot-num">18+</div>
+            <div class="pot-num">40+</div>
             <div class="pot-lbl">UMKM Aktif</div>
           </div>
           <div class="pot-item">
@@ -336,7 +345,7 @@
             <div class="nt-name">Bpk. Rudi Santoso</div>
             <div class="nt-num">0812-xxxx-xxxx</div>
           </div>
-          <a class="nt-wa" href="https://wa.me/6282241439784" target="_blank">💬 WA</a>
+          <a class="nt-wa" href="https://wa.me/{{WA}}" target="_blank">💬 WA</a>
         </div>
         <div class="nt-card">
           <div class="nt-av av-b">👩‍⚕️</div>
@@ -345,7 +354,7 @@
             <div class="nt-name">Bu Siti Rahayu</div>
             <div class="nt-num">0813-xxxx-xxxx</div>
           </div>
-          <a class="nt-wa" href="https://wa.me/6282241439784" target="_blank">💬 WA</a>
+          <a class="nt-wa" href="https://wa.me/{{WA}}" target="_blank">💬 WA</a>
         </div>
         <div class="nt-card">
           <div class="nt-av av-g">👨‍💼</div>
@@ -354,7 +363,7 @@
             <div class="nt-name">Bpk. Suparman</div>
             <div class="nt-num">0856-xxxx-xxxx</div>
           </div>
-          <a class="nt-wa" href="https://wa.me/6282241439784" target="_blank">💬 WA</a>
+          <a class="nt-wa" href="https://wa.me/{{WA}}" target="_blank">💬 WA</a>
         </div>
         <div class="nt-card">
           <div class="nt-av av-b">🚑</div>
@@ -363,7 +372,7 @@
             <div class="nt-name">IGD Puskesmas Kemiri</div>
             <div class="nt-num">0822-4143-9784</div>
           </div>
-          <a class="nt-wa" href="tel:6282241439784" style="background:#2563eb">📞 Telp</a>
+          <a class="nt-wa" href="tel:{{WA}}" style="background:#2563eb">📞 Telp</a>
         </div>
       </div>
 
@@ -433,7 +442,7 @@
               <a class="ft-soc" href="https://www.instagram.com/lensangemplak/" target="_blank" title="Instagram Dusun Ngemplak">
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="5" width="14" height="14" rx="4" stroke="#fff" stroke-width="1.4" fill="none"/><circle cx="12" cy="12" r="3.4" stroke="#fff" stroke-width="1.4" fill="none"/><circle cx="16.3" cy="7.7" r="0.9" fill="#fff"/></svg>
               </a>
-              <a class="ft-soc" href="https://wa.me/6282241439784" target="_blank" title="WhatsApp">
+              <a class="ft-soc" href="https://wa.me/{{WA}}" target="_blank" title="WhatsApp">
                 <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.04 4c-4.42 0-8 3.58-8 8 0 1.42.37 2.75 1.02 3.9L4 20l4.24-1.02A7.96 7.96 0 0 0 12.04 20c4.42 0 8-3.58 8-8s-3.58-8-8-8zm4.34 11.06c-.18.5-1.05.96-1.45 1-.4.04-.78.18-2.6-.62-2.18-.96-3.58-3.18-3.69-3.32-.11-.14-.87-1.16-.87-2.2 0-1.05.55-1.56.75-1.77.2-.22.43-.27.58-.27h.42c.13 0 .31-.02.48.39.18.43.6 1.46.66 1.57.06.11.1.24.02.38-.08.14-.13.22-.25.34l-.36.4c-.12.13-.24.27-.1.52.13.25.6 1 1.3 1.62.9.78 1.65 1.03 1.92 1.15.27.12.43.1.59-.06.16-.16.7-.78.88-1.05.18-.27.36-.22.6-.13.24.09 1.55.7 1.82.83.27.13.45.2.51.31.06.12.06.65-.12 1.15z" fill="#fff"/></svg>
               </a>
             </div>
@@ -446,7 +455,7 @@
               Jawa Tengah 55751.
             </div>
             <div class="ft-contact">
-              <a class="ft-citem" href="https://wa.me/6282241439784" target="_blank">
+              <a class="ft-citem" href="https://wa.me/{{WA}}" target="_blank">
                 <div class="ft-cico"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 21l1.65-4.95a8.5 8.5 0 1 1 3.4 3.4L3 21z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
                 <span class="ft-cval">0822-4143-9784</span>
               </a>
@@ -776,27 +785,27 @@
           <div class="nt-card">
             <div class="nt-av av-b">👨‍💼</div>
             <div><div class="nt-role">Kepala Desa Samping</div><div class="nt-name">Bpk. (nama menyusul)</div><div class="nt-num">0822-xxxx-xxxx</div></div>
-            <a class="nt-wa" href="https://wa.me/6282241439784" target="_blank">💬 WA</a>
+            <a class="nt-wa" href="https://wa.me/{{WA}}" target="_blank">💬 WA</a>
           </div>
           <div class="nt-card">
             <div class="nt-av av-g">👨‍💼</div>
             <div><div class="nt-role">Kepala Dusun</div><div class="nt-name">Bpk. Rudi Santoso</div><div class="nt-num">0812-xxxx-xxxx</div></div>
-            <a class="nt-wa" href="https://wa.me/6282241439784" target="_blank">💬 WA</a>
+            <a class="nt-wa" href="https://wa.me/{{WA}}" target="_blank">💬 WA</a>
           </div>
           <div class="nt-card">
             <div class="nt-av av-b">👨‍💼</div>
             <div><div class="nt-role">Ketua RW</div><div class="nt-name">Bpk. Hendra Wijaya</div><div class="nt-num">0813-xxxx-xxxx</div></div>
-            <a class="nt-wa" href="https://wa.me/6282241439784" target="_blank">💬 WA</a>
+            <a class="nt-wa" href="https://wa.me/{{WA}}" target="_blank">💬 WA</a>
           </div>
           <div class="nt-card">
             <div class="nt-av av-g">👨‍💼</div>
             <div><div class="nt-role">Ketua RT 01</div><div class="nt-name">Bpk. Suparman</div><div class="nt-num">0856-xxxx-xxxx</div></div>
-            <a class="nt-wa" href="https://wa.me/6282241439784" target="_blank">💬 WA</a>
+            <a class="nt-wa" href="https://wa.me/{{WA}}" target="_blank">💬 WA</a>
           </div>
           <div class="nt-card">
             <div class="nt-av av-g">👨‍💼</div>
             <div><div class="nt-role">Ketua RT 02</div><div class="nt-name">Bpk. Widodo</div><div class="nt-num">0857-xxxx-xxxx</div></div>
-            <a class="nt-wa" href="https://wa.me/6282241439784" target="_blank">💬 WA</a>
+            <a class="nt-wa" href="https://wa.me/{{WA}}" target="_blank">💬 WA</a>
           </div>
         </div>
 
@@ -806,12 +815,12 @@
           <div class="nt-card">
             <div class="nt-av av-b">👩‍⚕️</div>
             <div><div class="nt-role">Bidan Desa</div><div class="nt-name">Bu Siti Rahayu</div><div class="nt-num">0813-xxxx-xxxx</div></div>
-            <a class="nt-wa" href="https://wa.me/6282241439784" target="_blank">💬 WA</a>
+            <a class="nt-wa" href="https://wa.me/{{WA}}" target="_blank">💬 WA</a>
           </div>
           <div class="nt-card">
             <div class="nt-av av-g">🏥</div>
             <div><div class="nt-role">Puskesmas Kemiri</div><div class="nt-name">Layanan Kesehatan Kecamatan</div><div class="nt-num">0822-xxxx-xxxx</div></div>
-            <a class="nt-wa" href="tel:6282241439784" style="background:#2563eb">📞 Telp</a>
+            <a class="nt-wa" href="tel:{{WA}}" style="background:#2563eb">📞 Telp</a>
           </div>
         </div>
 
@@ -821,27 +830,27 @@
           <div class="nt-card">
             <div class="nt-av av-g">👮</div>
             <div><div class="nt-role">Babinsa</div><div class="nt-name">Sertu Teguh</div><div class="nt-num">0811-xxxx-xxxx</div></div>
-            <a class="nt-wa" href="https://wa.me/6282241439784" target="_blank">💬 WA</a>
+            <a class="nt-wa" href="https://wa.me/{{WA}}" target="_blank">💬 WA</a>
           </div>
           <div class="nt-card">
             <div class="nt-av av-b">🚑</div>
             <div><div class="nt-role">Ambulans Desa</div><div class="nt-name">IGD Puskesmas Kemiri</div><div class="nt-num">0822-4143-9784</div></div>
-            <a class="nt-wa" href="tel:6282241439784" style="background:#2563eb">📞 Telp</a>
+            <a class="nt-wa" href="tel:{{WA}}" style="background:#2563eb">📞 Telp</a>
           </div>
           <div class="nt-card">
             <div class="nt-av av-g">👮</div>
             <div><div class="nt-role">Polsek Kemiri</div><div class="nt-name">Kepolisian Sektor Kemiri</div><div class="nt-num">0822-xxxx-xxxx</div></div>
-            <a class="nt-wa" href="tel:6282241439784" style="background:#2563eb">📞 Telp</a>
+            <a class="nt-wa" href="tel:{{WA}}" style="background:#2563eb">📞 Telp</a>
           </div>
           <div class="nt-card">
             <div class="nt-av av-b">🪖</div>
             <div><div class="nt-role">Koramil 08/Kemiri</div><div class="nt-name">Komando Rayon Militer</div><div class="nt-num">0822-xxxx-xxxx</div></div>
-            <a class="nt-wa" href="tel:6282241439784" style="background:#2563eb">📞 Telp</a>
+            <a class="nt-wa" href="tel:{{WA}}" style="background:#2563eb">📞 Telp</a>
           </div>
           <div class="nt-card">
             <div class="nt-av av-g">🚒</div>
             <div><div class="nt-role">Damkar Purworejo</div><div class="nt-name">Pemadam Kebakaran Kabupaten</div><div class="nt-num">0822-xxxx-xxxx</div></div>
-            <a class="nt-wa" href="tel:6282241439784" style="background:#2563eb">📞 Telp</a>
+            <a class="nt-wa" href="tel:{{WA}}" style="background:#2563eb">📞 Telp</a>
           </div>
         </div>
 
@@ -851,17 +860,17 @@
           <div class="nt-card">
             <div class="nt-av av-b">🕌</div>
             <div><div class="nt-role">Tokoh Agama 1</div><div class="nt-name">Bpk/Ustadz (nama menyusul)</div><div class="nt-num">0822-xxxx-xxxx</div></div>
-            <a class="nt-wa" href="https://wa.me/6282241439784" target="_blank">💬 WA</a>
+            <a class="nt-wa" href="https://wa.me/{{WA}}" target="_blank">💬 WA</a>
           </div>
           <div class="nt-card">
             <div class="nt-av av-g">🕌</div>
             <div><div class="nt-role">Tokoh Agama 2</div><div class="nt-name">Bpk/Ustadz (nama menyusul)</div><div class="nt-num">0822-xxxx-xxxx</div></div>
-            <a class="nt-wa" href="https://wa.me/6282241439784" target="_blank">💬 WA</a>
+            <a class="nt-wa" href="https://wa.me/{{WA}}" target="_blank">💬 WA</a>
           </div>
           <div class="nt-card">
             <div class="nt-av av-b">🕌</div>
             <div><div class="nt-role">Tokoh Agama 3</div><div class="nt-name">Bpk/Ustadz (nama menyusul)</div><div class="nt-num">0822-xxxx-xxxx</div></div>
-            <a class="nt-wa" href="https://wa.me/6282241439784" target="_blank">💬 WA</a>
+            <a class="nt-wa" href="https://wa.me/{{WA}}" target="_blank">💬 WA</a>
           </div>
           <div style="font-size:10px; color:var(--tx3); margin-top:4px; line-height:1.5; padding:0 2px">
             Nama & nomor kontak di atas masih placeholder, akan diperbarui dengan data resmi dari pengelola.
@@ -1101,7 +1110,7 @@
                 mendatang.
               </p>
               <p class="sc-question">Punya informasi atau arsip sejarah Dusun Ngemplak?</p>
-              <a href="https://wa.me/6282241439784?text=Halo%2C%20saya%20punya%20informasi%2Farsip%20sejarah%20Dusun%20Ngemplak%20yang%20mungkin%20bisa%20melengkapi%20dokumentasi%20di%20website%20SIMBAH" target="_blank" class="sejarah-link-wa">Hubungi pengelola via WhatsApp →</a>
+              <a href="https://wa.me/{{WA}}?text=Halo%2C%20saya%20punya%20informasi%2Farsip%20sejarah%20Dusun%20Ngemplak%20yang%20mungkin%20bisa%20melengkapi%20dokumentasi%20di%20website%20SIMBAH" target="_blank" class="sejarah-link-wa">Hubungi pengelola via WhatsApp →</a>
             </div>
           </div>
         </div>
@@ -1156,7 +1165,7 @@
                 <a class="ft-soc" href="https://www.instagram.com/lensangemplak/" target="_blank" title="Instagram Dusun Ngemplak">
                   <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="5" width="14" height="14" rx="4" stroke="#fff" stroke-width="1.4" fill="none"/><circle cx="12" cy="12" r="3.4" stroke="#fff" stroke-width="1.4" fill="none"/><circle cx="16.3" cy="7.7" r="0.9" fill="#fff"/></svg>
                 </a>
-                <a class="ft-soc" href="https://wa.me/6282241439784" target="_blank" title="WhatsApp">
+                <a class="ft-soc" href="https://wa.me/{{WA}}" target="_blank" title="WhatsApp">
                   <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.04 4c-4.42 0-8 3.58-8 8 0 1.42.37 2.75 1.02 3.9L4 20l4.24-1.02A7.96 7.96 0 0 0 12.04 20c4.42 0 8-3.58 8-8s-3.58-8-8-8zm4.34 11.06c-.18.5-1.05.96-1.45 1-.4.04-.78.18-2.6-.62-2.18-.96-3.58-3.18-3.69-3.32-.11-.14-.87-1.16-.87-2.2 0-1.05.55-1.56.75-1.77.2-.22.43-.27.58-.27h.42c.13 0 .31-.02.48.39.18.43.6 1.46.66 1.57.06.11.1.24.02.38-.08.14-.13.22-.25.34l-.36.4c-.12.13-.24.27-.1.52.13.25.6 1 1.3 1.62.9.78 1.65 1.03 1.92 1.15.27.12.43.1.59-.06.16-.16.7-.78.88-1.05.18-.27.36-.22.6-.13.24.09 1.55.7 1.82.83.27.13.45.2.51.31.06.12.06.65-.12 1.15z" fill="#fff"/></svg>
                 </a>
               </div>
@@ -1169,7 +1178,7 @@
                 Jawa Tengah 55751.
               </div>
               <div class="ft-contact">
-                <a class="ft-citem" href="https://wa.me/6282241439784" target="_blank">
+                <a class="ft-citem" href="https://wa.me/{{WA}}" target="_blank">
                   <div class="ft-cico"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 21l1.65-4.95a8.5 8.5 0 1 1 3.4 3.4L3 21z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
                   <span class="ft-cval">0822-4143-9784</span>
                 </a>
@@ -1251,6 +1260,17 @@
 
 <!-- ===== JAVASCRIPT DIPISAH ke file terpisah ===== -->
 <script src="js/script.js"></script>
+<script>
+  /* Inject nomor WA ke semua placeholder {{WA}} di HTML.
+     Nilai diambil dari WA_UTAMA yang sudah didefinisikan di script.js.
+     Kalau nomor WA ganti, cukup ubah 1 baris di script.js (const WA_UTAMA). */
+  (function () {
+    var wa = typeof WA_UTAMA !== 'undefined' ? WA_UTAMA : '6282241439784';
+    document.querySelectorAll('a[href*="{{WA}}"]').forEach(function (el) {
+      el.href = el.href.replace('%7B%7BWA%7D%7D', wa).replace('{{WA}}', wa);
+    });
+  })();
+</script>
 
 </body>
 </html>
