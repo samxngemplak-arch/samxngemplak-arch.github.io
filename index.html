@@ -28,15 +28,27 @@
       </div>
     </button>
 
-    <!-- Menu navigasi — HANYA tampil di desktop (lihat css/style.css @media) -->
+    <!-- Menu navigasi — HANYA tampil di desktop (lihat css/style.css @media).
+         Kas & Inventaris TIDAK lagi sejajar di sini (sesuai Product Roadmap:
+         fokus utama UMKM+Agenda+Identitas, Kas/Inventaris tetap ada tapi
+         turun prioritas) — dipindah ke dropdown "Lainnya ▾" di sebelah kanan. -->
     <nav class="dnav">
       <button class="dn-item active" id="dn-beranda" onclick="nav('beranda')">Beranda</button>
       <button class="dn-item" id="dn-umkm" onclick="nav('umkm')">UMKM</button>
       <button class="dn-item" id="dn-agenda" onclick="nav('agenda')">Agenda</button>
-      <button class="dn-item" id="dn-kas" onclick="nav('kas')">Kas</button>
-      <button class="dn-item" id="dn-inventaris" onclick="nav('inventaris')">Inventaris</button>
       <button class="dn-item" id="dn-nyuwun" onclick="nav('nyuwun')">Nyuwun Tulung</button>
       <button class="dn-item" id="dn-tentang" onclick="nav('tentang')">Tentang</button>
+
+      <div class="dn-dropdown-wrap">
+        <button class="dn-item dn-dropdown-btn" id="dn-lainnya-btn" onclick="toggleDnDropdown(event)">
+          Lainnya
+          <svg class="dn-chevron" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="dn-dropdown-menu" id="dn-dropdown-menu">
+          <button class="dn-dropdown-item" id="dn-kas" onclick="navFromDropdown('kas')">💰 Transparansi Kas</button>
+          <button class="dn-dropdown-item" id="dn-inventaris" onclick="navFromDropdown('inventaris')">📦 Inventaris Dusun</button>
+        </div>
+      </div>
     </nav>
 
     <button class="hbtn" onclick="toggleSearch()">
@@ -82,15 +94,11 @@
         </div>
       </div>
 
-      <!-- Ticker pengumuman -->
+      <!-- Ticker pengumuman — diisi otomatis dari array AGENDA (lihat renderTicker() di script.js),
+           supaya selalu sinkron dengan halaman Agenda & Beranda, tidak ditulis manual lagi -->
       <div class="ticker">
         <div class="tick-ico">📢</div>
-        <div class="tick-txt">
-          Kerja Bakti Minggu 8 Jun 07.00 WIB &nbsp;·&nbsp;
-          Posyandu Balita Kamis 12 Jun &nbsp;·&nbsp;
-          Kliwonan Jum'at 20 Jun Ba'da Isya &nbsp;·&nbsp;
-          Musyawarah Dusun Sabtu 28 Jun 19.30 WIB
-        </div>
+        <div class="tick-txt" id="ticker-text"></div>
       </div>
 
       <!-- Grid Layanan -->
@@ -180,6 +188,10 @@
       <div class="div8 bg-divider"></div>
 
       <!-- Kas Ringkasan -->
+      <!-- Transparansi Kas — versi MINOR, sesuai keputusan product roadmap:
+           Kas tetap ada tapi bukan fokus utama. Dipadatkan jadi cuma saldo
+           total + 1 link ke halaman detail (info "4 Komunitas" dkk yang
+           lebih detail dipindah ke halaman Kas penuh saja). -->
       <div class="sec bg-area-kas">
         <div class="sec-hdr">
           <div class="sec-ttl">Transparansi Kas</div>
@@ -189,16 +201,6 @@
         <div class="kas">
           <div class="kas-lbl">Total Semua Kas</div>
           <div class="kas-sal">Rp 905.000</div>
-          <div class="kas-row">
-            <div class="kas-box">
-              <div class="kb-lbl">Jumlah Kas</div>
-              <div class="kb-val">4 Komunitas</div>
-            </div>
-            <div class="kas-box">
-              <div class="kb-lbl">RT, Karang Taruna, PKK</div>
-              <div class="kb-val">&nbsp;</div>
-            </div>
-          </div>
           <div class="kas-upd">Diperbarui manual oleh pengelola</div>
           <a class="kas-detail" href="#" onclick="nav('kas'); return false;">
             📊 Lihat Rincian per Komunitas →
@@ -208,28 +210,17 @@
 
       <div class="div8 bg-divider"></div>
 
-      <!-- Inventaris Ringkasan -->
+      <!-- Inventaris Ringkasan — versi MINOR (cuma 2 item teratas), sesuai
+           keputusan product roadmap: Inventaris tetap ada tapi bukan
+           fokus utama, jadi porsinya di Beranda dikecilkan.
+           Diisi otomatis oleh JS (lihat renderInventarisBeranda() di script.js). -->
       <div class="sec bg-area-inventaris">
         <div class="sec-hdr">
           <div class="sec-ttl">Inventaris Dusun</div>
           <button class="sec-lnk" onclick="nav('inventaris')">Semua →</button>
         </div>
         <div class="bline"></div>
-        <div class="inv">
-          <div class="iico">🔊</div>
-          <div style="flex:1"><div class="inm">Sound System</div><div class="idet">2 unit · Pak Suroto</div></div>
-          <span class="ibadge ibg">Baik</span>
-        </div>
-        <div class="inv">
-          <div class="iico">⛺</div>
-          <div style="flex:1"><div class="inm">Tenda Tarup</div><div class="idet">4 unit · Pak Kamijan</div></div>
-          <span class="ibadge ibg">Baik</span>
-        </div>
-        <div class="inv">
-          <div class="iico">💡</div>
-          <div style="flex:1"><div class="inm">Genset 5000W</div><div class="idet">1 unit · Pak Suroto</div></div>
-          <span class="ibadge ibb">Perlu Cek</span>
-        </div>
+        <div id="inventaris-beranda-list"></div>
       </div>
 
       <div class="div8 bg-divider"></div>
@@ -605,50 +596,8 @@
         <div class="psub">Daftar aset & barang milik dusun</div>
       </div>
 
-      <div style="flex:1; overflow-y:auto">
-        <div class="sec">
-          <div class="sec-hdr"><div class="sec-ttl">Aset Elektronik</div></div>
-          <div class="bline"></div>
-          <div class="inv">
-            <div class="iico">🔊</div>
-            <div style="flex:1"><div class="inm">Sound System</div><div class="idet">2 unit · Pengelola: Pak Suroto</div></div>
-            <span class="ibadge ibg">Baik</span>
-          </div>
-          <a class="pj-wa" href="https://wa.me/6282241439784" target="_blank">💬 Hubungi Pengelola</a>
-
-          <div class="inv">
-            <div class="iico">💡</div>
-            <div style="flex:1"><div class="inm">Genset 5000W</div><div class="idet">1 unit · Pengelola: Pak Suroto</div></div>
-            <span class="ibadge ibb">Perlu Cek</span>
-          </div>
-          <a class="pj-wa" href="https://wa.me/6282241439784" target="_blank">💬 Hubungi Pengelola</a>
-        </div>
-
-        <div class="sec">
-          <div class="sec-hdr"><div class="sec-ttl">Perlengkapan Hajatan</div></div>
-          <div class="bline"></div>
-          <div class="inv">
-            <div class="iico">⛺</div>
-            <div style="flex:1"><div class="inm">Tenda Tarup</div><div class="idet">4 unit · Pengelola: Pak Kamijan</div></div>
-            <span class="ibadge ibg">Baik</span>
-          </div>
-          <a class="pj-wa" href="https://wa.me/6282241439784" target="_blank">💬 Hubungi Pengelola</a>
-
-          <div class="inv">
-            <div class="iico">🪑</div>
-            <div style="flex:1"><div class="inm">Kursi Plastik</div><div class="idet">100 unit · Pengelola: Pak Kamijan</div></div>
-            <span class="ibadge ibg">Baik</span>
-          </div>
-          <a class="pj-wa" href="https://wa.me/6282241439784" target="_blank">💬 Hubungi Pengelola</a>
-
-          <div class="inv">
-            <div class="iico">🍽️</div>
-            <div style="flex:1"><div class="inm">Meja Lipat</div><div class="idet">20 unit · Pengelola: Pak Kamijan</div></div>
-            <span class="ibadge ibr">Rusak 2</span>
-          </div>
-          <a class="pj-wa" href="https://wa.me/6282241439784" target="_blank">💬 Hubungi Pengelola</a>
-        </div>
-      </div>
+      <!-- Isi inventaris — diisi otomatis oleh JS (lihat renderInventarisPage() di script.js) -->
+      <div style="flex:1; overflow-y:auto" id="inventaris-page-list"></div>
 
     </div><!-- /p-inventaris -->
 
