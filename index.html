@@ -73,6 +73,17 @@
   }
   </script>
 
+  <!-- =====================================================
+       FAVICON — dibuat dari logo.png resmi Dusun Ngemplak
+       ===================================================== -->
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="img/favicon-48x48.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="img/icon-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="img/icon-512.png">
+
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Lora:wght@600;700&display=swap" rel="stylesheet">
 
@@ -165,7 +176,9 @@
            supaya selalu sinkron dengan halaman Agenda & Beranda, tidak ditulis manual lagi -->
       <div class="ticker">
         <div class="tick-ico">📢</div>
-        <div class="tick-txt" id="ticker-text"></div>
+        <div class="tick-txt-wrap">
+          <div class="tick-txt" id="ticker-text"></div>
+        </div>
       </div>
 
       <!-- Grid Layanan -->
@@ -224,66 +237,13 @@
            ==================================================== -->
       <div class="beranda-grid-desktop">
 
-      <!-- Agenda Terdekat — diisi otomatis oleh JS (lihat renderAgendaBeranda() di script.js) -->
-      <div class="sec bg-area-agenda">
-        <div class="sec-hdr">
-          <div class="sec-ttl">Agenda Terdekat</div>
-          <button class="sec-lnk" onclick="nav('agenda')">Semua →</button>
-        </div>
-        <div class="bline"></div>
-        <div id="agenda-beranda-list"></div>
-      </div>
-
-      <div class="div8 bg-divider"></div>
-
-      <!-- UMKM Unggulan — diisi otomatis oleh JS (lihat renderUMKMBeranda() di script.js).
-           Otomatis ambil beberapa UMKM pertama dari data/umkm.json, jadi kalau urutan/ID
-           UMKM diubah, card ini ikut benar tanpa perlu edit HTML manual. -->
-      <div class="bg-area-umkm">
-        <div class="sec" style="padding-bottom:0">
-          <div class="sec-hdr">
-            <div class="sec-ttl">Lapak Warga</div>
-            <button class="sec-lnk" onclick="nav('umkm')">Semua →</button>
-          </div>
-          <div class="bline"></div>
-        </div>
-        <div style="padding:0 16px 16px">
-          <div class="urow" id="umkm-beranda-list"></div>
-        </div>
-      </div>
-
-      <div class="div8 bg-divider"></div>
-
-      <!-- Kas Ringkasan -->
-      <!-- Transparansi Kas — versi MINOR, sesuai keputusan product roadmap:
-           Kas tetap ada tapi bukan fokus utama. Dipadatkan jadi cuma saldo
-           total + 1 link ke halaman detail (info "4 Komunitas" dkk yang
-           lebih detail dipindah ke halaman Kas penuh saja). -->
-      <div class="sec bg-area-kas">
-        <div class="sec-hdr">
-          <div class="sec-ttl">Transparansi Kas</div>
-          <button class="sec-lnk" onclick="nav('kas')">Detail →</button>
-        </div>
-        <div class="bline"></div>
-        <div class="kas">
-          <div class="kas-lbl">Total Semua Kas</div>
-          <div class="kas-sal">Rp 905.000</div>
-          <div class="kas-upd">Diperbarui manual oleh pengelola</div>
-          <a class="kas-detail" href="#" onclick="nav('kas'); return false;">
-            📊 Lihat Rincian per Komunitas →
-          </a>
-        </div>
-      </div>
-
-      <div class="div8 bg-divider"></div>
-
-      <div class="div8 bg-divider"></div>
-
       <!-- ====================================================
            KENALI NGEMPLAK — Section hook untuk orang luar dusun
            Tujuan: orang yang baru pertama kali buka SIMBAH
            langsung paham "oh, dusun ini punya X, Y, Z" dan
            penasaran klik ke halaman Tentang untuk baca lebih.
+           Diletakkan PALING ATAS di mobile (setelah hero) supaya
+           jadi perkenalan dusun dulu sebelum ke layanan teknis.
            ==================================================== -->
       <div class="sec bg-area-potensi">
         <div class="sec-hdr">
@@ -330,17 +290,34 @@
         </button>
       </div>
 
-      <!-- Inventaris Ringkasan — versi MINOR (cuma 2 item teratas), sesuai
-           keputusan product roadmap: Inventaris tetap ada tapi bukan
-           fokus utama, jadi porsinya di Beranda dikecilkan.
-           Diisi otomatis oleh JS (lihat renderInventarisBeranda() di script.js). -->
-      <div class="sec bg-area-inventaris">
+      <div class="div8 bg-divider"></div>
+
+      <!-- UMKM Unggulan — diisi otomatis oleh JS (lihat renderUMKMBeranda() di script.js).
+           Otomatis ambil beberapa UMKM pertama dari data/umkm.json, jadi kalau urutan/ID
+           UMKM diubah, card ini ikut benar tanpa perlu edit HTML manual. -->
+      <div class="bg-area-umkm">
+        <div class="sec" style="padding-bottom:0">
+          <div class="sec-hdr">
+            <div class="sec-ttl">Lapak Warga</div>
+            <button class="sec-lnk" onclick="nav('umkm')">Semua →</button>
+          </div>
+          <div class="bline"></div>
+        </div>
+        <div style="padding:0 16px 16px">
+          <div class="urow" id="umkm-beranda-list"></div>
+        </div>
+      </div>
+
+      <div class="div8 bg-divider"></div>
+
+      <!-- Agenda Terdekat — diisi otomatis oleh JS (lihat renderAgendaBeranda() di script.js) -->
+      <div class="sec bg-area-agenda">
         <div class="sec-hdr">
-          <div class="sec-ttl">Inventaris Dusun</div>
-          <button class="sec-lnk" onclick="nav('inventaris')">Semua →</button>
+          <div class="sec-ttl">Agenda Terdekat</div>
+          <button class="sec-lnk" onclick="nav('agenda')">Semua →</button>
         </div>
         <div class="bline"></div>
-        <div id="inventaris-beranda-list"></div>
+        <div id="agenda-beranda-list"></div>
       </div>
 
       <div class="div8 bg-divider"></div>
@@ -370,6 +347,62 @@
           </div>
           <a class="nt-wa" href="https://wa.me/6282241439784" target="_blank">💬 WA</a>
         </div>
+        <div class="nt-card">
+          <div class="nt-av av-g">👨‍💼</div>
+          <div>
+            <div class="nt-role">Ketua RT 01</div>
+            <div class="nt-name">Bpk. Suparman</div>
+            <div class="nt-num">0856-xxxx-xxxx</div>
+          </div>
+          <a class="nt-wa" href="https://wa.me/6282241439784" target="_blank">💬 WA</a>
+        </div>
+        <div class="nt-card">
+          <div class="nt-av av-b">🚑</div>
+          <div>
+            <div class="nt-role">Ambulans Desa</div>
+            <div class="nt-name">IGD Puskesmas Kemiri</div>
+            <div class="nt-num">0822-4143-9784</div>
+          </div>
+          <a class="nt-wa" href="tel:6282241439784" style="background:#2563eb">📞 Telp</a>
+        </div>
+      </div>
+
+      <div class="div8 bg-divider"></div>
+
+      <!-- Kas Ringkasan -->
+      <!-- Transparansi Kas — versi MINOR, sesuai keputusan product roadmap:
+           Kas tetap ada tapi bukan fokus utama. Dipadatkan jadi cuma saldo
+           total + 1 link ke halaman detail (info "4 Komunitas" dkk yang
+           lebih detail dipindah ke halaman Kas penuh saja). -->
+      <div class="sec bg-area-kas">
+        <div class="sec-hdr">
+          <div class="sec-ttl">Transparansi Kas</div>
+          <button class="sec-lnk" onclick="nav('kas')">Detail →</button>
+        </div>
+        <div class="bline"></div>
+        <div class="kas">
+          <div class="kas-lbl">Total Semua Kas</div>
+          <div class="kas-sal">Rp 905.000</div>
+          <div class="kas-upd">Diperbarui manual oleh pengelola</div>
+          <a class="kas-detail" href="#" onclick="nav('kas'); return false;">
+            📊 Lihat Rincian per Komunitas →
+          </a>
+        </div>
+      </div>
+
+      <div class="div8 bg-divider"></div>
+
+      <!-- Inventaris Ringkasan — versi MINOR (cuma 2 item teratas), sesuai
+           keputusan product roadmap: Inventaris tetap ada tapi bukan
+           fokus utama, jadi porsinya di Beranda dikecilkan.
+           Diisi otomatis oleh JS (lihat renderInventarisBeranda() di script.js). -->
+      <div class="sec bg-area-inventaris">
+        <div class="sec-hdr">
+          <div class="sec-ttl">Inventaris Dusun</div>
+          <button class="sec-lnk" onclick="nav('inventaris')">Semua →</button>
+        </div>
+        <div class="bline"></div>
+        <div id="inventaris-beranda-list"></div>
       </div>
 
       </div><!-- /beranda-grid-desktop -->

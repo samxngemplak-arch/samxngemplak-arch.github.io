@@ -706,16 +706,25 @@ body {
   color: #fff;
   font-weight: 700;
 }
+.tick-txt-wrap {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  height: 14px;
+}
 .tick-txt {
   font-size: 10px;
   color: var(--br);
   font-weight: 600;
   white-space: nowrap;
+  position: absolute;
+  left: 0;
+  top: 0;
   animation: tick 28s linear infinite;
 }
 @keyframes tick {
   0%   { transform: translateX(100%); }
-  100% { transform: translateX(-200%); }
+  100% { transform: translateX(-100%); }
 }
 
 
