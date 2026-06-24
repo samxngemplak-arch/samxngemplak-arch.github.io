@@ -1356,7 +1356,7 @@ body {
   margin-bottom: 8px;
   border: 1px solid rgba(0, 0, 0, .05);
 }
-.nt-card > div:not(.nt-av) {
+.nt-card > div:not(.nt-av):not(.nt-btns) {
   flex: 1;
   min-width: 0; /* supaya teks di dalamnya bisa truncate, bukan dorong layout jadi wrap berantakan di kolom sempit */
 }
@@ -1393,17 +1393,45 @@ body {
 .nt-num  { font-size: 11px; color: var(--tx3); white-space: nowrap; }
 
 /* Tombol WA di kanan kartu */
-.nt-wa {
+/* Wrapper 2 tombol (WA + Telp) — muncul di kanan card */
+.nt-btns {
   margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex-shrink: 0;
+  width: fit-content;
+}
+
+.nt-wa {
   background: #25D366;
   border-radius: 8px;
-  padding: 7px 10px;
+  padding: 6px 10px;
   font-size: 11px;
   font-weight: 700;
   color: #fff;
   text-decoration: none;
   white-space: nowrap;
+  text-align: center;
+  margin-left: auto;
   flex-shrink: 0;
+}
+
+/* Kalau .nt-wa ada di dalam .nt-btns, margin-left tidak perlu */
+.nt-btns .nt-wa {
+  margin-left: 0;
+}
+
+.nt-telp {
+  background: #2563eb;
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+  text-decoration: none;
+  white-space: nowrap;
+  text-align: center;
 }
 
 
