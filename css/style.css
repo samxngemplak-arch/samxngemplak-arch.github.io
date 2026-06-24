@@ -1083,6 +1083,12 @@ body {
   font-size: 10px;
   color: var(--br2);
   font-weight: 600;
+  margin-bottom: 2px;
+}
+.ug-rating {
+  font-size: 10px;
+  color: var(--tx2);
+  font-weight: 600;
   margin-bottom: 6px;
 }
 .ug-wa {

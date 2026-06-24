@@ -13,16 +13,28 @@
   <meta name="keywords" content="Dusun Ngemplak, UMKM Ngemplak, Desa Samping Kemiri, Purworejo, SIMBAH, balai dusun digital, UMKM Kemiri, bibit tanaman Purworejo, jasa Ngemplak">
   <meta name="author" content="Karang Taruna Oppen Lestari — Dusun Ngemplak">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://samxngemplak-arch.github.io/">
+  <link rel="canonical" href="https://simbahngemplak.vercel.app/">
+
+  <!-- =====================================================
+       CATATAN DOMAIN (25 Juni 2026):
+       Repo GitHub yang sama auto-deploy ke 2 tujuan:
+       - https://simbahngemplak.vercel.app/   ← DOMAIN UTAMA/RESMI
+       - https://samxngemplak-arch.github.io/ ← tetap hidup, tapi
+         BUKAN versi yang diindex Google (lihat canonical di atas).
+       Alasan: URL Vercel lebih mudah diingat warga. Kalau nanti
+       pindah ke domain custom (misal dusunngemplak.id), cukup
+       update SEMUA "simbahngemplak.vercel.app" di bawah ini jadi
+       domain baru — jangan lupa sitemap.xml & robots.txt juga.
+       ===================================================== -->
 
   <!-- =====================================================
        SEO — Open Graph (Facebook, WhatsApp, Telegram preview)
        ===================================================== -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://samxngemplak-arch.github.io/">
+  <meta property="og:url" content="https://simbahngemplak.vercel.app/">
   <meta property="og:title" content="SIMBAH — Dusun Ngemplak, Kemiri Purworejo">
   <meta property="og:description" content="Sejarah panjang, tradisi terjaga, dan puluhan UMKM yang terus bergerak maju bersama. Portal digital resmi Dusun Ngemplak, Kemiri, Purworejo.">
-  <meta property="og:image" content="https://samxngemplak-arch.github.io/img/logo.png">
+  <meta property="og:image" content="https://simbahngemplak.vercel.app/img/logo.png">
   <meta property="og:image:width" content="200">
   <meta property="og:image:height" content="200">
   <meta property="og:site_name" content="SIMBAH Ngemplak">
@@ -34,7 +46,7 @@
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="SIMBAH — Dusun Ngemplak, Kemiri Purworejo">
   <meta name="twitter:description" content="Sejarah panjang, tradisi terjaga, dan puluhan UMKM yang terus bergerak maju. Portal digital resmi Dusun Ngemplak, Kemiri, Purworejo.">
-  <meta name="twitter:image" content="https://samxngemplak-arch.github.io/img/logo.png">
+  <meta name="twitter:image" content="https://simbahngemplak.vercel.app/img/logo.png">
 
   <!-- =====================================================
        SEO — Schema.org JSON-LD
@@ -49,8 +61,8 @@
     "name": "Dusun Ngemplak",
     "alternateName": "SIMBAH Ngemplak",
     "description": "Dusun Ngemplak, Kemiri, Purworejo — sejarah panjang, tradisi terjaga, dan puluhan UMKM yang terus bergerak maju bersama.",
-    "url": "https://samxngemplak-arch.github.io/",
-    "logo": "https://samxngemplak-arch.github.io/img/logo.png",
+    "url": "https://simbahngemplak.vercel.app/",
+    "logo": "https://simbahngemplak.vercel.app/img/logo.png",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Dusun Ngemplak",
@@ -85,6 +97,8 @@
   <link rel="icon" type="image/png" sizes="512x512" href="img/icon-512.png">
 
   <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Lora:wght@600;700&display=swap" rel="stylesheet">
 
   <!-- CSS DIPISAH ke file terpisah -->
@@ -152,7 +166,7 @@
       <!-- Hero -->
       <div class="hero">
         <div class="hero-ey">Desa Samping · Kemiri · Purworejo</div>
-        <div class="hero-ttl">Ngemplak —<br>Dusun yang Tumbuh<br>dari <span>Akarnya Sendiri</span></div>
+        <h1 class="hero-ttl">Ngemplak —<br>Dusun yang Tumbuh<br>dari <span>Akarnya Sendiri</span></h1>
         <div class="hero-tag">Sejarah panjang, tradisi terjaga, dan puluhan UMKM yang terus bergerak maju bersama.</div>
         <div class="hero-stats">
           <div class="hstat"><div class="num" id="stat-umkm-hero">18</div><div class="lbl">UMKM Aktif</div></div>
@@ -180,7 +194,7 @@
            tetap bisa diklik tapi secara visual lebih "mundur". -->
       <div class="sec">
         <div class="sec-hdr">
-          <div class="sec-ttl">Layanan Warga</div>
+          <h2 class="sec-ttl">Layanan Warga</h2>
         </div>
         <div class="bline"></div>
 
@@ -249,7 +263,7 @@
            ==================================================== -->
       <div class="sec bg-area-potensi">
         <div class="sec-hdr">
-          <div class="sec-ttl">Kenali Ngemplak</div>
+          <h2 class="sec-ttl">Kenali Ngemplak</h2>
           <button class="sec-lnk" onclick="nav('tentang')">Profil Lengkap →</button>
         </div>
         <div class="bline"></div>
@@ -300,7 +314,7 @@
       <div class="bg-area-umkm">
         <div class="sec" style="padding-bottom:0">
           <div class="sec-hdr">
-            <div class="sec-ttl">Lapak Warga</div>
+            <h2 class="sec-ttl">Lapak Warga</h2>
             <button class="sec-lnk" onclick="nav('umkm')">Semua →</button>
           </div>
           <div class="bline"></div>
@@ -315,7 +329,7 @@
       <!-- Agenda Terdekat — diisi otomatis oleh JS (lihat renderAgendaBeranda() di script.js) -->
       <div class="sec bg-area-agenda">
         <div class="sec-hdr">
-          <div class="sec-ttl">Agenda Terdekat</div>
+          <h2 class="sec-ttl">Agenda Terdekat</h2>
           <button class="sec-lnk" onclick="nav('agenda')">Semua →</button>
         </div>
         <div class="bline"></div>
@@ -327,7 +341,7 @@
       <!-- Nyuwun Tulung Ringkasan -->
       <div class="sec bg-area-nyuwun">
         <div class="sec-hdr">
-          <div class="sec-ttl">Nyuwun Tulung 📞</div>
+          <h2 class="sec-ttl">Nyuwun Tulung 📞</h2>
           <button class="sec-lnk" onclick="nav('nyuwun')">Semua →</button>
         </div>
         <div class="bline"></div>
@@ -405,7 +419,7 @@
            lebih detail dipindah ke halaman Kas penuh saja). -->
       <div class="sec bg-area-kas">
         <div class="sec-hdr">
-          <div class="sec-ttl">Transparansi Kas</div>
+          <h2 class="sec-ttl">Transparansi Kas</h2>
           <button class="sec-lnk" onclick="nav('kas')">Detail →</button>
         </div>
         <div class="bline"></div>
@@ -427,7 +441,7 @@
            Diisi otomatis oleh JS (lihat renderInventarisBeranda() di script.js). -->
       <div class="sec bg-area-inventaris">
         <div class="sec-hdr">
-          <div class="sec-ttl">Inventaris Dusun</div>
+          <h2 class="sec-ttl">Inventaris Dusun</h2>
           <button class="sec-lnk" onclick="nav('inventaris')">Semua →</button>
         </div>
         <div class="bline"></div>
@@ -455,7 +469,7 @@
           <svg viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
           <span>Kembali</span>
         </button>
-        <div class="pttl">Agenda Dusun</div>
+        <h2 class="pttl">Agenda Dusun</h2>
         <div class="psub">Jadwal kegiatan & pengumuman warga</div>
       </div>
 
@@ -476,7 +490,7 @@
           <svg viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
           <span>Kembali</span>
         </button>
-        <div class="pttl">Lapak Warga</div>
+        <h2 class="pttl">Lapak Warga</h2>
         <div class="psub">UMKM & usaha warga Dusun Ngemplak</div>
       </div>
 
@@ -642,7 +656,7 @@
           <svg viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
           <span>Kembali</span>
         </button>
-        <div class="pttl">Transparansi Kas</div>
+        <h2 class="pttl">Transparansi Kas</h2>
         <div class="psub">Keuangan Dusun Ngemplak · Juni 2026</div>
       </div>
 
@@ -656,7 +670,7 @@
         </div>
 
         <div class="sec">
-          <div class="sec-hdr"><div class="sec-ttl">Kas per Komunitas</div></div>
+          <div class="sec-hdr"><h3 class="sec-ttl">Kas per Komunitas</h3></div>
           <div class="bline"></div>
 
           <div class="kaskom">
@@ -738,7 +752,7 @@
           <svg viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
           <span>Kembali</span>
         </button>
-        <div class="pttl">Inventaris Dusun</div>
+        <h2 class="pttl">Inventaris Dusun</h2>
         <div class="psub">Daftar aset & barang milik dusun</div>
       </div>
 
@@ -758,13 +772,13 @@
           <svg viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
           <span>Kembali</span>
         </button>
-        <div class="pttl">Nyuwun Tulung</div>
+        <h2 class="pttl">Nyuwun Tulung</h2>
         <div class="psub">Kontak penting warga Dusun Ngemplak</div>
       </div>
 
       <div style="flex:1; overflow-y:auto">
         <div class="sec">
-          <div class="sec-hdr"><div class="sec-ttl">Pemerintahan Desa</div></div>
+          <div class="sec-hdr"><h3 class="sec-ttl">Pemerintahan Desa</h3></div>
           <div class="bline"></div>
           <div class="nt-card">
             <div class="nt-av av-b">👨‍💼</div>
@@ -809,7 +823,7 @@
         </div>
 
         <div class="sec">
-          <div class="sec-hdr"><div class="sec-ttl">Layanan Kesehatan</div></div>
+          <div class="sec-hdr"><h3 class="sec-ttl">Layanan Kesehatan</h3></div>
           <div class="bline"></div>
           <div class="nt-card">
             <div class="nt-av av-b">👩‍⚕️</div>
@@ -854,7 +868,7 @@
         </div>
 
         <div class="sec">
-          <div class="sec-hdr"><div class="sec-ttl">Keamanan & Darurat</div></div>
+          <div class="sec-hdr"><h3 class="sec-ttl">Keamanan & Darurat</h3></div>
           <div class="bline"></div>
           <div class="nt-card">
             <div class="nt-av av-g">👮</div>
@@ -921,7 +935,7 @@
             <span>Kembali</span>
           </button>
           <img class="tentang-logo" src="img/logo.png" alt="Logo Ngemplak">
-          <div class="tentang-name">Dusun Ngemplak</div>
+          <h2 class="tentang-name">Dusun Ngemplak</h2>
           <div class="tentang-loc">📍 Desa Samping, Kemiri, Purworejo, Jawa Tengah</div>
         </div>
 
@@ -971,7 +985,7 @@
           </div>
 
           <div class="sec">
-            <div class="sec-hdr"><div class="sec-ttl">Data Wilayah</div></div>
+            <div class="sec-hdr"><h3 class="sec-ttl">Data Wilayah</h3></div>
             <div class="bline"></div>
             <div class="datawilayah-grid">
               <div class="dw-item"><div class="dw-lbl">Jumlah RT</div><div class="dw-val">2</div></div>
@@ -986,7 +1000,7 @@
           </div>
 
           <div class="sec">
-            <div class="sec-hdr"><div class="sec-ttl">Batas Wilayah</div></div>
+            <div class="sec-hdr"><h3 class="sec-ttl">Batas Wilayah</h3></div>
             <div class="bline"></div>
             <div class="datawilayah-grid">
               <div class="dw-item"><div class="dw-lbl">Sebelah Utara</div><div class="dw-val" style="font-size:12px">Desa Wanurojo & Desa Kaliglagah</div></div>
@@ -1000,14 +1014,14 @@
         <!-- ===== PANEL: VISI & MISI ===== -->
         <div class="tentang-panel" id="tpanel-visimisi" style="display:none">
           <div class="sec">
-            <div class="sec-hdr"><div class="sec-ttl">Visi</div></div>
+            <div class="sec-hdr"><h3 class="sec-ttl">Visi</h3></div>
             <div class="bline"></div>
             <div class="visi-box">
               <div class="visi-text">"Terwujudnya Dusun Ngemplak sebagai lingkungan yang aman, rukun, dan mandiri melalui penguatan ekonomi masyarakat, pelestarian budaya, serta pemanfaatan teknologi secara bertahap untuk mendukung pelayanan dan kesejahteraan warga."</div>
             </div>
           </div>
           <div class="sec">
-            <div class="sec-hdr"><div class="sec-ttl">Misi</div></div>
+            <div class="sec-hdr"><h3 class="sec-ttl">Misi</h3></div>
             <div class="bline"></div>
             <ul class="misi-list">
               <li>Memperkuat kehidupan sosial masyarakat yang rukun, aman, dan gotong royong.</li>
@@ -1023,7 +1037,7 @@
         <!-- ===== PANEL: SEJARAH ===== -->
         <div class="tentang-panel" id="tpanel-sejarah" style="display:none">
           <div class="sec">
-            <div class="sec-hdr"><div class="sec-ttl">Sejarah Dusun</div></div>
+            <div class="sec-hdr"><h3 class="sec-ttl">Sejarah Dusun</h3></div>
             <div class="bline"></div>
 
             <!-- =====================================================
@@ -1327,7 +1341,7 @@
 
           <!-- Pemerintahan Dusun -->
           <div class="sec">
-            <div class="sec-hdr"><div class="sec-ttl">🏛️ Pemerintahan Dusun</div></div>
+            <div class="sec-hdr"><h3 class="sec-ttl">🏛️ Pemerintahan Dusun</h3></div>
             <div class="bline"></div>
             <div class="org-card">
               <div class="org-av av-g">👨‍💼</div>
@@ -1353,7 +1367,7 @@
 
           <!-- Takmir Masjid -->
           <div class="sec" style="padding-top:0">
-            <div class="sec-hdr"><div class="sec-ttl">🕌 Takmir Masjid Al-Iman</div></div>
+            <div class="sec-hdr"><h3 class="sec-ttl">🕌 Takmir Masjid Al-Iman</h3></div>
             <div class="bline"></div>
             <div class="org-card">
               <div class="org-av av-g">🕌</div>
@@ -1371,7 +1385,7 @@
 
           <!-- PKK -->
           <div class="sec" style="padding-top:0">
-            <div class="sec-hdr"><div class="sec-ttl">👩‍👩‍👧 PKK Dusun Ngemplak</div></div>
+            <div class="sec-hdr"><h3 class="sec-ttl">👩‍👩‍👧 PKK Dusun Ngemplak</h3></div>
             <div class="bline"></div>
             <div class="org-card">
               <div class="org-av av-b">👩‍💼</div>
@@ -1389,7 +1403,7 @@
 
           <!-- Posyandu -->
           <div class="sec" style="padding-top:0">
-            <div class="sec-hdr"><div class="sec-ttl">🏥 Posyandu & Kader Kesehatan</div></div>
+            <div class="sec-hdr"><h3 class="sec-ttl">🏥 Posyandu & Kader Kesehatan</h3></div>
             <div class="bline"></div>
             <div class="org-card">
               <div class="org-av av-g">👩‍⚕️</div>
@@ -1407,7 +1421,7 @@
 
           <!-- Karang Taruna -->
           <div class="sec" style="padding-top:0">
-            <div class="sec-hdr"><div class="sec-ttl">🤝 Karang Taruna Oppen Lestari</div></div>
+            <div class="sec-hdr"><h3 class="sec-ttl">🤝 Karang Taruna Oppen Lestari</h3></div>
             <div class="bline"></div>
             <div class="org-card">
               <div class="org-av av-b">👨‍💻</div>

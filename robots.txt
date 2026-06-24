@@ -1,7 +1,10 @@
 # robots.txt — SIMBAH Ngemplak
-# https://samxngemplak-arch.github.io/
+# Domain resmi/canonical: https://simbahngemplak.vercel.app/
+# (Kode yang sama auto-deploy juga ke samxngemplak-arch.github.io,
+# tapi itu BUKAN versi yang didaftarkan ke Google — lihat
+# <link rel="canonical"> di index.html.)
 
 User-agent: *
 Allow: /
 
-Sitemap: https://samxngemplak-arch.github.io/sitemap.xml
+Sitemap: https://simbahngemplak.vercel.app/sitemap.xml

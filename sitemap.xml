@@ -1,60 +1,191 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+  SIMBAH — sitemap.xml
+  ================================================================
+  CATATAN PENTING (25 Juni 2026) — DIBACA DULU SEBELUM EDIT:
+
+  1. DOMAIN RESMI/CANONICAL = https://simbahngemplak.vercel.app/
+     (lihat <link rel="canonical"> di index.html). Semua <loc> di
+     bawah WAJIB pakai domain ini — BUKAN samxngemplak-arch.github.io
+     — meskipun kode yang sama auto-deploy ke kedua tempat.
+
+  2. PERBAIKAN DARI VERSI LAMA — versi sitemap sebelumnya mendaftarkan
+     URL seperti "?page=umkm", "?page=agenda", "?page=kas", dst.
+     URL-URL ITU SALAH SECARA TEKNIS dan sudah DIHAPUS dari sitemap
+     ini. Alasan: SIMBAH adalah Single Page App — script.js HANYA
+     membaca parameter URL "?umkm=slug-nama" (lihat fungsi
+     bukaUMKMdariURL() di script.js). Parameter "?page=..." TIDAK
+     PERNAH dibaca oleh JavaScript manapun di script.js. Akibatnya,
+     kalau Google membuka "?page=umkm", yang ter-render tetap
+     halaman Beranda apa adanya — ini disebut "soft 404" (URL
+     terdaftar tapi isinya bukan konten yang dijanjikan), dan ini
+     SINYAL NEGATIF untuk SEO, bukan netral. Lebih baik tidak
+     didaftarkan sama sekali daripada didaftarkan salah.
+
+  3. URL UMKM INDIVIDUAL — setiap UMKM di data/umkm.json punya URL
+     unik yang VALID dan benar-benar terbaca JS, format:
+       https://simbahngemplak.vercel.app/?umkm=slug-nama-usaha
+     Slug dihasilkan otomatis oleh fungsi slugify(u.name) di
+     script.js (huruf kecil, spasi jadi tanda hubung). Inilah cara
+     UMKM bisa muncul satu-satu di hasil pencarian Google — bukan
+     cuma 1 halaman generik untuk semua usaha.
+
+  4. CARA UPDATE SAAT TAMBAH/HAPUS UMKM (PENTING UNTUK ZEN):
+     Kalau ada UMKM baru ditambahkan ke data/umkm.json, WAJIB
+     tambahkan juga 1 blok <url> baru di bawah dengan slug yang
+     sesuai. Cara dapat slug yang benar tanpa perlu paham kode:
+     ambil nama usaha, ubah ke huruf kecil semua, ganti spasi
+     dengan tanda hubung "-", hapus tanda baca. Contoh:
+       "Toko Kelontong Bu Siti" -> toko-kelontong-bu-siti
+     Kalau ragu, lebih aman minta bantuan re-generate ke siapa
+     yang pegang kode (jangan asal tebak, slug yang salah = link
+     share UMKM itu tidak akan terbuka otomatis).
+
+  5. Section selain UMKM (Agenda, Kas, Inventaris, Nyuwun Tulung,
+     Tentang) TIDAK didaftarkan di sini karena memang tidak punya
+     URL unik sendiri — semuanya bagian dari 1 halaman utama yang
+     sudah terdaftar lewat URL Beranda di bawah.
+  ================================================================
+-->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <!-- Beranda — prioritas tertinggi -->
   <url>
-    <loc>https://samxngemplak-arch.github.io/</loc>
-    <lastmod>2026-06-24</lastmod>
+    <loc>https://simbahngemplak.vercel.app/</loc>
+    <lastmod>2026-06-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
-  <!-- Halaman UMKM — prioritas tinggi (core feature) -->
-  <url>
-    <loc>https://samxngemplak-arch.github.io/?page=umkm</loc>
-    <lastmod>2026-06-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
+  <!-- ============================================
+       UMKM INDIVIDUAL - 1 URL per usaha warga
+       Urutan & slug mengikuti data/umkm.json apa adanya.
+       ============================================ -->
 
-  <!-- Agenda Dusun -->
   <url>
-    <loc>https://samxngemplak-arch.github.io/?page=agenda</loc>
-    <lastmod>2026-06-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <!-- Tentang Dusun -->
-  <url>
-    <loc>https://samxngemplak-arch.github.io/?page=tentang</loc>
-    <lastmod>2026-06-24</lastmod>
+    <loc>https://simbahngemplak.vercel.app/?umkm=plandemic-space</loc>
+    <lastmod>2026-06-25</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
 
-  <!-- Nyuwun Tulung (Kontak Penting) -->
   <url>
-    <loc>https://samxngemplak-arch.github.io/?page=nyuwun</loc>
-    <lastmod>2026-06-24</lastmod>
+    <loc>https://simbahngemplak.vercel.app/?umkm=heri-bibit</loc>
+    <lastmod>2026-06-25</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <priority>0.8</priority>
   </url>
 
-  <!-- Transparansi Kas -->
   <url>
-    <loc>https://samxngemplak-arch.github.io/?page=kas</loc>
-    <lastmod>2026-06-24</lastmod>
+    <loc>https://simbahngemplak.vercel.app/?umkm=bibit-tanaman-buah-terdekat</loc>
+    <lastmod>2026-06-25</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <priority>0.8</priority>
   </url>
 
-  <!-- Inventaris Dusun -->
   <url>
-    <loc>https://samxngemplak-arch.github.io/?page=inventaris</loc>
-    <lastmod>2026-06-24</lastmod>
+    <loc>https://simbahngemplak.vercel.app/?umkm=jamil-bibit</loc>
+    <lastmod>2026-06-25</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://simbahngemplak.vercel.app/?umkm=jamil-arya-tani</loc>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://simbahngemplak.vercel.app/?umkm=naza-bibit</loc>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://simbahngemplak.vercel.app/?umkm=alfarizie-bibit</loc>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://simbahngemplak.vercel.app/?umkm=ardelia-bibit</loc>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://simbahngemplak.vercel.app/?umkm=martin-bibit-jaya</loc>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://simbahngemplak.vercel.app/?umkm=trijaya-bibit</loc>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://simbahngemplak.vercel.app/?umkm=samuji-bibit</loc>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://simbahngemplak.vercel.app/?umkm=bibit-cabai-alip-sihmanto</loc>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://simbahngemplak.vercel.app/?umkm=muhtar-bibit-unggul</loc>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://simbahngemplak.vercel.app/?umkm=primatani-bibit</loc>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://simbahngemplak.vercel.app/?umkm=khanza-bibit</loc>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://simbahngemplak.vercel.app/?umkm=isron-furniture</loc>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://simbahngemplak.vercel.app/?umkm=dombaku</loc>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://simbahngemplak.vercel.app/?umkm=sapu-jagad-fruits</loc>
+    <lastmod>2026-06-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 
 </urlset>

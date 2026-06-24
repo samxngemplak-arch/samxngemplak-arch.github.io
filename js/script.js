@@ -445,7 +445,14 @@ function renderGrid(filter) {
     return;
   }
 
-  /* Buat HTML kartu untuk setiap UMKM */
+  /* Buat HTML kartu untuk setiap UMKM.
+     CATATAN PERBAIKAN (25 Juni 2026): dulu .ug-cat dipakai untuk
+     menampilkan RATING, sehingga teks KATEGORI USAHA (Jasa, Perkebunan,
+     dst) hanya kelihatan sebagai badge kecil di pojok foto — tidak ada
+     versi teks biasa di info card. Sekarang kategori tetap tampil
+     sebagai teks di .ug-cat (sesuai nama class & styling-nya di CSS),
+     rating dipindah ke baris baru .ug-rating supaya kedua info ini
+     sama-sama kelihatan, tidak saling timpa. */
   grid.innerHTML = list.map(function(u) {
     return `
       <div class="ugcard" onclick="showUMKM(${u.id})">
@@ -455,7 +462,8 @@ function renderGrid(filter) {
         </div>
         <div class="ug-info">
           <div class="ug-name">${u.name}</div>
-          <div class="ug-cat">${u.rating && u.rating !== '0' ? '⭐ ' + u.rating : '<span class="ug-new">Baru</span>'}</div>
+          <div class="ug-cat">${u.cat}</div>
+          <div class="ug-rating">${u.rating && u.rating !== '0' ? '⭐ ' + u.rating : '<span class="ug-new">Baru</span>'}</div>
           ${u.phone ? `<a class="ug-wa" href="https://wa.me/${u.phone}" target="_blank" onclick="event.stopPropagation()">💬 Chat WA</a>` : `<span class="ug-wa-empty">📍 Lihat Maps</span>`}
         </div>
       </div>`;
