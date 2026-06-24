@@ -129,26 +129,15 @@
       </div>
     </nav>
 
-    <button class="hbtn" onclick="toggleSearch()">
-      <svg viewBox="0 0 24 24">
-        <circle cx="11" cy="11" r="8"/>
-        <path d="M21 21l-4.35-4.35"/>
-      </svg>
-    </button>
-  </div>
-
-  <!-- ===== KOTAK PENCARIAN GLOBAL ===== -->
-  <!-- Muncul di bawah header saat ikon kaca pembesar diklik.
-       Mencari di UMKM, Agenda, dan Inventaris sekaligus. -->
-  <div class="search-box" id="search-box">
-    <div class="search-inner">
-      <svg class="search-ico" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
-      <input type="text" id="search-input" placeholder="Cari UMKM, agenda, atau inventaris..." autocomplete="off">
-      <button class="search-close" onclick="closeSearch()">
-        <svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
-      </button>
+    <!-- Search pill — morph dari ikon kaca jadi input, melebar ke kiri -->
+    <div class="search-pill" id="search-pill" onclick="openSearch()">
+      <div class="search-pill-btn" id="search-pill-btn">
+        <svg class="sp-ico sp-ico-search" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        <svg class="sp-ico sp-ico-x" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </div>
+      <input class="search-pill-input" id="search-input" placeholder="Cari UMKM, agenda..." autocomplete="off" spellcheck="false">
     </div>
-    <div class="search-results" id="search-results"></div>
+    <div class="search-dropdown" id="search-results"></div>
   </div>
 
   <!-- ===== HALAMAN-HALAMAN ===== -->

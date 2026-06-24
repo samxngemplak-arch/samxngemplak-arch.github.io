@@ -1241,89 +1241,87 @@ function renderFooter() {
    Inventaris sekaligus.
    ================================================ */
 
-/**
- * Buka/tutup kotak search di bawah header
- */
-function toggleSearch() {
-  const box = document.getElementById('search-box');
-  const isOpen = box.classList.contains('open');
-  if (isOpen) {
-    closeSearch();
-  } else {
-    box.classList.add('open');
-    document.getElementById('search-input').focus();
-  }
+/* ================================================
+   9. SEARCH — Pill Morph Pattern
+   ------------------------------------------------
+   Satu elemen (.search-pill) yang melebar ke kiri
+   jadi input saat diklik. Tidak ada overlay, tidak
+   ada box baru — button-nya sendiri yang morph.
+   Menutup dengan klik × atau klik di luar header.
+   ================================================ */
+var _searchOpen = false;
+
+function openSearch() {
+  if (_searchOpen) return;
+  _searchOpen = true;
+  var pill = document.getElementById('search-pill');
+  pill.classList.add('open');
+  pill.onclick = null;
+  document.getElementById('search-pill-btn').onclick = closeSearch;
+  setTimeout(function() { document.getElementById('search-input').focus(); }, 200);
 }
 
 function closeSearch() {
-  const box = document.getElementById('search-box');
-  box.classList.remove('open');
+  if (!_searchOpen) return;
+  _searchOpen = false;
+  var pill = document.getElementById('search-pill');
+  pill.classList.remove('open');
+  pill.onclick = openSearch;
+  document.getElementById('search-pill-btn').onclick = null;
   document.getElementById('search-input').value = '';
-  document.getElementById('search-results').innerHTML = '';
+  var dd = document.getElementById('search-results');
+  dd.classList.remove('show');
+  dd.innerHTML = '';
 }
+
+/* Klik di luar header → tutup search */
+document.addEventListener('click', function(e) {
+  var hdr = document.querySelector('.hdr');
+  if (hdr && !hdr.contains(e.target) && _searchOpen) closeSearch();
+});
 
 /**
  * Jalankan pencarian setiap kali user mengetik
  * Mencari di 3 sumber: UMKM, Agenda, Inventaris
  */
 function runSearch(query) {
-  const resultsEl = document.getElementById('search-results');
-  const q = query.trim().toLowerCase();
+  var resultsEl = document.getElementById('search-results');
+  var q = query.trim().toLowerCase();
 
   if (!q) {
+    resultsEl.classList.remove('show');
     resultsEl.innerHTML = '';
     return;
   }
 
-  let html = '';
+  var html = '';
 
   /* --- Cari di UMKM --- */
-  const umkmHasil = UMKM.filter(function(u) {
+  var umkmHasil = UMKM.filter(function(u) {
     return u.name.toLowerCase().includes(q) ||
            (u.cat && u.cat.toLowerCase().includes(q)) ||
            (u.desc && u.desc.toLowerCase().includes(q));
   });
   umkmHasil.forEach(function(u) {
-    html += `
-      <button class="src-item" onclick="goToUMKM(${u.id})">
-        <span class="src-ico">${u.emoji || '🏪'}</span>
-        <span class="src-body">
-          <span class="src-ttl">${u.name}</span>
-          <span class="src-meta">UMKM · ${u.cat || ''}</span>
-        </span>
-      </button>`;
+    html += `<button class="src-item" onclick="goToUMKM(${u.id})"><span class="src-ico">${u.emoji || '🏪'}</span><span class="src-body"><span class="src-ttl">${u.name}</span><span class="src-meta">UMKM · ${u.cat || ''}</span></span></button>`;
   });
 
   /* --- Cari di Agenda (hanya yang belum lewat) --- */
-  const agendaHasil = getAgendaMendatang().filter(function(a) {
+  var agendaHasil = getAgendaMendatang().filter(function(a) {
     return a.title.toLowerCase().includes(q) || a.tag.toLowerCase().includes(q);
   });
   agendaHasil.forEach(function(a) {
-    const tgl = new Date(a.date + 'T00:00:00');
-    const metaTgl = String(tgl.getDate()).padStart(2, '0') + ' ' + NAMA_BULAN_SINGKAT[tgl.getMonth()] + ' · ' + a.lokasi;
-    html += `
-      <button class="src-item" onclick="nav('agenda')">
-        <span class="src-ico">📅</span>
-        <span class="src-body">
-          <span class="src-ttl">${a.title}</span>
-          <span class="src-meta">Agenda · ${metaTgl}</span>
-        </span>
-      </button>`;
+    var tgl = new Date(a.date + 'T00:00:00');
+    var metaTgl = String(tgl.getDate()).padStart(2, '0') + ' ' + NAMA_BULAN_SINGKAT[tgl.getMonth()] + ' · ' + a.lokasi;
+    html += `<button class="src-item" onclick="nav('agenda')"><span class="src-ico">📅</span><span class="src-body"><span class="src-ttl">${a.title}</span><span class="src-meta">Agenda · ${metaTgl}</span></span></button>`;
   });
 
   /* --- Cari di Inventaris --- */
-  const invHasil = INVENTARIS_SEARCH.filter(function(i) {
+  var invHasil = INVENTARIS_SEARCH.filter(function(i) {
     return i.title.toLowerCase().includes(q);
   });
   invHasil.forEach(function(i) {
-    html += `
-      <button class="src-item" onclick="nav('inventaris')">
-        <span class="src-ico">📦</span>
-        <span class="src-body">
-          <span class="src-ttl">${i.title}</span>
-          <span class="src-meta">Inventaris · ${i.meta}</span>
-        </span>
-      </button>`;
+    html += `<button class="src-item" onclick="nav('inventaris')"><span class="src-ico">📦</span><span class="src-body"><span class="src-ttl">${i.title}</span><span class="src-meta">Inventaris · ${i.meta}</span></span></button>`;
   });
 
   /* --- Tidak ada hasil --- */
@@ -1332,6 +1330,7 @@ function runSearch(query) {
   }
 
   resultsEl.innerHTML = html;
+  resultsEl.classList.add('show');
 }
 
 /**
@@ -1415,9 +1414,14 @@ renderInventarisBeranda();
    template (lihat templateFooter() di atas), tidak perlu hardcode lagi. */
 renderFooter();
 
-/* Pasang event listener ke kotak pencarian */
+/* Pasang event listener ke input pencarian */
 document.getElementById('search-input')?.addEventListener('input', function(e) {
   runSearch(e.target.value);
+});
+
+/* ESC menutup search pill */
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape' && _searchOpen) closeSearch();
 });
 document.querySelectorAll('.fchip').forEach(function(chip) {
   chip.addEventListener('click', function() {

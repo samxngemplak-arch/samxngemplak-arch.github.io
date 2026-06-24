@@ -121,10 +121,11 @@ body {
 .hdr {
   background: var(--gr);
   padding: 8px 16px 12px;
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr auto; /* logo | nav tengah | pill kanan */
   align-items: center;
-  justify-content: space-between;
   flex-shrink: 0;
+  position: relative;
 }
 
 .hlogo {
@@ -179,92 +180,134 @@ body {
 
 
 /* ================================================
-   4B. SEARCH BOX — Kotak pencarian global
-   Dropdown yang muncul di bawah header
+   4B. SEARCH PILL — Morph Pattern
+   ------------------------------------------------
+   Button ikon kaca yang "morph" melebar ke kiri
+   jadi input langsung di tempat — satu elemen,
+   tanpa overlay, tanpa box baru. Menutup dengan
+   klik × atau klik di luar header.
    ================================================ */
-.search-box {
-  max-height: 0;
-  overflow: hidden;
-  background: var(--wh);
-  border-bottom: 1px solid var(--iv3);
-  transition: max-height .25s ease;
-  flex-shrink: 0;
-}
-.search-box.open {
-  max-height: 70vh;
-  overflow-y: auto;
-}
-.search-inner {
+
+/* Wrapper pill — 1 elemen yang melebar */
+.search-pill {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 12px 16px;
-  position: sticky;
-  top: 0;
-  background: var(--wh);
-  border-bottom: 1px solid var(--iv3);
-}
-.search-ico {
-  width: 18px;
-  height: 18px;
-  stroke: var(--tx3);
-  fill: none;
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+  height: 32px;
+  width: 32px;
+  background: rgba(255, 255, 255, .15);
+  border: 1.5px solid rgba(255, 255, 255, .18);
+  border-radius: 8px;
+  overflow: hidden;
+  transition:
+    width .45s cubic-bezier(.65, 0, .35, 1),
+    background .35s ease,
+    border-color .35s ease;
+  cursor: pointer;
   flex-shrink: 0;
+  justify-self: end;     /* stay di kanan kolom kanan grid */
+  direction: rtl;        /* trick: konten grow ke kiri, bukan ke kanan */
 }
-.search-inner input {
-  flex: 1;
-  border: none;
-  outline: none;
-  font-family: inherit;
-  font-size: 13px;
-  color: var(--tx);
-  background: transparent;
+.search-pill.open {
+  width: 210px;
+  background: rgba(255, 255, 255, .12);
+  border-color: rgba(255, 255, 255, .35);
+  cursor: default;
 }
-.search-inner input::placeholder { color: var(--tx3); }
-.search-close {
-  width: 26px;
-  height: 26px;
-  border: none;
-  background: var(--iv2);
-  border-radius: 50%;
+
+/* Tombol ikon di dalam pill */
+.search-pill-btn {
+  width: 30px;
+  height: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
   flex-shrink: 0;
+  position: relative;
+  cursor: pointer;
 }
-.search-close svg {
-  width: 13px;
-  height: 13px;
-  stroke: var(--tx2);
-  fill: none;
-  stroke-width: 2.2;
-  stroke-linecap: round;
+.sp-ico {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  transition: opacity .2s ease, transform .25s ease;
+}
+.sp-ico-search { opacity: 1; transform: scale(1); }
+.sp-ico-x      { opacity: 0; transform: scale(.6); }
+.search-pill.open .sp-ico-search { opacity: 0; transform: scale(.6); }
+.search-pill.open .sp-ico-x      { opacity: 1; transform: scale(1); }
+
+/* Input di dalam pill */
+.search-pill-input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  background: transparent !important;
+  -webkit-appearance: none;
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+  font-family: inherit;
+  font-size: 11px;
+  padding: 0 8px 0 2px;
+  outline: none;
+  opacity: 0;
+  transition: opacity .25s ease .15s;
+  caret-color: #fff;
+  direction: ltr;        /* balik arah teks ke normal */
+}
+.search-pill.open .search-pill-input { opacity: 1; }
+.search-pill-input::placeholder { color: rgba(255, 255, 255, .5); font-size: 11px; }
+.search-pill-input:-webkit-autofill,
+.search-pill-input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 100px transparent inset !important;
+  -webkit-text-fill-color: #fff !important;
 }
 
-.search-results { padding: 4px 0 8px; }
+/* Dropdown hasil search — muncul di bawah header */
+.search-dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 16px;
+  width: 260px;
+  background: var(--wh);
+  border-radius: 10px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, .15);
+  overflow: hidden;
+  z-index: 190;
+  opacity: 0;
+  transform: translateY(-4px);
+  pointer-events: none;
+  transition: opacity .2s ease, transform .2s ease;
+}
+.search-dropdown.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
+}
+
+/* Item hasil search */
 .src-item {
   display: flex;
   align-items: center;
-  gap: 11px;
+  gap: 10px;
   width: 100%;
-  padding: 10px 16px;
+  padding: 9px 12px;
   border: none;
+  border-bottom: .5px solid var(--iv2);
   background: none;
   font-family: inherit;
   text-align: left;
   cursor: pointer;
+  transition: background .1s;
 }
-.src-item:active { background: var(--iv2); }
+.src-item:last-child { border-bottom: none; }
+.src-item:hover, .src-item:active { background: var(--iv2); }
+
 .src-ico {
-  font-size: 18px;
-  width: 32px;
-  height: 32px;
+  font-size: 15px;
+  width: 28px;
+  height: 28px;
   background: var(--grl);
-  border-radius: 8px;
+  border-radius: 7px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -272,18 +315,18 @@ body {
 }
 .src-body { display: flex; flex-direction: column; min-width: 0; }
 .src-ttl {
-  font-size: 12.5px;
+  font-size: 12px;
   font-weight: 600;
   color: var(--tx);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.src-meta { font-size: 10.5px; color: var(--tx3); margin-top: 1px; }
+.src-meta { font-size: 10px; color: var(--tx3); margin-top: 1px; }
 .src-empty {
   text-align: center;
-  padding: 24px 16px;
-  font-size: 12px;
+  padding: 16px;
+  font-size: 11px;
   color: var(--tx3);
 }
 
@@ -2115,6 +2158,7 @@ body {
 .dnav {
   display: none; /* sembunyi di mobile — diaktifkan lewat @media */
   align-items: center;
+  justify-content: center; /* nav selalu di tengah kolom tengah */
   gap: 4px;
 }
 .dn-item {
@@ -2241,6 +2285,8 @@ body {
     z-index: 100;
     padding: 14px 32px;
     box-shadow: 0 2px 12px rgba(0, 0, 0, .12);
+    display: grid;
+    grid-template-columns: auto 1fr auto;
   }
   .hlogo img  { width: 40px; height: 40px; }
   .hbrand     { font-size: 17px; }
