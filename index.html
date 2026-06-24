@@ -159,6 +159,10 @@
           <div class="hstat"><div class="num">±200</div><div class="lbl">KK</div></div>
           <div class="hstat"><div class="num">2</div><div class="lbl">RT</div></div>
         </div>
+        <div class="hero-cta">
+          <button class="hero-cta-btn" onclick="nav('umkm')">🏪 Lihat UMKM →</button>
+          <button class="hero-cta-btn hero-cta-sec" onclick="nav('nyuwun')">📞 Kontak Darurat</button>
+        </div>
       </div>
 
       <!-- Ticker pengumuman — diisi otomatis dari array AGENDA (lihat renderTicker() di script.js),
@@ -327,51 +331,69 @@
           <button class="sec-lnk" onclick="nav('nyuwun')">Semua →</button>
         </div>
         <div class="bline"></div>
-        <div class="nt-card">
-          <div class="nt-av av-g">👨‍💼</div>
-          <div>
-            <div class="nt-role">Kepala Dusun</div>
-            <div class="nt-name">Bpk. Suroto</div>
-            <div class="nt-num">0812-xxxx-xxxx</div>
-          </div>
-          <div class="nt-btns">
-            <a class="nt-wa" href="https://wa.me/{{WA}}" target="_blank">💬 WA</a>
-            <a class="nt-telp" href="tel:{{WA}}">📞 Telp</a>
-          </div>
-        </div>
-        <div class="nt-card">
-          <div class="nt-av av-b">👩‍⚕️</div>
-          <div>
-            <div class="nt-role">Bidan Desa</div>
-            <div class="nt-name">— (segera diperbarui)</div>
-            <div class="nt-num">0813-xxxx-xxxx</div>
-          </div>
-          <div class="nt-btns">
-            <a class="nt-wa" href="https://wa.me/{{WA}}" target="_blank">💬 WA</a>
-            <a class="nt-telp" href="tel:{{WA}}">📞 Telp</a>
-          </div>
-        </div>
-        <div class="nt-card">
-          <div class="nt-av av-g">👨‍💼</div>
-          <div>
-            <div class="nt-role">Ketua RT 01</div>
-            <div class="nt-name">Bpk. Kar</div>
-            <div class="nt-num">0856-xxxx-xxxx</div>
-          </div>
-          <div class="nt-btns">
-            <a class="nt-wa" href="https://wa.me/{{WA}}" target="_blank">💬 WA</a>
-            <a class="nt-telp" href="tel:{{WA}}">📞 Telp</a>
-          </div>
-        </div>
+
+        <!-- 4 kontak prioritas: semua sudah ada nomor asli, langsung bisa diklik -->
         <div class="nt-card">
           <div class="nt-av av-b">🚑</div>
           <div>
-            <div class="nt-role">Ambulans / PSC</div>
-            <div class="nt-name">PSC 119</div>
+            <div class="nt-role">Ambulans / PSC 119</div>
+            <div class="nt-name">Pelayanan Darurat Terpadu</div>
             <div class="nt-num">0811-2653-119</div>
           </div>
-          <a class="nt-telp" href="tel:08112653119">📞 Telp</a>
+          <div class="nt-btns">
+            <a class="nt-wa" href="https://wa.me/6281126531190" target="_blank">💬 WA</a>
+            <a class="nt-telp" href="tel:08112653119">📞 Telp</a>
+          </div>
         </div>
+        <div class="nt-card">
+          <div class="nt-av av-g">🏥</div>
+          <div>
+            <div class="nt-role">Puskesmas Kemiri</div>
+            <div class="nt-name">Layanan Kesehatan Kecamatan</div>
+            <div class="nt-num">0852-9010-0073</div>
+          </div>
+          <div class="nt-btns">
+            <a class="nt-wa" href="https://wa.me/6285290100073" target="_blank">💬 WA</a>
+            <a class="nt-telp" href="tel:085290100073">📞 Telp</a>
+          </div>
+        </div>
+        <div class="nt-card">
+          <div class="nt-av av-b">🚒</div>
+          <div>
+            <div class="nt-role">Damkar Purworejo</div>
+            <div class="nt-name">Pemadam Kebakaran Kabupaten</div>
+            <div class="nt-num">0821-3633-1113</div>
+          </div>
+          <div class="nt-btns">
+            <a class="nt-wa" href="https://wa.me/6282136331113" target="_blank">💬 WA</a>
+            <a class="nt-telp" href="tel:082136331113">📞 Telp</a>
+          </div>
+        </div>
+        <div class="nt-card">
+          <div class="nt-av av-g">🆘</div>
+          <div>
+            <div class="nt-role">BPBD / Kebencanaan</div>
+            <div class="nt-name">Badan Penanggulangan Bencana</div>
+            <div class="nt-num">0821-2389-3443</div>
+          </div>
+          <div class="nt-btns">
+            <a class="nt-wa" href="https://wa.me/6282123893443" target="_blank">💬 WA</a>
+            <a class="nt-telp" href="tel:082123893443">📞 Telp</a>
+          </div>
+        </div>
+
+        <!-- Tombol Pengaduan — BELUM AKTIF, menunggu nomor WA Kadus.
+             Cara aktivasi: ganti href di bawah ini dengan nomor asli Kadus,
+             lalu hapus atribut [data-kontak-publik] dan class [nt-disabled].
+             Format: https://wa.me/628XXXXXXXXX?text=Halo%20Pak%20Kadus%2C%20...
+             JANGAN pakai {{WA}} di sini — supaya tidak nyasar ke nomor Zen. -->
+        <a class="pengaduan-btn nt-disabled"
+           data-kontak-publik
+           href="#"
+           aria-disabled="true"
+           title="Aktif setelah nomor Kepala Dusun tersedia">
+          📢 Pengaduan ke Kepala Dusun (segera aktif)
+        </a>
       </div>
 
       <div class="div8 bg-divider"></div>
@@ -736,40 +758,40 @@
             <div class="nt-av av-b">👨‍💼</div>
             <div><div class="nt-role">Kepala Desa Samping</div><div class="nt-name">Bpk. Amad Kowim</div><div class="nt-num">0822-xxxx-xxxx</div></div>
             <div class="nt-btns">
-              <a class="nt-wa" href="https://wa.me/{{WA}}" target="_blank">💬 WA</a>
-              <a class="nt-telp" href="tel:{{WA}}">📞 Telp</a>
+              <a class="nt-wa" data-kontak-publik href="https://wa.me/{{WA}}" target="_blank">💬 WA</a>
+              <a class="nt-telp" data-kontak-publik href="tel:{{WA}}">📞 Telp</a>
             </div>
           </div>
           <div class="nt-card">
             <div class="nt-av av-g">👨‍💼</div>
             <div><div class="nt-role">Kepala Dusun</div><div class="nt-name">Bpk. Suroto</div><div class="nt-num">0812-xxxx-xxxx</div></div>
             <div class="nt-btns">
-              <a class="nt-wa" href="https://wa.me/{{WA}}" target="_blank">💬 WA</a>
-              <a class="nt-telp" href="tel:{{WA}}">📞 Telp</a>
+              <a class="nt-wa" data-kontak-publik href="https://wa.me/{{WA}}" target="_blank">💬 WA</a>
+              <a class="nt-telp" data-kontak-publik href="tel:{{WA}}">📞 Telp</a>
             </div>
           </div>
           <div class="nt-card">
             <div class="nt-av av-b">👨‍💼</div>
             <div><div class="nt-role">Ketua RW</div><div class="nt-name">Bpk. Sutiyo</div><div class="nt-num">0813-xxxx-xxxx</div></div>
             <div class="nt-btns">
-              <a class="nt-wa" href="https://wa.me/{{WA}}" target="_blank">💬 WA</a>
-              <a class="nt-telp" href="tel:{{WA}}">📞 Telp</a>
+              <a class="nt-wa" data-kontak-publik href="https://wa.me/{{WA}}" target="_blank">💬 WA</a>
+              <a class="nt-telp" data-kontak-publik href="tel:{{WA}}">📞 Telp</a>
             </div>
           </div>
           <div class="nt-card">
             <div class="nt-av av-g">👨‍💼</div>
             <div><div class="nt-role">Ketua RT 01</div><div class="nt-name">Bpk. Kar</div><div class="nt-num">0856-xxxx-xxxx</div></div>
             <div class="nt-btns">
-              <a class="nt-wa" href="https://wa.me/{{WA}}" target="_blank">💬 WA</a>
-              <a class="nt-telp" href="tel:{{WA}}">📞 Telp</a>
+              <a class="nt-wa" data-kontak-publik href="https://wa.me/{{WA}}" target="_blank">💬 WA</a>
+              <a class="nt-telp" data-kontak-publik href="tel:{{WA}}">📞 Telp</a>
             </div>
           </div>
           <div class="nt-card">
             <div class="nt-av av-g">👨‍💼</div>
             <div><div class="nt-role">Ketua RT 02</div><div class="nt-name">Bpk. Fajar Arifin</div><div class="nt-num">0857-xxxx-xxxx</div></div>
             <div class="nt-btns">
-              <a class="nt-wa" href="https://wa.me/{{WA}}" target="_blank">💬 WA</a>
-              <a class="nt-telp" href="tel:{{WA}}">📞 Telp</a>
+              <a class="nt-wa" data-kontak-publik href="https://wa.me/{{WA}}" target="_blank">💬 WA</a>
+              <a class="nt-telp" data-kontak-publik href="tel:{{WA}}">📞 Telp</a>
             </div>
           </div>
         </div>
@@ -781,8 +803,8 @@
             <div class="nt-av av-b">👩‍⚕️</div>
             <div><div class="nt-role">Bidan Desa</div><div class="nt-name">— (segera diperbarui)</div><div class="nt-num">0813-xxxx-xxxx</div></div>
             <div class="nt-btns">
-              <a class="nt-wa" href="https://wa.me/{{WA}}" target="_blank">💬 WA</a>
-              <a class="nt-telp" href="tel:{{WA}}">📞 Telp</a>
+              <a class="nt-wa" data-kontak-publik href="https://wa.me/{{WA}}" target="_blank">💬 WA</a>
+              <a class="nt-telp" data-kontak-publik href="tel:{{WA}}">📞 Telp</a>
             </div>
           </div>
           <div class="nt-card">
@@ -826,8 +848,8 @@
             <div class="nt-av av-g">👮</div>
             <div><div class="nt-role">Babinsa</div><div class="nt-name">— (segera diperbarui)</div><div class="nt-num">0811-xxxx-xxxx</div></div>
             <div class="nt-btns">
-              <a class="nt-wa" href="https://wa.me/{{WA}}" target="_blank">💬 WA</a>
-              <a class="nt-telp" href="tel:{{WA}}">📞 Telp</a>
+              <a class="nt-wa" data-kontak-publik href="https://wa.me/{{WA}}" target="_blank">💬 WA</a>
+              <a class="nt-telp" data-kontak-publik href="tel:{{WA}}">📞 Telp</a>
             </div>
           </div>
           <div class="nt-card">
@@ -992,123 +1014,200 @@
             <div class="sec-hdr"><div class="sec-ttl">Sejarah Dusun</div></div>
             <div class="bline"></div>
 
-            <div class="sejarah-h">Asal-Usul Nama</div>
-            <p class="sejarah-p">
-              Hingga saat ini belum ditemukan catatan tertulis yang secara pasti menjelaskan
-              asal-usul nama Dusun Ngemplak maupun Desa Samping. Dalam penuturan masyarakat
-              setempat, nama "Samping" sering dikaitkan dengan posisi wilayah yang berada di
-              sisi atau bagian tertentu dari kawasan penting pada masa lampau. Sementara itu,
-              nama "Ngemplak" oleh sebagian masyarakat dihubungkan dengan kondisi lahan yang
-              relatif terbuka dan lapang.
-            </p>
-            <p class="sejarah-p">
-              Penafsiran tersebut merupakan bagian dari sejarah lokal yang masih memerlukan
-              penelitian lebih lanjut dan terbuka untuk penyempurnaan apabila ditemukan sumber
-              yang lebih lengkap di masa mendatang.
-            </p>
+            <!-- =====================================================
+                 ACCORDION SEJARAH — native <details>/<summary>
+                 Tanpa JS, tanpa library. Masing-masing topik bisa
+                 dibuka/tutup sendiri-sendiri.
+                 Cara tambah topik baru: copy 1 blok <details>...</details>,
+                 ganti teks <summary> dan isi .sej-acc-body.
+                 ===================================================== -->
 
-            <div class="sejarah-h">Para Perintis dan Sesepuh Dusun</div>
-            <p class="sejarah-p">
-              Perkembangan awal Dusun Ngemplak tidak dapat dilepaskan dari peran para tokoh
-              agama, sesepuh masyarakat, serta para perintis yang membangun kehidupan sosial
-              dan keagamaan di wilayah ini. Tokoh-tokoh yang dikenal dan dihormati antara lain:
-            </p>
-            <ul class="sejarah-list">
-              <li>Mbah KH Abdul Jamal</li>
-              <li>Mbah KH Abdul Rosyid</li>
-              <li>Mbah KH Asy'ari (Jetak, Kroyo Lor)</li>
-              <li>Mbah KH Bunyamin</li>
-              <li>Mbah KH Daiman</li>
-              <li>Mbah Kyai Ahmad Khondili (Jetak, Kroyo Lor)</li>
-              <li>Mbah Kyai Mahmudi</li>
-              <li>Mbah Kyai Rusman</li>
-              <li>Mbah Kyai Sudiyono</li>
-            </ul>
-            <p class="sejarah-p">
-              Para tokoh tersebut memiliki kontribusi penting dalam membangun kehidupan
-              keagamaan, pendidikan masyarakat, serta nilai-nilai sosial yang masih diwariskan
-              hingga sekarang.
-            </p>
+            <details class="sej-acc" open>
+              <summary class="sej-acc-sum">📜 Asal-Usul Nama</summary>
+              <div class="sej-acc-body">
+                <p class="sejarah-p">
+                  Hingga saat ini belum ditemukan catatan tertulis yang secara pasti menjelaskan
+                  asal-usul nama Dusun Ngemplak maupun Desa Samping. Dalam penuturan masyarakat
+                  setempat, nama "Samping" sering dikaitkan dengan posisi wilayah yang berada di
+                  sisi atau bagian tertentu dari kawasan penting pada masa lampau. Sementara itu,
+                  nama "Ngemplak" oleh sebagian masyarakat dihubungkan dengan kondisi lahan yang
+                  relatif terbuka dan lapang.
+                </p>
+                <p class="sejarah-p" style="margin-bottom:0">
+                  Penafsiran tersebut merupakan bagian dari sejarah lokal yang masih memerlukan
+                  penelitian lebih lanjut dan terbuka untuk penyempurnaan apabila ditemukan sumber
+                  yang lebih lengkap di masa mendatang.
+                </p>
+              </div>
+            </details>
 
-            <div class="sejarah-h">Dusun Ngemplak pada Masa Perang Jawa (1825–1830)</div>
-            <p class="sejarah-p">
-              Menurut tradisi lisan yang berkembang di masyarakat, wilayah Kemiri yang pada masa
-              lampau dikenal sebagai bagian dari Karangduwur memiliki keterkaitan dengan berbagai
-              peristiwa yang terjadi selama Perang Jawa atau Perang Diponegoro pada tahun
-              1825–1830. Kondisi geografis wilayah yang berupa perbukitan, lembah, serta kawasan
-              berhutan menjadikan daerah ini strategis sebagai jalur pergerakan dan pertahanan
-              kelompok-kelompok pejuang pada masa itu.
-            </p>
-            <p class="sejarah-p">
-              Dalam berbagai cerita yang diwariskan secara turun-temurun, nama Kyai Abdul Jamal
-              disebut sebagai tokoh yang berperan dalam perjuangan di wilayah Karangduwur dan
-              sekitarnya. Beliau dikenang sebagai ulama sekaligus pemimpin masyarakat yang
-              memiliki pengaruh besar pada zamannya. Masyarakat meyakini bahwa wilayah Desa
-              Samping, khususnya Dusun Ngemplak, pernah menjadi salah satu titik pertahanan dan
-              tempat berkumpulnya para pejuang.
-            </p>
-            <p class="sejarah-p">
-              Cerita mengenai "kebal terhadap bom" yang sering dikaitkan dengan Kyai Abdul Jamal
-              dipahami oleh masyarakat sebagai simbol keberhasilan beliau dalam memanfaatkan
-              kondisi alam dan strategi pertahanan untuk melindungi warga dari ancaman peperangan
-              pada masa itu.
-            </p>
-            <div class="sejarah-disclaimer">
-              <div class="sd-label">⚠️ Penting Diketahui</div>
-              <div class="sd-text">
-                Bagian cerita di atas — termasuk kisah "kebal terhadap bom" — berasal dari
-                <strong>tradisi lisan</strong> yang diwariskan turun-temurun oleh masyarakat,
-                <strong>bukan dari catatan sejarah tertulis</strong> yang sudah terverifikasi.
-                Meski begitu, cerita ini tetap dihormati dan dijaga sebagai bagian penting dari
-                identitas budaya Dusun Ngemplak.
+            <details class="sej-acc">
+              <summary class="sej-acc-sum">🕌 Para Perintis dan Sesepuh Dusun</summary>
+              <div class="sej-acc-body">
+                <p class="sejarah-p">
+                  Perkembangan awal Dusun Ngemplak tidak dapat dilepaskan dari peran para tokoh
+                  agama, sesepuh masyarakat, serta para perintis yang membangun kehidupan sosial
+                  dan keagamaan di wilayah ini. Tokoh-tokoh yang dikenal dan dihormati antara lain:
+                </p>
+                <ul class="sejarah-list">
+                  <li>Mbah KH Abdul Jamal</li>
+                  <li>Mbah KH Abdul Rosyid</li>
+                  <li>Mbah KH Asy'ari (Jetak, Kroyo Lor)</li>
+                  <li>Mbah KH Bunyamin</li>
+                  <li>Mbah KH Daiman</li>
+                  <li>Mbah Kyai Ahmad Khondili (Jetak, Kroyo Lor)</li>
+                  <li>Mbah Kyai Mahmudi</li>
+                  <li>Mbah Kyai Rusman</li>
+                  <li>Mbah Kyai Sudiyono</li>
+                </ul>
+                <p class="sejarah-p" style="margin-bottom:0">
+                  Para tokoh tersebut memiliki kontribusi penting dalam membangun kehidupan
+                  keagamaan, pendidikan masyarakat, serta nilai-nilai sosial yang masih diwariskan
+                  hingga sekarang.
+                </p>
+              </div>
+            </details>
+
+            <details class="sej-acc">
+              <summary class="sej-acc-sum">⚔️ Perang Jawa (1825–1830)</summary>
+              <div class="sej-acc-body">
+                <p class="sejarah-p">
+                  Menurut tradisi lisan yang berkembang di masyarakat, wilayah Kemiri yang pada masa
+                  lampau dikenal sebagai bagian dari Karangduwur memiliki keterkaitan dengan berbagai
+                  peristiwa yang terjadi selama Perang Jawa atau Perang Diponegoro pada tahun
+                  1825–1830. Kondisi geografis wilayah yang berupa perbukitan, lembah, serta kawasan
+                  berhutan menjadikan daerah ini strategis sebagai jalur pergerakan dan pertahanan
+                  kelompok-kelompok pejuang pada masa itu.
+                </p>
+                <p class="sejarah-p">
+                  Dalam berbagai cerita yang diwariskan secara turun-temurun, nama Kyai Abdul Jamal
+                  disebut sebagai tokoh yang berperan dalam perjuangan di wilayah Karangduwur dan
+                  sekitarnya. Beliau dikenang sebagai ulama sekaligus pemimpin masyarakat yang
+                  memiliki pengaruh besar pada zamannya. Masyarakat meyakini bahwa wilayah Desa
+                  Samping, khususnya Dusun Ngemplak, pernah menjadi salah satu titik pertahanan dan
+                  tempat berkumpulnya para pejuang.
+                </p>
+                <p class="sejarah-p">
+                  Cerita mengenai "kebal terhadap bom" yang sering dikaitkan dengan Kyai Abdul Jamal
+                  dipahami oleh masyarakat sebagai simbol keberhasilan beliau dalam memanfaatkan
+                  kondisi alam dan strategi pertahanan untuk melindungi warga dari ancaman peperangan
+                  pada masa itu.
+                </p>
+                <div class="sejarah-disclaimer" style="margin-bottom:0">
+                  <div class="sd-label">⚠️ Penting Diketahui</div>
+                  <div class="sd-text">
+                    Bagian cerita di atas — termasuk kisah "kebal terhadap bom" — berasal dari
+                    <strong>tradisi lisan</strong> yang diwariskan turun-temurun oleh masyarakat,
+                    <strong>bukan dari catatan sejarah tertulis</strong> yang sudah terverifikasi.
+                    Meski begitu, cerita ini tetap dihormati dan dijaga sebagai bagian penting dari
+                    identitas budaya Dusun Ngemplak.
+                  </div>
+                </div>
+              </div>
+            </details>
+
+            <details class="sej-acc">
+              <summary class="sej-acc-sum">🕌 Masjid Al-Iman</summary>
+              <div class="sej-acc-body">
+                <p class="sejarah-p">
+                  Salah satu bangunan bersejarah bagi masyarakat Dusun Ngemplak adalah Masjid
+                  Al-Iman. Menurut penuturan para sesepuh, keberadaan masjid ini memiliki
+                  keterkaitan dengan sebuah pohon jati tua yang dahulu berada di kawasan pemakaman
+                  dusun, yang dipercaya menjadi penanda kawasan makam para tokoh terdahulu.
+                </p>
+                <p class="sejarah-p" style="margin-bottom:0">
+                  Ketika pohon tersebut telah mencapai usia yang sangat tua, kayunya dimanfaatkan
+                  untuk pembangunan Masjid Al-Iman. Batang utama pohon jati tersebut digunakan
+                  sebagai empat <em>saka guru</em> atau tiang utama masjid yang hingga kini masih
+                  berdiri kokoh — menjadi simbol persatuan, kebersamaan, dan kesinambungan sejarah
+                  masyarakat Dusun Ngemplak dari generasi ke generasi.
+                </p>
+              </div>
+            </details>
+
+            <details class="sej-acc">
+              <summary class="sej-acc-sum">🤝 Tradisi dan Budaya Masyarakat</summary>
+              <div class="sej-acc-body">
+                <div class="sej-tradisi-item">
+                  <div class="sej-tradisi-ico">🪦</div>
+                  <div>
+                    <div class="sej-tradisi-nm">Resik Kubur</div>
+                    <p class="sejarah-p" style="margin-bottom:0">Tradisi membersihkan area makam leluhur secara gotong royong sebagai bentuk penghormatan kepada para pendahulu sekaligus mempererat hubungan antarwarga.</p>
+                  </div>
+                </div>
+                <div class="sej-tradisi-item">
+                  <div class="sej-tradisi-ico">🌙</div>
+                  <div>
+                    <div class="sej-tradisi-nm">Selikuran</div>
+                    <p class="sejarah-p" style="margin-bottom:0">Tradisi pada malam-malam akhir bulan Ramadan. Warga berkumpul berdoa bersama dan membawa makanan menggunakan <em>tenggok</em> (wadah anyaman bambu) sebagai simbol kebersamaan dan rasa syukur.</p>
+                  </div>
+                </div>
+                <div class="sej-tradisi-item" style="border-bottom:none; margin-bottom:0">
+                  <div class="sej-tradisi-ico">💪</div>
+                  <div>
+                    <div class="sej-tradisi-nm">Gotong Royong</div>
+                    <p class="sejarah-p" style="margin-bottom:0">Semangat yang masih menjadi bagian penting dalam kehidupan masyarakat, baik dalam kegiatan sosial, keagamaan, maupun pembangunan lingkungan.</p>
+                  </div>
+                </div>
+              </div>
+            </details>
+
+            <details class="sej-acc">
+              <summary class="sej-acc-sum">🌿 Karang Taruna Oppen Lestari</summary>
+              <div class="sej-acc-body">
+                <p class="sejarah-p" style="margin-bottom:0">
+                  Para pemuda Dusun Ngemplak berhimpun dalam organisasi Karang Taruna
+                  <strong>Oppen Lestari</strong>. Nama "Oppen" merupakan singkatan dari
+                  <em>Organisasi Pemuda Pemudi Ngemplak</em>, sedangkan "Lestari" mengandung harapan
+                  agar semangat kebersamaan, kepedulian sosial, dan nilai-nilai luhur dari para
+                  pendahulu tetap terjaga sepanjang masa. Melalui kegiatan sosial, olahraga,
+                  keagamaan, dan pemberdayaan masyarakat, Karang Taruna Oppen Lestari menjadi salah
+                  satu penggerak utama partisipasi generasi muda dalam pembangunan dusun.
+                </p>
+              </div>
+            </details>
+
+            <details class="sej-acc">
+              <summary class="sej-acc-sum">🌟 Warisan Nilai</summary>
+              <div class="sej-acc-body">
+                <div class="sej-nilai-grid">
+                  <div class="sej-nilai-item">🤝<span>Gotong Royong</span></div>
+                  <div class="sej-nilai-item">🕊️<span>Kerukunan</span></div>
+                  <div class="sej-nilai-item">❤️<span>Kepedulian Sosial</span></div>
+                  <div class="sej-nilai-item">🕌<span>Keagamaan</span></div>
+                  <div class="sej-nilai-item">📖<span>Keteladanan Sesepuh</span></div>
+                  <div class="sej-nilai-item">🌿<span>Jaga Tradisi & Budaya</span></div>
+                </div>
+              </div>
+            </details>
+
+            <!-- =====================================================
+                 CATATAN DOKUMENTASI — versi diperbarui
+                 Dibuat lebih terlihat sebagai "call to contribution"
+                 ===================================================== -->
+            <div class="sej-catatan-card">
+              <div class="sej-catatan-head">
+                <div class="sej-catatan-ico">📖</div>
+                <div>
+                  <div class="sej-catatan-ttl">Tentang Dokumentasi Ini</div>
+                  <div class="sej-catatan-sub">Arsip hidup, terbuka untuk disempurnakan</div>
+                </div>
+              </div>
+              <p class="sej-catatan-txt">
+                Dokumentasi ini disusun berdasarkan tradisi lisan masyarakat, penuturan para
+                sesepuh, dan catatan sejarah lokal yang tersedia saat ini. Akan terus
+                disempurnakan apabila ditemukan sumber tambahan di masa mendatang.
+              </p>
+              <div class="sej-catatan-cta">
+                <div class="sej-catatan-q">📢 Punya informasi atau arsip sejarah Dusun Ngemplak?</div>
+                <a href="https://wa.me/{{WA}}?text=Halo%2C%20saya%20punya%20informasi%2Farsip%20sejarah%20Dusun%20Ngemplak%20yang%20mungkin%20bisa%20melengkapi%20dokumentasi%20di%20website%20SIMBAH"
+                   target="_blank"
+                   class="sej-catatan-wa">
+                  💬 Kirim via WhatsApp →
+                </a>
               </div>
             </div>
 
-            <div class="sejarah-h">Masjid Al-Iman dan Warisan Sejarah Dusun</div>
-            <p class="sejarah-p">
-              Salah satu bangunan bersejarah bagi masyarakat Dusun Ngemplak adalah Masjid
-              Al-Iman. Menurut penuturan para sesepuh, keberadaan masjid ini memiliki
-              keterkaitan dengan sebuah pohon jati tua yang dahulu berada di kawasan pemakaman
-              dusun, yang dipercaya menjadi penanda kawasan makam para tokoh terdahulu.
-            </p>
-            <p class="sejarah-p">
-              Ketika pohon tersebut telah mencapai usia yang sangat tua, kayunya dimanfaatkan
-              untuk pembangunan Masjid Al-Iman. Batang utama pohon jati tersebut digunakan
-              sebagai empat saka guru atau tiang utama masjid yang hingga kini masih berdiri
-              kokoh — menjadi simbol persatuan, kebersamaan, dan kesinambungan sejarah
-              masyarakat Dusun Ngemplak dari generasi ke generasi.
-            </p>
-
-            <div class="sejarah-h">Tradisi dan Budaya Masyarakat</div>
-            <p class="sejarah-p"><strong>Resik Kubur</strong> — Tradisi membersihkan area makam leluhur secara gotong royong sebagai bentuk penghormatan kepada para pendahulu sekaligus mempererat hubungan antarwarga.</p>
-            <p class="sejarah-p"><strong>Selikuran</strong> — Tradisi pada malam-malam akhir bulan Ramadan. Warga berkumpul untuk berdoa bersama dan membawa makanan menggunakan tenggok (wadah anyaman bambu) sebagai simbol kebersamaan dan rasa syukur.</p>
-            <p class="sejarah-p"><strong>Gotong Royong</strong> — Semangat yang masih menjadi bagian penting dalam kehidupan masyarakat, baik dalam kegiatan sosial, keagamaan, maupun pembangunan lingkungan.</p>
-
-            <div class="sejarah-h">Organisasi Kepemudaan</div>
-            <p class="sejarah-p">
-              Para pemuda Dusun Ngemplak berhimpun dalam organisasi Karang Taruna
-              <strong>Oppen Lestari</strong>. Nama "Oppen" merupakan singkatan dari
-              <em>Organisasi Pemuda Pemudi Ngemplak</em>, sedangkan "Lestari" mengandung harapan
-              agar semangat kebersamaan, kepedulian sosial, dan nilai-nilai luhur dari para
-              pendahulu tetap terjaga sepanjang masa. Melalui kegiatan sosial, olahraga,
-              keagamaan, dan pemberdayaan masyarakat, Karang Taruna Oppen Lestari menjadi salah
-              satu penggerak utama partisipasi generasi muda dalam pembangunan dusun.
-            </p>
-
-            <div class="sejarah-h">Warisan Nilai</div>
-            <p class="sejarah-p">Masyarakat Dusun Ngemplak mewarisi nilai-nilai luhur yang tetap dijaga hingga saat ini: gotong royong, kerukunan, kepedulian sosial, keagamaan, keteladanan para sesepuh, serta semangat menjaga tradisi dan budaya.</p>
-
-            <div class="sejarah-catatan">
-              <div class="sc-label">📖 Tentang Dokumentasi Ini</div>
-              <p class="sc-text">
-                Dokumentasi ini disusun berdasarkan tradisi lisan masyarakat, penuturan para
-                sesepuh, dan catatan sejarah lokal yang tersedia saat ini. Arsip ini bersifat
-                terbuka dan akan terus disempurnakan apabila ditemukan sumber tambahan di masa
-                mendatang.
-              </p>
-              <p class="sc-question">Punya informasi atau arsip sejarah Dusun Ngemplak?</p>
-              <a href="https://wa.me/{{WA}}?text=Halo%2C%20saya%20punya%20informasi%2Farsip%20sejarah%20Dusun%20Ngemplak%20yang%20mungkin%20bisa%20melengkapi%20dokumentasi%20di%20website%20SIMBAH" target="_blank" class="sejarah-link-wa">Hubungi pengelola via WhatsApp →</a>
-            </div>
           </div>
         </div>
 
@@ -1297,15 +1396,27 @@
 <!-- ===== JAVASCRIPT DIPISAH ke file terpisah ===== -->
 <script src="js/script.js"></script>
 <script>
-  /* Inject nomor WA ke semua placeholder {{WA}} di HTML.
-     Nilai diambil dari WA_UTAMA yang sudah didefinisikan di script.js.
-     Kalau nomor WA ganti, cukup ubah 1 baris di script.js (const WA_UTAMA). */
+  /* Inject nomor WA ke placeholder {{WA}} di HTML.
+     2 jenis perilaku:
+     1. Link [data-kontak-publik] → NONAKTIFKAN (abu-abu, tidak bisa diklik)
+        Untuk kontak orang lain yang nomornya belum ada — jangan salah sambung ke Zen.
+     2. Link {{WA}} lain → inject WA_UTAMA (footer, sejarah, pengelola — memang ke Zen).
+     Cara update: kalau nomor asli sudah ada, ganti {{WA}} di href dengan nomor asli
+     dan hapus atribut data-kontak-publik dari tombol itu. */
   (function () {
     var wa = typeof WA_UTAMA !== 'undefined' ? WA_UTAMA : '6282241439784';
-    /* Selector diperluas pakai "tel:" juga karena browser encode {} jadi %7B%7D
-       sehingga href*="{{WA}}" tidak match untuk link tel: */
     document.querySelectorAll('a[href*="{{WA}}"], a[href*="%7B%7BWA%7D%7D"]').forEach(function (el) {
-      el.href = el.href.replace(/%7B%7BWA%7D%7D/g, wa).replace(/\{\{WA\}\}/g, wa);
+      if (el.hasAttribute('data-kontak-publik')) {
+        el.removeAttribute('href');
+        el.removeAttribute('target');
+        el.setAttribute('aria-disabled', 'true');
+        el.classList.add('nt-disabled');
+        if (el.classList.contains('nt-wa'))   el.textContent = '💬 —';
+        if (el.classList.contains('nt-telp')) el.textContent = '📞 —';
+        el.title = 'Nomor belum tersedia';
+      } else {
+        el.href = el.href.replace(/%7B%7BWA%7D%7D/g, wa).replace(/\{\{WA\}\}/g, wa);
+      }
     });
   })();
 </script>

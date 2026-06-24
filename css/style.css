@@ -203,9 +203,12 @@ body {
     background .35s ease,
     border-color .35s ease;
   cursor: pointer;
-  flex-shrink: 0;
-  justify-self: end;     /* stay di kanan kolom kanan grid */
-  direction: rtl;        /* trick: konten grow ke kiri, bukan ke kanan */
+  /* Absolute di kanan header — tidak ikut flow,
+     logo & nav tidak bergerak saat pill melebar */
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 .search-pill.open {
   width: 210px;
@@ -694,6 +697,37 @@ body {
 
 /* Statistik di hero (warga, UMKM, dll) */
 .hero-stats { display: flex; gap: 9px; }
+
+/* CTA buttons di hero — hanya muncul di desktop,
+   di mobile sudah ada grid Layanan Warga di bawah hero */
+.hero-cta {
+  display: none;
+  gap: 8px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+.hero-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 9px 16px;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  transition: opacity .15s, transform .1s;
+  background: #fff;
+  color: var(--gr);
+}
+.hero-cta-btn:active { transform: scale(.96); }
+.hero-cta-sec {
+  background: rgba(255, 255, 255, .15);
+  color: #fff;
+  border: 1.5px solid rgba(255, 255, 255, .35);
+}
+.hero-cta-sec:active { transform: scale(.96); }
 .hstat {
   background: rgba(255, 255, 255, .1);
   border-radius: 10px;
@@ -1403,6 +1437,44 @@ body {
   width: fit-content;
 }
 
+.nt-disabled {
+  margin-left: auto;
+  background: var(--iv3) !important;
+  color: var(--tx3) !important;
+  cursor: not-allowed;
+  opacity: 0.5;
+  pointer-events: none;
+  border-radius: 8px;
+  padding: 7px 10px;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+/* PENGADUAN-BTN — tombol pengaduan warga ke Kepala Dusun.
+   Status: NONAKTIF (abu-abu) sampai nomor WA Kadus tersedia.
+   Cara aktifkan: di index.html cari tombol .pengaduan-btn,
+   isi href dengan nomor asli, hapus data-kontak-publik & class nt-disabled. */
+.pengaduan-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  padding: 11px 14px;
+  background: var(--brl);
+  border: 1.5px solid var(--br2);
+  border-radius: var(--rs);
+  color: var(--br);
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  text-align: center;
+  transition: background .15s, color .15s;
+}
+.pengaduan-btn:hover {
+  background: var(--br);
+  color: #fff;
+}
 .nt-wa {
   background: #25D366;
   border-radius: 8px;
@@ -2001,6 +2073,190 @@ body {
   text-decoration: none;
 }
 
+/* ================================================
+   SEJARAH ACCORDION — native <details>/<summary>
+   ------------------------------------------------
+   Tanpa JS, tanpa library, 0 dependency.
+   Tiap <details class="sej-acc"> adalah 1 topik
+   yang bisa dibuka/tutup sendiri-sendiri.
+   ================================================ */
+.sej-acc {
+  border: 1px solid var(--iv3);
+  border-radius: var(--rs);
+  margin-bottom: 8px;
+  background: var(--wh);
+  overflow: hidden;
+}
+.sej-acc[open] {
+  border-color: var(--gr);
+  box-shadow: 0 0 0 1px var(--grl);
+}
+
+/* Summary = judul accordion — klik untuk buka/tutup */
+.sej-acc-sum {
+  font-family: 'Lora', serif;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--gr);
+  padding: 13px 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  list-style: none;
+  user-select: none;
+  transition: background .12s;
+}
+/* Hapus marker default di semua browser */
+.sej-acc-sum::-webkit-details-marker { display: none; }
+.sej-acc-sum::marker               { display: none; content: ''; }
+
+.sej-acc-sum:hover   { background: var(--grl); }
+.sej-acc[open] .sej-acc-sum { background: var(--grl); }
+
+/* Chevron custom di kanan judul */
+.sej-acc-sum::after {
+  content: '\203A';             /* › karakter unicode */
+  font-family: sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--br);
+  line-height: 1;
+  flex-shrink: 0;
+  transition: transform .2s ease;
+  display: inline-block;
+}
+.sej-acc[open] > .sej-acc-sum::after {
+  transform: rotate(90deg);
+}
+
+/* Body konten dalam accordion */
+.sej-acc-body {
+  padding: 12px 14px 14px;
+  border-top: 1px solid var(--iv2);
+}
+
+/* ===== Item tradisi (Resik Kubur, Selikuran, Gotong Royong) ===== */
+.sej-tradisi-item {
+  display: flex;
+  gap: 11px;
+  align-items: flex-start;
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+  border-bottom: 1px dashed var(--iv3);
+}
+.sej-tradisi-ico {
+  width: 36px;
+  height: 36px;
+  background: var(--grl);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.sej-tradisi-nm {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--tx);
+  margin-bottom: 4px;
+}
+
+/* ===== Grid Warisan Nilai ===== */
+.sej-nilai-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px;
+}
+.sej-nilai-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--iv2);
+  border-radius: var(--rs);
+  padding: 9px 10px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--tx2);
+}
+.sej-nilai-item span { line-height: 1.3; }
+
+/* ===== Card Dokumentasi — polished versi baru ===== */
+.sej-catatan-card {
+  margin-top: 14px;
+  background: var(--iv2);
+  border-radius: var(--r);
+  border: 1px solid var(--iv3);
+  overflow: hidden;
+}
+.sej-catatan-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 14px 11px;
+  border-bottom: 1px solid var(--iv3);
+}
+.sej-catatan-ico {
+  width: 36px;
+  height: 36px;
+  background: var(--wh);
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  flex-shrink: 0;
+  border: 1px solid var(--iv3);
+}
+.sej-catatan-ttl {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--tx);
+  line-height: 1.2;
+}
+.sej-catatan-sub {
+  font-size: 10px;
+  color: var(--tx3);
+  margin-top: 1px;
+}
+.sej-catatan-txt {
+  font-size: 11.5px;
+  color: var(--tx3);
+  line-height: 1.7;
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--iv3);
+  margin: 0;
+}
+.sej-catatan-cta {
+  padding: 12px 14px;
+  background: var(--wh);
+}
+.sej-catatan-q {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--tx);
+  margin-bottom: 9px;
+  line-height: 1.4;
+}
+.sej-catatan-wa {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: #25D366;
+  color: #fff;
+  border-radius: 9px;
+  padding: 10px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: opacity .15s;
+}
+.sej-catatan-wa:hover { opacity: .88; }
+
 
 /* ================================================
    19. FOOTER
@@ -2313,9 +2569,20 @@ body {
     z-index: 100;
     padding: 14px 32px;
     box-shadow: 0 2px 12px rgba(0, 0, 0, .12);
-    display: grid;
-    grid-template-columns: auto 1fr auto;
+    display: flex;
   }
+  /* Nav absolute center — tidak ikut flow flex sama sekali,
+     logo di kiri & pill di kanan tidak terpengaruh */
+  .dnav {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 50%;
+    margin-top: -16px; /* setengah tinggi nav (32px) */
+  }
+  /* Pill absolute di kanan, dropdown ikut */
+  .search-pill   { right: 32px; }
+  .search-dropdown { right: 32px; }
   .hlogo img  { width: 40px; height: 40px; }
   .hbrand     { font-size: 17px; }
   .hsub       { font-size: 10px; }
@@ -2361,6 +2628,7 @@ body {
   .hero-ttl  { font-size: 38px; }
   .hero-tag  { font-size: 14px; max-width: 420px; }
   .hero-stats { gap: 14px; }
+  .hero-cta  { display: flex; } /* tampilkan di desktop */
   .hstat { padding: 12px 18px; }
   .hstat .num { font-size: 22px; }
 
