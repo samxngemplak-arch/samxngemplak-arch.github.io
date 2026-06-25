@@ -58,7 +58,23 @@
           "p": "Hubungi WA"
         }
       ],
-      "testimoni": []
+      "testimoni": [],
+      "seoTitle": "Plandemic Space | Servis Laptop, Komputer dan Printer di Kemiri Purworejo",
+      "seoDesc": "Plandemic Space menyediakan layanan servis laptop, komputer, printer, smartphone, serta layanan print dan digital di Dusun Ngemplak, Kemiri, Purworejo.",
+      "faq": [
+        {
+          "q": "Apakah menerima servis laptop dan komputer?",
+          "a": "Ya, melayani perawatan dan perbaikan perangkat sesuai kondisi kerusakan."
+        },
+        {
+          "q": "Apakah bisa print dan scan dokumen?",
+          "a": "Ya, tersedia layanan print dan scan dokumen."
+        },
+        {
+          "q": "Apakah melayani konsultasi teknologi?",
+          "a": "Ya, pelanggan dapat berkonsultasi terlebih dahulu mengenai kebutuhan perangkat maupun layanan digital."
+        }
+      ]
     },
     {
       "id": 1,
@@ -107,7 +123,23 @@
           "p": "Hubungi WA"
         }
       ],
-      "testimoni": []
+      "testimoni": [],
+      "seoTitle": "Heri Bibit | Bibit Variegata dan Tanaman Koleksi Purworejo",
+      "seoDesc": "Penyedia bibit variegata, tanaman koleksi, dan bibit unggulan lainnya dari Dusun Ngemplak, Kemiri, Purworejo.",
+      "faq": [
+        {
+          "q": "Apakah tersedia bibit variegata?",
+          "a": "Ya, tersedia berbagai jenis tanaman variegata sesuai ketersediaan."
+        },
+        {
+          "q": "Apakah bisa membeli dalam jumlah banyak?",
+          "a": "Ya, silakan hubungi untuk ketersediaan stok."
+        },
+        {
+          "q": "Apakah bibit siap tanam?",
+          "a": "Sebagian besar bibit telah melalui tahap perawatan dan siap ditanam."
+        }
+      ]
     },
     {
       "id": 2,
@@ -161,7 +193,23 @@
           "p": "Hubungi WA"
         }
       ],
-      "testimoni": []
+      "testimoni": [],
+      "seoTitle": "Bibit Tanaman Buah Terdekat | Pusat Bibit Buah Purworejo",
+      "seoDesc": "Menyediakan berbagai bibit buah unggulan seperti alpukat, durian, mangga, dan kelengkeng dari Dusun Ngemplak, Kemiri, Purworejo.",
+      "faq": [
+        {
+          "q": "Apakah tersedia berbagai jenis bibit buah?",
+          "a": "Ya, tersedia berbagai jenis bibit buah sesuai stok yang tersedia."
+        },
+        {
+          "q": "Apakah bisa membeli dalam jumlah besar?",
+          "a": "Ya, melayani pembelian eceran maupun partai besar."
+        },
+        {
+          "q": "Apakah bibit sudah siap tanam?",
+          "a": "Ya, sebagian besar bibit telah memasuki fase siap tanam."
+        }
+      ]
     },
     {
       "id": 3,
@@ -209,7 +257,23 @@
           "p": "Hubungi WA"
         }
       ],
-      "testimoni": []
+      "testimoni": [],
+      "seoTitle": "Rahman Grosir Bibit | Bibit Buah dan Tanaman Purworejo",
+      "seoDesc": "Penyedia bibit buah dan berbagai jenis bibit tanaman dari Dusun Ngemplak, Kemiri, Purworejo.",
+      "faq": [
+        {
+          "q": "Apakah tersedia bibit buah?",
+          "a": "Ya, tersedia berbagai jenis bibit buah."
+        },
+        {
+          "q": "Apakah menerima pembelian grosir?",
+          "a": "Ya, melayani pembelian eceran maupun grosir."
+        },
+        {
+          "q": "Apakah melayani luar daerah?",
+          "a": "Ya, melayani pengiriman ke berbagai wilayah."
+        }
+      ]
     },
     {
       "id": 4,
@@ -258,7 +322,23 @@
           "p": "Hubungi WA"
         }
       ],
-      "testimoni": []
+      "testimoni": [],
+      "seoTitle": "Jamil Bibit | Bibit Sengon, Mahoni dan Jati Purworejo",
+      "seoDesc": "Penyedia bibit tanaman keras dan penghijauan dari Dusun Ngemplak, Kemiri, Purworejo untuk kebutuhan reboisasi dan investasi tanaman.",
+      "faq": [
+        {
+          "q": "Apakah tersedia bibit tanaman penghijauan?",
+          "a": "Ya, tersedia berbagai jenis bibit penghijauan dan tanaman keras."
+        },
+        {
+          "q": "Apakah melayani pembelian proyek?",
+          "a": "Ya, dapat melayani kebutuhan proyek sesuai ketersediaan stok."
+        },
+        {
+          "q": "Apakah tersedia bibit dalam jumlah besar?",
+          "a": "Ya, silakan hubungi untuk informasi stok."
+        }
+      ]
     },
     {
       "id": 5,
@@ -307,7 +387,23 @@
           "p": "Hubungi WA"
         }
       ],
-      "testimoni": []
+      "testimoni": [],
+      "seoTitle": "Jamil Arya Tani | Bibit Penghijauan dan Tanaman Keras Purworejo",
+      "seoDesc": "Menyediakan bibit tanaman keras, penghijauan, dan reboisasi dari Dusun Ngemplak, Kemiri, Purworejo.",
+      "faq": [
+        {
+          "q": "Apakah melayani pembelian partai besar?",
+          "a": "Ya."
+        },
+        {
+          "q": "Apakah tersedia bibit penghijauan?",
+          "a": "Ya."
+        },
+        {
+          "q": "Apakah menerima pesanan proyek?",
+          "a": "Ya, sesuai stok dan kebutuhan."
+        }
+      ]
     },
     {
       "id": 6,
@@ -356,7 +452,23 @@
           "p": "Hubungi WA"
         }
       ],
-      "testimoni": []
+      "testimoni": [],
+      "seoTitle": "Naza Bibit | Bibit Pakan Ternak dan Penguat Tanah Purworejo",
+      "seoDesc": "Penyedia bibit tanaman pakan ternak dan penguat tanah dari Dusun Ngemplak, Kemiri, Purworejo.",
+      "faq": [
+        {
+          "q": "Apakah tersedia bibit rumput pakan ternak?",
+          "a": "Ya, tersedia Rumput Gajah, Kaliandra, dan Indigofera."
+        },
+        {
+          "q": "Apakah cocok untuk sistem pertanian terpadu?",
+          "a": "Ya, produk kami mendukung peternakan dan pertanian berkelanjutan."
+        },
+        {
+          "q": "Apakah menerima pembelian dalam jumlah besar?",
+          "a": "Ya, silakan hubungi untuk informasi stok."
+        }
+      ]
     },
     {
       "id": 7,
@@ -398,7 +510,23 @@
           "p": "Hubungi WA"
         }
       ],
-      "testimoni": []
+      "testimoni": [],
+      "seoTitle": "Alfarizie Bibit | Bibit Buah dan Tanaman Keras Purworejo",
+      "seoDesc": "Penyedia bibit buah dan tanaman keras berkualitas dari Dusun Ngemplak, Kemiri, Purworejo.",
+      "faq": [
+        {
+          "q": "Apakah tersedia bibit buah dan tanaman keras?",
+          "a": "Ya."
+        },
+        {
+          "q": "Apakah menerima pembelian dalam jumlah besar?",
+          "a": "Ya."
+        },
+        {
+          "q": "Apakah bibit siap tanam?",
+          "a": "Ya, sesuai ketersediaan stok."
+        }
+      ]
     },
     {
       "id": 8,
@@ -445,7 +573,23 @@
           "p": "Hubungi WA"
         }
       ],
-      "testimoni": []
+      "testimoni": [],
+      "seoTitle": "Ardelia Bibit | Pusat Bibit Tanaman Lengkap Purworejo",
+      "seoDesc": "Menyediakan berbagai jenis bibit buah, tanaman keras, dan penghijauan dari Dusun Ngemplak, Kemiri, Purworejo.",
+      "faq": [
+        {
+          "q": "Apakah tersedia berbagai jenis bibit dalam satu lokasi?",
+          "a": "Ya."
+        },
+        {
+          "q": "Apakah menerima pembelian grosir?",
+          "a": "Ya."
+        },
+        {
+          "q": "Apakah bibit siap tanam?",
+          "a": "Ya, sesuai ketersediaan stok."
+        }
+      ]
     },
     {
       "id": 9,
@@ -487,7 +631,23 @@
           "p": "Hubungi WA"
         }
       ],
-      "testimoni": []
+      "testimoni": [],
+      "seoTitle": "Martin Bibit Jaya | Bibit Tanaman Lengkap Purworejo",
+      "seoDesc": "Penyedia berbagai jenis bibit tanaman unggulan dari Dusun Ngemplak, Kemiri, Purworejo.",
+      "faq": [
+        {
+          "q": "Apakah tersedia berbagai jenis bibit?",
+          "a": "Ya."
+        },
+        {
+          "q": "Apakah melayani pembelian dalam jumlah besar?",
+          "a": "Ya."
+        },
+        {
+          "q": "Apakah menerima pesanan luar daerah?",
+          "a": "Ya."
+        }
+      ]
     },
     {
       "id": 10,
@@ -531,7 +691,23 @@
           "p": "Hubungi WA"
         }
       ],
-      "testimoni": []
+      "testimoni": [],
+      "seoTitle": "Trijaya Bibit | Tanaman Hias dan Tanaman Koleksi Purworejo",
+      "seoDesc": "Penyedia tanaman hias dan tanaman koleksi dari Dusun Ngemplak, Kemiri, Purworejo.",
+      "faq": [
+        {
+          "q": "Apakah tersedia tanaman hias untuk pemula?",
+          "a": "Ya."
+        },
+        {
+          "q": "Apakah tersedia tanaman koleksi?",
+          "a": "Ya, sesuai stok."
+        },
+        {
+          "q": "Apakah menerima pembelian dalam jumlah banyak?",
+          "a": "Ya."
+        }
+      ]
     },
     {
       "id": 11,
@@ -578,7 +754,23 @@
           "p": "Hubungi WA"
         }
       ],
-      "testimoni": []
+      "testimoni": [],
+      "seoTitle": "Samuji Bibit | Bibit Tanaman Lengkap Purworejo",
+      "seoDesc": "Menyediakan berbagai jenis bibit tanaman untuk kebutuhan pertanian, perkebunan dan penghijauan dari Dusun Ngemplak, Purworejo.",
+      "faq": [
+        {
+          "q": "Apakah tersedia bibit buah?",
+          "a": "Ya."
+        },
+        {
+          "q": "Apakah tersedia bibit tanaman keras?",
+          "a": "Ya."
+        },
+        {
+          "q": "Apakah melayani pembelian grosir?",
+          "a": "Ya."
+        }
+      ]
     },
     {
       "id": 12,
@@ -621,7 +813,23 @@
           "p": "Hubungi WA"
         }
       ],
-      "testimoni": []
+      "testimoni": [],
+      "seoTitle": "Bibit Cabai Alip Sihmanto | Bibit Cabai Purworejo",
+      "seoDesc": "Penyedia bibit cabai rawit, cabai merah, dan cabai keriting berkualitas dari Dusun Ngemplak, Kemiri, Purworejo.",
+      "faq": [
+        {
+          "q": "Apakah bibit cabai siap tanam?",
+          "a": "Ya."
+        },
+        {
+          "q": "Apakah melayani pembelian banyak?",
+          "a": "Ya."
+        },
+        {
+          "q": "Apakah tersedia berbagai jenis cabai?",
+          "a": "Ya, tersedia Cabai Rawit, Cabai Merah, dan Cabai Keriting."
+        }
+      ]
     },
     {
       "id": 13,
@@ -670,7 +878,23 @@
           "p": "Hubungi WA"
         }
       ],
-      "testimoni": []
+      "testimoni": [],
+      "seoTitle": "Muhtar Bibit Unggul | Bibit Reboisasi dan Penghijauan Purworejo",
+      "seoDesc": "Penyedia bibit reboisasi dan penghijauan dari Dusun Ngemplak, Kemiri, Purworejo.",
+      "faq": [
+        {
+          "q": "Apakah melayani kebutuhan proyek penghijauan?",
+          "a": "Ya."
+        },
+        {
+          "q": "Apakah tersedia bibit dalam jumlah besar?",
+          "a": "Ya."
+        },
+        {
+          "q": "Apakah cocok untuk program reboisasi?",
+          "a": "Ya."
+        }
+      ]
     },
     {
       "id": 14,
@@ -718,7 +942,23 @@
           "p": "Hubungi WA"
         }
       ],
-      "testimoni": []
+      "testimoni": [],
+      "seoTitle": "Primatani Bibit | Pusat Bibit Tanaman Purworejo",
+      "seoDesc": "Penyedia berbagai jenis bibit tanaman unggulan dari Dusun Ngemplak, Kemiri, Purworejo.",
+      "faq": [
+        {
+          "q": "Apakah tersedia berbagai jenis bibit?",
+          "a": "Ya."
+        },
+        {
+          "q": "Apakah menerima pembelian grosir?",
+          "a": "Ya."
+        },
+        {
+          "q": "Apakah melayani luar daerah?",
+          "a": "Ya."
+        }
+      ]
     },
     {
       "id": 15,
@@ -760,7 +1000,23 @@
           "p": "Hubungi WA"
         }
       ],
-      "testimoni": []
+      "testimoni": [],
+      "seoTitle": "Khanza Bibit | Bibit Buah dan Tanaman Hias Purworejo",
+      "seoDesc": "Penyedia bibit buah dan tanaman hias dari Dusun Ngemplak, Desa Samping, Kemiri, Purworejo.",
+      "faq": [
+        {
+          "q": "Apakah tersedia bibit buah?",
+          "a": "Ya, tersedia berbagai jenis bibit buah sesuai stok."
+        },
+        {
+          "q": "Apakah tersedia tanaman hias?",
+          "a": "Ya."
+        },
+        {
+          "q": "Apakah menerima pembelian dalam jumlah besar?",
+          "a": "Ya."
+        }
+      ]
     },
     {
       "id": 16,
@@ -809,7 +1065,23 @@
           "p": "Hubungi WA"
         }
       ],
-      "testimoni": []
+      "testimoni": [],
+      "seoTitle": "Isron Furniture | Furniture Kayu dan Pertukangan Purworejo",
+      "seoDesc": "Melayani pembuatan meja, kursi, lemari, pintu, jendela dan berbagai produk kayu dari Dusun Ngemplak, Kemiri, Purworejo.",
+      "faq": [
+        {
+          "q": "Apakah menerima pesanan custom?",
+          "a": "Ya."
+        },
+        {
+          "q": "Apakah melayani pembuatan pintu dan jendela?",
+          "a": "Ya."
+        },
+        {
+          "q": "Apakah bisa memesan furniture sesuai ukuran?",
+          "a": "Ya."
+        }
+      ]
     },
     {
       "id": 17,
@@ -857,7 +1129,23 @@
           "p": "Hubungi WA"
         }
       ],
-      "testimoni": []
+      "testimoni": [],
+      "seoTitle": "Dombaku | Jual Domba dan Kambing Purworejo",
+      "seoDesc": "Penyedia domba dan kambing berkualitas dari Dusun Ngemplak, Desa Samping, Kemiri, Purworejo.",
+      "faq": [
+        {
+          "q": "Apakah tersedia kambing dan domba?",
+          "a": "Ya."
+        },
+        {
+          "q": "Apakah melayani pembelian untuk kurban?",
+          "a": "Ya."
+        },
+        {
+          "q": "Apakah ternak dapat dipilih langsung?",
+          "a": "Ya, sesuai ketersediaan."
+        }
+      ]
     },
     {
       "id": 18,
@@ -911,7 +1199,23 @@
           "p": "Hubungi WA"
         }
       ],
-      "testimoni": []
+      "testimoni": [],
+      "seoTitle": "Sapu Jagad Fruits | Bibit Buah Unggulan Purworejo",
+      "seoDesc": "Penyedia bibit alpukat, durian, mangga, kelengkeng dan berbagai bibit buah unggulan dari Dusun Ngemplak, Kemiri, Purworejo.",
+      "faq": [
+        {
+          "q": "Apakah tersedia berbagai jenis bibit buah?",
+          "a": "Ya."
+        },
+        {
+          "q": "Apakah menerima pembelian grosir?",
+          "a": "Ya."
+        },
+        {
+          "q": "Apakah bibit siap tanam?",
+          "a": "Ya."
+        }
+      ]
     }
   ]
 }

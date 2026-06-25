@@ -60,10 +60,11 @@ const DESC_DEFAULT  = 'Dusun Ngemplak, Desa Samping, Kemiri, Purworejo — sejar
 function updateMetaUMKM(u) {
   const slug = slugify(u.name);
   const url = DOMAIN_SIMBAH + '/?umkm=' + slug;
-  const judul = u.name + ' — ' + u.cat + ' di Dusun Ngemplak | SIMBAH';
-  /* Deskripsi dipotong 155 karakter — standar aman supaya tidak
-     terpotong aneh di hasil pencarian Google */
-  const deskripsiMentah = u.desc || ('Usaha ' + u.cat + ' warga Dusun Ngemplak, Desa Samping, Kemiri, Purworejo.');
+  /* Pakai seoTitle kalau ada, fallback ke format generik */
+  const judul = u.seoTitle || (u.name + ' — ' + u.cat + ' di Dusun Ngemplak | SIMBAH');
+
+  /* Pakai seoDesc kalau ada (keyword-rich, ringkas), fallback ke desc dipotong 155 karakter */
+  const deskripsiMentah = u.seoDesc || u.desc || ('Usaha ' + u.cat + ' warga Dusun Ngemplak, Desa Samping, Kemiri, Purworejo.');
   const deskripsi = deskripsiMentah.length > 155 ? deskripsiMentah.slice(0, 152) + '...' : deskripsiMentah;
 
   document.title = judul;
@@ -123,6 +124,32 @@ function updateMetaUMKM(u) {
     };
   }
   ldScript.textContent = JSON.stringify(schemaData);
+
+  /* ── Schema.org FAQPage — dipasang terpisah dari LocalBusiness
+     supaya tidak konflik. Hanya dipasang kalau UMKM punya field faq.
+     Google bisa tampilkan FAQ langsung di hasil pencarian (rich snippet). */
+  let faqScript = document.getElementById('ld-json-faq');
+  if (u.faq && u.faq.length) {
+    if (!faqScript) {
+      faqScript = document.createElement('script');
+      faqScript.type = 'application/ld+json';
+      faqScript.id = 'ld-json-faq';
+      document.head.appendChild(faqScript);
+    }
+    faqScript.textContent = JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      'mainEntity': u.faq.map(function(f) {
+        return {
+          '@type': 'Question',
+          'name': f.q,
+          'acceptedAnswer': { '@type': 'Answer', 'text': f.a }
+        };
+      })
+    });
+  } else if (faqScript) {
+    faqScript.remove();
+  }
 }
 
 /**
@@ -915,6 +942,24 @@ function showUMKM(id, updateUrl) {
   const adaYangKeisi = semuaLinkSosmed.some(function(link) {
     return link && link !== '#' && link.trim() !== '';
   });
+  /* ── Render FAQ — dari field faq di umkm.json ── */
+  const faqEl = document.getElementById('ud-faq');
+  const faqSec = document.getElementById('ud-faq-sec');
+  if (faqEl && faqSec) {
+    const faqList = u.faq || [];
+    if (faqList.length) {
+      faqEl.innerHTML = faqList.map(function(f) {
+        return `<details class="faq-item">
+          <summary class="faq-q">${f.q}</summary>
+          <div class="faq-a">${f.a}</div>
+        </details>`;
+      }).join('');
+      faqSec.style.display = '';
+    } else {
+      faqSec.style.display = 'none';
+    }
+  }
+
   const sosmedSec = document.getElementById('ud-sosmed-sec');
   if (sosmedSec) {
     sosmedSec.style.display = adaYangKeisi ? '' : 'none';
