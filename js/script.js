@@ -620,17 +620,61 @@ function renderUMKMBeranda() {
   const el = document.getElementById('umkm-beranda-list');
   if (!el) return;
 
-  /* Mobile: 4 card (scroll horizontal, cukup 4 supaya tidak terlalu
-     panjang digeser). Desktop: 8 card ditampilkan dalam 2 baris grid
-     (diatur CSS — lihat .urow-desktop di style.css).
-     Ambil 8 item tapi di mobile tetap kelihatan 4 dulu via overflow scroll. */
-  const JUMLAH_TAMPIL = 8;
-  const list = UMKM.slice(0, JUMLAH_TAMPIL);
+  /* ── Shuffle berbobot ─────────────────────────────────────────
+     Masalah lama: slice(0, 8) selalu ambil 8 UMKM pertama di array
+     (semua Bibit/Perkebunan) — Dombaku, Sapu Jagad Fruits, Isron,
+     Plandemic tidak pernah muncul di Beranda padahal justru paling
+     beda & menarik untuk orang luar dusun.
 
-  if (!list.length) {
+     Strategi fix:
+     1. Kelompokkan UMKM per kategori.
+     2. Ambil 1 UMKM acak per kategori sebagai "wakil" (pastikan
+        variasi selalu terwakili — Peternakan, Produk Lokal, Jasa,
+        Pertukangan tidak ketimpa oleh 12 Perkebunan).
+     3. Tambah UMKM acak dari sisa pool sampai total 8 terpenuhi.
+     4. Acak urutan akhir supaya posisi tidak membeku di layout.
+
+     Hasilnya: setiap buka Beranda, 8 card yang tampil selalu beragam
+     kategorinya, dan sisa acak dari pool supaya tidak terasa "diatur".
+     Jumlah 8 tetap sama — tidak ada perubahan layout. */
+  const JUMLAH_TAMPIL = 8;
+
+  if (!UMKM.length) {
     el.innerHTML = `<div style="font-size:12px; color:var(--tx3); padding:8px 0">Belum ada UMKM terdaftar.</div>`;
     return;
   }
+
+  /* Fisher-Yates shuffle — acak array tanpa modify aslinya */
+  function acak(arr) {
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+    }
+    return a;
+  }
+
+  /* Kelompokkan per kategori */
+  var perKat = {};
+  UMKM.forEach(function(u) {
+    if (!perKat[u.cat]) perKat[u.cat] = [];
+    perKat[u.cat].push(u);
+  });
+
+  /* Pilih 1 wakil acak per kategori */
+  var wakil = [];
+  var idWakil = {};
+  Object.keys(perKat).forEach(function(kat) {
+    var pilih = acak(perKat[kat])[0];
+    wakil.push(pilih);
+    idWakil[pilih.id] = true;
+  });
+
+  /* Sisa UMKM yang belum jadi wakil — dipakai mengisi kuota sampai 8 */
+  var sisa = acak(UMKM.filter(function(u) { return !idWakil[u.id]; }));
+
+  /* Gabung wakil (diacak urutannya) + sisa, potong ke JUMLAH_TAMPIL */
+  var list = acak(wakil).concat(sisa).slice(0, JUMLAH_TAMPIL);
 
   el.innerHTML = list.map(function(u) {
     return `
@@ -1584,20 +1628,18 @@ document.getElementById('search-input')?.addEventListener('input', function(e) {
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape' && _searchOpen) closeSearch();
 });
+/* Filter chip UMKM — pakai atribut data-filter, bukan textContent.
+   Dengan begitu teks tombol ("Semua", "Produk Lokal", dst) bisa
+   diubah bebas di index.html tanpa merusak logika filter di sini.
+   data-filter="" (string kosong) = tampilkan semua.
+   data-filter="Perkebunan" = filter kategori Perkebunan, dst. */
 document.querySelectorAll('.fchip').forEach(function(chip) {
   chip.addEventListener('click', function() {
-
-    /* Nonaktifkan semua chip */
     document.querySelectorAll('.fchip').forEach(function(x) {
       x.classList.remove('active');
     });
-
-    /* Aktifkan chip yang diklik */
     this.classList.add('active');
-
-    /* Filter grid — kalau "Semua" diklik, kosongkan filter */
-    const kategori = this.textContent === 'Semua' ? '' : this.textContent;
-    filterUMKM(kategori);
+    filterUMKM(this.dataset.filter || '');
   });
 });
 

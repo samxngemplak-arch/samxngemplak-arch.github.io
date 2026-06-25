@@ -494,18 +494,19 @@
         <div class="psub">UMKM & usaha warga Dusun Ngemplak</div>
       </div>
 
-      <!-- Filter chip -->
+      <!-- Filter chip — data-filter="" = semua, data-filter="Kategori" = filter spesifik.
+           Teks tombol boleh diubah bebas tanpa merusak logika JS (lihat script.js). -->
       <div class="filter-row">
-        <button class="fchip active">Semua</button>
-        <button class="fchip">Produk Lokal</button>
-        <button class="fchip">Warung</button>
-        <button class="fchip">Pertukangan</button>
-        <button class="fchip">Jasa</button>
-        <button class="fchip">Pertanian</button>
-        <button class="fchip">Peternakan</button>
-        <button class="fchip">Perkebunan</button>
-        <button class="fchip">Kerajinan</button>
-        <button class="fchip">Lainnya</button>
+        <button class="fchip active" data-filter="">Semua</button>
+        <button class="fchip" data-filter="Produk Lokal">Produk Lokal</button>
+        <button class="fchip" data-filter="Warung">Warung</button>
+        <button class="fchip" data-filter="Pertukangan">Pertukangan</button>
+        <button class="fchip" data-filter="Jasa">Jasa</button>
+        <button class="fchip" data-filter="Pertanian">Pertanian</button>
+        <button class="fchip" data-filter="Peternakan">Peternakan</button>
+        <button class="fchip" data-filter="Perkebunan">Perkebunan</button>
+        <button class="fchip" data-filter="Kerajinan">Kerajinan</button>
+        <button class="fchip" data-filter="Lainnya">Lainnya</button>
       </div>
 
       <!-- Grid UMKM — diisi oleh JavaScript -->
