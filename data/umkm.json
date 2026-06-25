@@ -11,7 +11,7 @@
       "rating": "4.9",
       "ulasan": 28,
       "alamat": "Ngemplak 02/02, Dusun III, Samping, Kec. Kemiri, Kab. Purworejo, Jawa Tengah 54262",
-      "jam": "Siap melayani kapan saja — hubungi WA terlebih dahulu",
+      "jam": "Buka 24 jam",
       "maps": "https://maps.app.goo.gl/W6FxkN82ArRKb5NT9",
       "ig": "https://www.instagram.com/zns.srr/",
       "fb": "https://www.facebook.com/zainus.surur/",
@@ -158,6 +158,43 @@
         {
           "e": "🍓",
           "n": "Bibit Jambu",
+          "p": "Hubungi WA"
+        }
+      ],
+      "testimoni": []
+    },
+    {
+      "id": 3,
+      "name": "Rahman Grosir Bibit Murah",
+      "cat": "Perkebunan",
+      "emoji": "🌿",
+      "desc": "Rahman Grosir Bibit Murah menyediakan bibit tanaman dengan harga grosir — pilihan tepat untuk pembelian partai besar maupun eceran. Cocok untuk petani, pekebun, dan pelaku usaha bibit yang butuh pasokan bibit berkualitas dengan harga terjangkau langsung dari Dusun Ngemplak.",
+      "phone": "6281227945108",
+      "rating": "5.0",
+      "ulasan": 2,
+      "alamat": "Dusun Ngemplak, Desa Samping, Kec. Kemiri, Kab. Purworejo",
+      "jam": "Hubungi untuk jam buka",
+      "maps": "https://www.google.com/maps/place/RAHMAN+GROSIR+BIBIT+MURAH/@-7.6637,109.8769432,101m/data=!3m1!1e3!4m6!3m5!1s0x2e7ac100354f23d1:0xc6ac6e22219d84c2!8m2!3d-7.6634485!4d109.8775654!16s%2Fg%2F11whl9q_wf",
+      "ig": "#",
+      "fb": "#",
+      "tt": "#",
+      "yt": "#",
+      "sp": "#",
+      "tp": "#",
+      "galeri": [
+        "🌿",
+        "🌱",
+        "🌾"
+      ],
+      "products": [
+        {
+          "e": "🌿",
+          "n": "Bibit Grosir",
+          "p": "Hubungi WA"
+        },
+        {
+          "e": "🌱",
+          "n": "Bibit Eceran",
           "p": "Hubungi WA"
         }
       ],
@@ -510,23 +547,8 @@
       ],
       "products": [
         {
-          "e": "🍎",
-          "n": "Bibit Buah",
-          "p": "Hubungi WA"
-        },
-        {
-          "e": "🌲",
-          "n": "Bibit Kayu Perkebunan",
-          "p": "Hubungi WA"
-        },
-        {
-          "e": "🌿",
-          "n": "Bibit Penghijauan",
-          "p": "Hubungi WA"
-        },
-        {
           "e": "🌾",
-          "n": "Bibit Pertanian",
+          "n": "Bibit Tanaman",
           "p": "Hubungi WA"
         }
       ],
@@ -651,22 +673,7 @@
       "products": [
         {
           "e": "🌿",
-          "n": "Bibit Perkebunan Unggul",
-          "p": "Hubungi WA"
-        },
-        {
-          "e": "🌲",
-          "n": "Bibit Penghijauan",
-          "p": "Hubungi WA"
-        },
-        {
-          "e": "🌾",
-          "n": "Bibit Pertanian",
-          "p": "Hubungi WA"
-        },
-        {
-          "e": "🍎",
-          "n": "Bibit Buah Unggul",
+          "n": "Bibit Unggul",
           "p": "Hubungi WA"
         }
       ],
@@ -758,11 +765,6 @@
         {
           "e": "🗄️",
           "n": "Lemari",
-          "p": "Hubungi WA"
-        },
-        {
-          "e": "🪟",
-          "n": "Jendela Kayu",
           "p": "Hubungi WA"
         }
       ],
