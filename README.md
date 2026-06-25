@@ -4,10 +4,14 @@ Website profil & layanan digital untuk Dusun Ngemplak, Desa Samping, Kecamatan
 Kemiri, Kabupaten Purworejo, Jawa Tengah. Dibangun pakai HTML + CSS + JavaScript
 murni (tanpa framework, tanpa build tool), hosting gratis via GitHub Pages.
 
-**Live:** https://samxngemplak-arch.github.io/
+**Live:** https://simbahngemplak.vercel.app/
+(Domain Vercel = domain utama/resmi yang diindex Google. Repo yang sama juga
+auto-deploy ke https://samxngemplak-arch.github.io/ tapi itu bukan yang didaftarkan
+ke search engine — lihat `<link rel="canonical">` di `index.html`.)
 
-> Status: tahap pengembangan bertahap. Belum pindah ke domain berbayar —
-> rencana migrasi setelah dianggap matang oleh perangkat dusun
+> Status: pengembangan bertahap — fitur inti sudah jalan, sedang mengisi data
+> lapangan (foto UMKM, nomor kontak, nama pengurus). Belum pindah ke domain
+> berbayar — rencana migrasi setelah dianggap matang oleh perangkat dusun
 > (lihat bagian "Migrasi ke Domain Sendiri" di bawah).
 
 ---
@@ -17,12 +21,14 @@ murni (tanpa framework, tanpa build tool), hosting gratis via GitHub Pages.
 ```
 (root repo)
 ├── index.html          ← satu-satunya halaman HTML. Semua section
-│                           (Beranda, UMKM, UMKM Detail, Agenda, Kas,
+│                           (Beranda, Agenda, UMKM, UMKM Detail, Kas,
 │                           Inventaris, Nyuwun Tulung, Tentang) ada di
 │                           file ini, ditampilkan/disembunyikan lewat JS
-│                           (lihat nav() di script.js)
+│                           (lihat nav() di js/script.js)
 ├── 404.html            ← halaman error custom, auto-redirect ke Beranda
-├── sitemap.xml         ← daftar URL untuk Google (SEO)
+│                           setelah 5 detik
+├── sitemap.xml         ← daftar URL untuk Google (SEO) — 1 beranda +
+│                           18 URL UMKM individual (?umkm=slug-nama)
 ├── robots.txt          ← izin crawl untuk search engine
 ├── favicon.ico + img/favicon-*.png, icon-*.png, apple-touch-icon.png
 │                           ← ikon tab browser & home screen HP
@@ -34,7 +40,8 @@ murni (tanpa framework, tanpa build tool), hosting gratis via GitHub Pages.
 │   └── script.js       ← SEMUA logika & data dinamis (AGENDA, INVENTARIS,
 │                           KAS, footer, navigasi, render UMKM, dll)
 ├── data/
-│   └── umkm.json       ← data UMKM/usaha warga, dibaca oleh script.js
+│   └── umkm.json       ← data UMKM/usaha warga (18 UMKM), dibaca
+│                           oleh script.js via fetch()
 └── img/
     ├── logo.png         ← logo resmi Dusun Ngemplak (final, jangan ganti
     │                        kecuali memang mau rebranding)
@@ -44,7 +51,7 @@ murni (tanpa framework, tanpa build tool), hosting gratis via GitHub Pages.
 
 > Belum ada folder `img/umkm/` — UMKM masih pakai emoji sebagai ikon
 > sementara. Foto asli usaha warga bisa ditambahkan kapan saja begitu
-> sudah ada foto yang layak.
+> sudah ada foto yang layak (lihat panduan di bawah).
 
 ---
 
@@ -53,8 +60,10 @@ murni (tanpa framework, tanpa build tool), hosting gratis via GitHub Pages.
 Ini bukan website multi-halaman biasa. Semua section ada di **1 file
 `index.html`**, masing-masing dibungkus `<div class="page" id="p-NAMA">`.
 JavaScript (`nav('nama-section')`) yang mengatur section mana yang
-tampil/sembunyi — URL tidak berubah-ubah per section (kecuali untuk
-link share halaman detail UMKM).
+tampil/sembunyi.
+
+Untuk link share UMKM, URL berubah jadi `?umkm=slug-nama-usaha` — ini
+yang membuat tiap UMKM bisa muncul satu-satu di Google Search.
 
 Cara cari section tertentu di `index.html`: cari komentar seperti
 `<!-- ======= UMKM ======= -->` atau cari `id="p-umkm"`, `id="p-agenda"`, dll.
@@ -75,6 +84,10 @@ Edit di sini saja — **tidak perlu** sentuh bagian lain dari kode.
   UMKM baru ditambahkan — tidak perlu update manual di `index.html`.
 - Tombol WA otomatis tersembunyi kalau field `phone` kosong
   (diganti badge "📍 Lihat Maps").
+- Sitemap.xml — saat tambah UMKM baru, **wajib tambahkan** juga 1 blok
+  `<url>` baru di `sitemap.xml`. Cara dapat slug yang benar: nama usaha
+  → huruf kecil → spasi jadi `-` → hapus tanda baca.
+  Contoh: "Toko Kelontong Bu Siti" → `toko-kelontong-bu-siti`
 - `fetch()` UMKM hanya berjalan kalau dibuka lewat server
   (Laragon/localhost atau GitHub Pages) — **tidak bisa** dibuka
   langsung klik dua kali dari File Explorer.
@@ -86,6 +99,7 @@ Edit di sini saja — **tidak perlu** sentuh bagian lain dari kode.
   `YYYY-MM-DD`), judul, jam, lokasi, dan tag.
 - Event yang tanggalnya sudah lewat otomatis hilang dari tampilan —
   tidak perlu dihapus manual.
+- Ticker pengumuman di Beranda juga otomatis ikut agenda ini.
 - **Catatan kebijakan:** khusus event besar yang layak diketahui
   orang luar dusun (festival, sedekah bumi, HUT dusun, dll). Agenda
   rutin RT (kerja bakti, posyandu, pengajian) cukup di grup WA warga.
@@ -110,10 +124,6 @@ Edit di sini saja — **tidak perlu** sentuh bagian lain dari kode.
 
 - 1 variabel ini dipakai di SEMUA tombol WA di seluruh halaman.
 - Ganti di sini saja — tidak perlu cari satu-satu di `index.html`.
-- **Catatan penting:** kontak di Nyuwun Tulung yang belum ada nomor
-  aslinya (Kepala Desa, Bidan Desa, dll) saat ini **jangan diklik** —
-  masih dalam proses pengumpulan nomor asli. Tombolnya akan dinonaktifkan
-  begitu perbaikan bug §2.1 selesai dikerjakan.
 
 ### 6. Footer — `templateFooter()` di `js/script.js`
 
@@ -121,9 +131,6 @@ Edit di sini saja — **tidak perlu** sentuh bagian lain dari kode.
   ke semua id yang terdaftar di array `FOOTER_SLOTS`.
 - Edit alamat, kontak, sosmed di `templateFooter()` satu kali —
   semua halaman yang pakai footer ikut berubah.
-- Kalau nanti ada halaman baru yang butuh footer: tambah
-  `<div class="footer-slot" id="footer-NAMA-BARU"></div>` di
-  `index.html`, lalu daftarkan id-nya ke `FOOTER_SLOTS` di `script.js`.
 
 ### 7. Ganti Logo / Foto Hero
 
@@ -134,12 +141,25 @@ Edit di sini saja — **tidak perlu** sentuh bagian lain dari kode.
   file dengan nama yang sama (format boleh `.jpg`/`.png`, sesuaikan nama
   di CSS kalau diganti format).
 
-### 8. Kontak Penting (Nyuwun Tulung) & Struktur Pengurus
+### 8. Tambah Foto Asli UMKM (saat foto sudah siap)
 
-- Masih banyak placeholder ("nama menyusul", "Segera diperbarui") —
-  cari teks itu di `index.html` untuk menggantinya begitu data asli ada.
-- Nomor yang belum diisi sebaiknya dikosongkan dulu, jangan dibiarkan
-  jalan dengan fallback ke nomor WA Zen (lihat ⚠️ Status Bug di bawah).
+1. Buat folder `img/umkm/` di root repo
+2. Upload foto per UMKM (misal `plandemic-1.jpg`, `dombaku-1.jpg`)
+3. Di `data/umkm.json`, ubah field `galeri` dari array emoji ke array
+   path foto: `["img/umkm/plandemic-1.jpg", "img/umkm/plandemic-2.jpg"]`
+4. Di `js/script.js`, cari fungsi `showUMKM()` → bagian render galeri
+   (ada komentar "CATATAN UNTUK PENGEMBANGAN LANJUTAN") → ubah render
+   dari `${e}` teks emoji jadi `<img src="${e}" alt="..." loading="lazy">`
+5. Hero: replace `img/hero-bg.webp` dengan foto asli Ngemplak
+
+### 9. Kontak Penting (Nyuwun Tulung) & Struktur Pengurus
+
+- Kontak yang belum ada nomor aslinya sudah **nonaktif** (abu-abu,
+  tidak bisa diklik) — tidak ada warga yang salah sambung.
+- Untuk mengaktifkan: cari kontak di `index.html`, isi `href` dengan
+  nomor asli (`https://wa.me/628xxx`), hapus atribut `data-kontak-publik`.
+- Nama pengurus yang masih `—`: buka `index.html`, Ctrl+F cari
+  jabatannya, ganti `—` di baris itu dengan nama asli.
 
 ---
 
@@ -150,8 +170,8 @@ Edit di sini saja — **tidak perlu** sentuh bagian lain dari kode.
   (emas/bronze, detail halus). Proporsi target: Ivory 70% : Hijau 20% : Emas 10%.
   Jangan tulis hex color baru langsung di selector.
 - **Mobile-first, full-responsive.** Breakpoint `@media (min-width: 1024px)`
-  di akhir `style.css` untuk varian desktop (nav atas, grid 2-kolom di
-  Beranda, dll).
+  di akhir `css/style.css` untuk varian desktop (nav atas, grid 2-kolom
+  di Beranda, dll).
 - **Karakter visual:** hangat, agraris, tenang, sederhana, modern-tradisional.
   Hindari gaya startup/fintech/SaaS.
 
@@ -167,41 +187,7 @@ Repo ini tidak punya CI/CD otomatis. Setiap ada perubahan file:
 4. Klik **Commit changes**
 5. Tunggu 1–2 menit → GitHub Pages otomatis rebuild
 
----
-
-## ⚠️ Status Bug & Pekerjaan Aktif
-
-### 🔴 Bug §2.1 — Kontak Nyuwun Tulung fallback ke WA Zen (BELUM DIPERBAIKI)
-
-Kontak di section Nyuwun Tulung yang **belum ada nomor aslinya** (Kepala Desa
-Samping, Ketua RW, Bidan Desa, Babinsa, Polsek Kemiri, Damkar, Tokoh Agama)
-saat ini di-fallback diam-diam ke `WA_UTAMA` (nomor Zen) oleh mekanisme
-auto-inject di `index.html`.
-
-**Risiko**: warga klik "💬 WA Bidan Desa" tapi yang menerima chat adalah Zen.
-
-**Perbaikan yang perlu dikerjakan**: untuk kontak tanpa nomor asli, tombol WA
-harus dinonaktifkan dan ditampilkan sebagai "Nomor belum tersedia" — jangan
-fallback diam-diam. Ini bisa dikerjakan sekarang (Rp0, kode saja) tanpa harus
-menunggu nomor asli terkumpul.
-
----
-
-## 🔄 Roadmap Singkat
-
-| Prioritas | Item | Status |
-|-----------|------|--------|
-| 🔴 Tinggi | Bug kontak Nyuwun Tulung (§2.1) | Belum dikerjakan |
-| 🟡 Data | Nomor kontak asli perangkat dusun | Pengumpulan lapangan |
-| 🟡 Data | Nama pengurus organisasi (BPD, PKK, dll) | Pengumpulan lapangan |
-| 🟡 Data | Foto asli UMKM & dusun | Pengumpulan lapangan |
-| 🟢 Enhancement | Sejarah Dusun → accordion collapsible | Belum dikerjakan |
-| 🟢 Enhancement | Visualisasi bar saldo kas (CSS murni) | Belum dikerjakan |
-| 🟢 Enhancement | CTA button "Lihat UMKM →" di Hero | Belum dikerjakan |
-| ⚪ Wishlist | Histori transaksi kas | Tunda |
-| ⚪ Wishlist | Pengaduan warga (terintegrasi Nyuwun Tulung) | Tunda |
-
-Detail lengkap dengan reasoning ada di `ROADMAP___MASTER_SIMBAH.md`.
+Website juga otomatis deploy ke Vercel (domain resmi) dari repo yang sama.
 
 ---
 
@@ -213,7 +199,11 @@ Kalau sudah matang dan mau pakai domain sendiri (misal `dusunngemplak.id`):
 2. GitHub repo → **Settings → Pages → Custom domain**, isi domain baru
 3. Di pengelola DNS, tambah CNAME record ke `samxngemplak-arch.github.io`
 4. Tunggu propagasi DNS (5–30 menit, kadang hingga 24 jam)
-5. Selesai — konten & kode tidak perlu diubah sama sekali
+5. **Wajib update** semua `simbahngemplak.vercel.app` di:
+   - `index.html` (canonical, OG, Twitter, Schema.org, catatan domain)
+   - `sitemap.xml` (semua `<loc>`)
+   - `robots.txt` (URL Sitemap)
+6. Selesai — konten & logika tidak perlu diubah sama sekali
 
 ---
 
@@ -229,3 +219,23 @@ oleh 1–2 orang tanpa tim IT — bukan keterbatasan yang perlu "diperbaiki".
 
 Alasan detail dan daftar fitur yang ditolak permanen ada di
 `ROADMAP___MASTER_SIMBAH.md`.
+
+---
+
+## 📊 Status Saat Ini (25 Juni 2026)
+
+| Komponen | Status |
+|---|---|
+| Halaman Beranda | ✅ Lengkap |
+| Lapak UMKM (18 usaha) | ✅ Data dari katalog, produk spesifik |
+| Halaman Detail UMKM | ✅ SEO dinamis per UMKM |
+| Agenda Dusun | ✅ 4 event Juli–September 2026 |
+| Transparansi Kas | ✅ 4 komunitas + link Google Sheets |
+| Inventaris Dusun | ✅ 27 item, 4 kelompok |
+| Nyuwun Tulung | ✅ Kontak aktif (darurat/medis), kontak dusun nonaktif menunggu nomor asli |
+| Tentang Dusun | ✅ 4 sub-tab (Profil, Visi & Misi, Sejarah Accordion, Pengurus) |
+| SEO Dasar | ✅ Meta, OG, Schema.org, Sitemap, Robots, 404 custom |
+| SEO per-UMKM | ✅ Title/desc/canonical/LocalBusiness dinamis |
+| Foto UMKM | ⏳ Masih emoji — menunggu foto dari Zen |
+| Nomor kontak dusun | ⏳ Menunggu data lapangan |
+| Nama pengurus | ⏳ Menunggu data lapangan |

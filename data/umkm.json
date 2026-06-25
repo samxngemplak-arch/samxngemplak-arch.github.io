@@ -11,7 +11,7 @@
       "rating": "4.9",
       "ulasan": 28,
       "alamat": "Ngemplak 02/02, Dusun III, Samping, Kec. Kemiri, Kab. Purworejo, Jawa Tengah 54262",
-      "jam": "Buka 24 jam",
+      "jam": "Siap melayani kapan saja — hubungi WA terlebih dahulu",
       "maps": "https://maps.app.goo.gl/W6FxkN82ArRKb5NT9",
       "ig": "https://www.instagram.com/zns.srr/",
       "fb": "https://www.facebook.com/zainus.surur/",
@@ -510,8 +510,23 @@
       ],
       "products": [
         {
+          "e": "🍎",
+          "n": "Bibit Buah",
+          "p": "Hubungi WA"
+        },
+        {
+          "e": "🌲",
+          "n": "Bibit Kayu Perkebunan",
+          "p": "Hubungi WA"
+        },
+        {
+          "e": "🌿",
+          "n": "Bibit Penghijauan",
+          "p": "Hubungi WA"
+        },
+        {
           "e": "🌾",
-          "n": "Bibit Tanaman",
+          "n": "Bibit Pertanian",
           "p": "Hubungi WA"
         }
       ],
@@ -636,7 +651,22 @@
       "products": [
         {
           "e": "🌿",
-          "n": "Bibit Unggul",
+          "n": "Bibit Perkebunan Unggul",
+          "p": "Hubungi WA"
+        },
+        {
+          "e": "🌲",
+          "n": "Bibit Penghijauan",
+          "p": "Hubungi WA"
+        },
+        {
+          "e": "🌾",
+          "n": "Bibit Pertanian",
+          "p": "Hubungi WA"
+        },
+        {
+          "e": "🍎",
+          "n": "Bibit Buah Unggul",
           "p": "Hubungi WA"
         }
       ],
@@ -728,6 +758,11 @@
         {
           "e": "🗄️",
           "n": "Lemari",
+          "p": "Hubungi WA"
+        },
+        {
+          "e": "🪟",
+          "n": "Jendela Kayu",
           "p": "Hubungi WA"
         }
       ],
