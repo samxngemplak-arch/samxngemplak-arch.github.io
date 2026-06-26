@@ -1,6 +1,6 @@
 # SIMBAH — Audit & Next Step
 
-> Diperbarui: 26 Juni 2026 — setelah sesi internal linking + sitemap audit
+> Diperbarui: 26 Juni 2026 — setelah brief produk, FAQ, testimoni, dan rencana redesign visual
 > Cara pakai: kerjakan dari atas ke bawah. Coret kalau sudah deploy & dicek live.
 
 ---
@@ -29,31 +29,60 @@
 - [x] Meta `google-site-verification` dijaga — tidak boleh hilang saat update `index.html`
 - [x] Disclaimer Agenda — label "contoh ilustrasi" tampil di Beranda & halaman Agenda penuh
 - [x] Disclaimer Kas — label "ilustrasi sementara" tampil di Beranda & halaman Kas penuh
-- [x] Internal linking "Usaha Terkait" — field `terkait` (array of id) ditambah ke semua 19 UMKM di `umkm.json`, render card horizontal scroll di halaman detail (`script.js` + `index.html`), section otomatis sembunyi kalau kosong
+- [x] Foto UMKM — 19/19 UMKM sudah punya `cover.webp` + gallery (3–4 foto), field `cover` & `galeri` di `umkm.json` sudah pakai path `img/umkm/...`
+- [x] Internal linking "Usaha Terkait" — field `terkait` (array of id) ditambah ke semua 19 UMKM, render card horizontal scroll di halaman detail (`script.js` + `index.html`)
+- [x] Hapus section Testimoni Warga — `ud-testimoni-sec` dihapus dari `index.html`, render testimoni dihapus dari `showUMKM()` di `script.js`. Field `testimoni` di `umkm.json` dibiarkan ada (tidak mengganggu, tidak dirender)
+- [x] Field `k` (keterangan) di Produk & Jasa — ditambahkan ke semua 75 produk di 19 UMKM, highlight keunggulan singkat (bukan harga). Card produk dilebarkan 110px → 150px di `style.css`, render conditional di `script.js` (kosong = tidak tampil baris)
 
 ---
 
 ## 🔴 KERJAKAN BERIKUTNYA
 
-Tidak ada bug aktif saat ini. Semua item sebelumnya sudah selesai.
+### 1. Tulis ulang FAQ semua 19 UMKM
+**Masalah:** 14 dari 19 UMKM punya FAQ dengan jawaban "Ya." saja — tidak berguna untuk pengunjung maupun Google.
+**Prinsip:** FAQ yang baik menjawab pertanyaan yang bikin orang *ragu sebelum hubungi* — bukan pertanyaan yang jawabannya sudah obvious dari nama usahanya.
+**Contoh yang salah vs benar:**
+
+| ❌ Sekarang | ✅ Seharusnya |
+|---|---|
+| "Apakah tersedia bibit buah?" → Ya. | "Berapa minimum pembelian bibit?" |
+| "Apakah menerima pesanan custom?" → Ya. | "Berapa lama waktu pengerjaan furniture?" |
+| "Apakah tersedia kambing dan domba?" → Ya. | "Apakah ternak sudah divaksin?" |
+
+**Yang perlu dikerjakan:**
+- Tulis ulang field `faq` di `umkm.json` untuk semua 19 UMKM
+- Masing-masing 2–3 pertanyaan yang benar-benar relevan per usaha
+- Tidak perlu sentuh `script.js` atau `index.html` — render FAQ sudah benar
 
 ---
 
 ## 🟡 MENUNGGU DATA LAPANGAN (tugas Zen)
 
-- [ ] **Foto asli** UMKM & dusun — sedang disiapkan *(begitu siap, ganti path di field `galeri` & `cover` di `umkm.json`, render otomatis sebagai `<img>` — lihat catatan di `script.js` bagian render galeri)*
 - [ ] **Nomor kontak** Nyuwun Tulung (Kades, RW, RT, Bidan, Babinsa) — cara aktifkan: isi `href` di `index.html` dengan nomor asli, hapus atribut `data-kontak-publik`
 - [ ] **Nama pengurus** organisasi (BPD, Takmir, PKK, Posyandu, Karang Taruna) — cara isi: Ctrl+F nama jabatan di `index.html`, ganti `—` dengan nama asli
-- [ ] **Jam buka asli** tiap UMKM — update field `jam` per UMKM di `umkm.json`
+- [ ] **Jam buka asli** tiap UMKM — update field `jam` per UMKM di `umkm.json` (14 UMKM masih "Hubungi untuk jam buka")
 - [ ] **Luas wilayah** & KK/penduduk terverifikasi — update di `index.html` section Data Wilayah
+
+---
+
+## 🔵 REDESIGN VISUAL UMKM — Perlu Brief Tersendiri
+
+Sudah disepakati untuk dikerjakan, tapi butuh keputusan visual dulu sebelum eksekusi. Cakupan yang akan dibahas:
+
+- **Grid halaman UMKM** — kartu lebih besar, foto lebih dominan, info lebih readable
+- **Halaman detail UMKM** — layout cover foto, strip info, section produk
+- **Card produk** — dari kotak emoji kecil ke tampilan yang lebih informatif
+
+> Diskusikan di sesi tersendiri sebelum mulai coding.
 
 ---
 
 ## 🔵 WISHLIST — Nanti setelah yang di atas beres
 
-- **Halaman Sentra Bibit** — identitas terkuat Ngemplak, butuh halaman terpisah (keluar dari SPA)
+- **Schema `WebSite`** di homepage — effort kecil, SEO boost (tambah 1 blok JSON-LD di `<head>`)
+- **Halaman Sentra Bibit** — identitas terkuat Ngemplak, butuh halaman terpisah (keluar dari SPA), butuh diskusi arsitektur
 - **Halaman kategori** (`/kategori/bibit-buah`, dst) — butuh arsitektur multi-halaman
-- **Schema `WebSite` + `BreadcrumbList`** di homepage
+- **Schema `BreadcrumbList`** di homepage
 - **Google Search Console** — submit sitemap, pantau keyword (tugas Zen, bukan coding)
 - **Domain `.id`** — keputusan Zen & perangkat dusun
 - **Backlink lokal** — dari website Desa Samping, Kec. Kemiri, Kab. Purworejo
@@ -63,9 +92,10 @@ Tidak ada bug aktif saat ini. Semua item sebelumnya sudah selesai.
 ## 📌 URUTAN KERJA BERIKUTNYA
 
 ```
+1 → Tulis ulang FAQ 19 UMKM (umkm.json) — sesi tersendiri
+2 → Brief & eksekusi redesign visual UMKM (index.html + script.js + style.css)
+
 --- menunggu data dari Zen ---
-1 → Foto UMKM tiba → update field galeri & cover di umkm.json
-                   → ganti render emoji ke <img> di script.js
-2 → Nomor kontak tiba → aktifkan tombol Nyuwun Tulung di index.html
-3 → Nama pengurus tiba → isi tanda — di index.html tab Pengurus
+3 → Nomor kontak → aktifkan tombol Nyuwun Tulung di index.html
+4 → Nama pengurus → isi tanda — di index.html tab Pengurus
 ```

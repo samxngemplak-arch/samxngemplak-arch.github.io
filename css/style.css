@@ -1731,7 +1731,8 @@ body {
   background: var(--wh);
   border-radius: 10px;
   overflow: hidden;
-  min-width: 110px;
+  min-width: 150px;
+  max-width: 150px;
   flex-shrink: 0;
   border: 1px solid rgba(0, 0, 0, .05);
 }
@@ -1743,9 +1744,15 @@ body {
   justify-content: center;
   font-size: 26px;
 }
-.pinfo   { padding: 7px 9px; }
-.pname   { font-size: 11px; font-weight: 700; color: var(--tx); margin-bottom: 1px; }
-.pprice  { font-size: 11px; font-weight: 600; color: var(--gr); }
+.pinfo   { padding: 8px 10px 9px; }
+.pname   { font-size: 11.5px; font-weight: 700; color: var(--tx); margin-bottom: 2px; line-height: 1.3; }
+.pket    { font-size: 10px; color: var(--tx2); line-height: 1.45; margin-bottom: 5px; }
+.pprice  { font-size: 10.5px; font-weight: 600; color: var(--gr); }
+
+/* Kalau ada .pket, beri sedikit jarak dari .pname di atasnya — tanpa .pket,
+   .pname dan .pprice tetap rapat seperti sebelumnya (margin-bottom .pname
+   sudah cukup kecil di 2px) */
+.pcard:not(:has(.pket)) .pname { margin-bottom: 3px; }
 
 /* Baris info (jam, lokasi, dll) */
 .irow {

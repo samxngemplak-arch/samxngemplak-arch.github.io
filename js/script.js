@@ -1016,41 +1016,26 @@ function showUMKM(id, updateUrl) {
     }).join('');
   }
 
-  /* ── Render daftar produk/jasa (cek dulu array-nya ada) ── */
+  /* ── Render daftar produk/jasa (cek dulu array-nya ada) ──
+     Field "k" (keterangan) OPSIONAL per produk — kalau diisi di
+     umkm.json, tampil sebagai 1 baris highlight nilai/keunggulan
+     produk (bukan harga) di antara nama dan CTA "Hubungi WA".
+     Kalau kosong/tidak ada, baris ini tidak dirender sama sekali —
+     card tetap rapi seperti sebelumnya, tidak ada celah kosong. */
   const produkEl = document.getElementById('ud-products');
   if (produkEl) {
     produkEl.innerHTML = (u.products || []).map(function(p) {
+      const adaKeterangan = p.k && p.k.trim() !== '';
       return `
         <div class="pcard">
           <div class="pimg">${p.e}</div>
           <div class="pinfo">
             <div class="pname">${p.n}</div>
+            ${adaKeterangan ? `<div class="pket">${p.k}</div>` : ''}
             <div class="pprice">${p.p}</div>
           </div>
         </div>`;
     }).join('');
-  }
-
-  /* ── Render testimoni warga (cek dulu array-nya ada) ──
-     Beda dari "Review Google" — ini testimoni manual yang
-     dikumpulkan Zen dari pembeli asli, bukan API Google. */
-  const testimoniEl = document.getElementById('ud-testimoni');
-  if (testimoniEl) {
-    const list = u.testimoni || [];
-    if (!list.length) {
-      testimoniEl.innerHTML = `<div style="font-size:11px; color:var(--tx3); padding:4px 0 8px">Belum ada testimoni warga untuk usaha ini.</div>`;
-    } else {
-      testimoniEl.innerHTML = list.map(function(t) {
-        return `
-          <div class="rv">
-            <div class="rv-top">
-              <span class="rv-name">${t.nama}</span>
-              <span class="rv-date">${t.tanggal}</span>
-            </div>
-            <div class="rv-txt">${t.teks}</div>
-          </div>`;
-      }).join('');
-    }
   }
 
   /* ── Render Usaha Terkait ──

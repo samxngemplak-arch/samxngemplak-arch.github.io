@@ -1,5 +1,5 @@
 {
-  "_petunjuk": "Untuk menambah UMKM baru, copy salah satu blok { ... } di bawah, paste di akhir sebelum tanda ] penutup, lalu ganti semua isinya. JANGAN lupa koma (,) setelah tanda } kecuali itu blok PALING TERAKHIR. CATATAN field 'maps': isi dengan link Google Maps ASLI lokasi usaha — link ini juga dipakai sebagai tombol 'Lihat Review di Google Maps' di halaman detail. CATATAN field 'phone': format internasional tanpa + (contoh: 6281234567890). Kosongkan string ('') kalau nomor belum ada — tombol WA otomatis disembunyikan. CATATAN field 'ulasan': jumlah ulasan Google (angka integer). CATATAN field 'testimoni': array opsional testimoni warga asli, format [{nama, teks, tanggal}].",
+  "_petunjuk": "Untuk menambah UMKM baru, copy salah satu blok { ... } di bawah, paste di akhir sebelum tanda ] penutup, lalu ganti semua isinya. JANGAN lupa koma (,) setelah tanda } kecuali itu blok PALING TERAKHIR. CATATAN field 'maps': isi dengan link Google Maps ASLI lokasi usaha — link ini juga dipakai sebagai tombol 'Lihat Review di Google Maps' di halaman detail. CATATAN field 'phone': format internasional tanpa + (contoh: 6281234567890). Kosongkan string ('') kalau nomor belum ada — tombol WA otomatis disembunyikan. CATATAN field 'ulasan': jumlah ulasan Google (angka integer). CATATAN field 'testimoni': sudah tidak dipakai di tampilan (section Testimoni Warga dihapus 26 Juni 2026), boleh dibiarkan array kosong. CATATAN field 'products[].k': keterangan singkat OPSIONAL per produk (highlight keunggulan, BUKAN harga) — tampil di antara nama produk dan 'Hubungi WA'. Kosongkan/hapus field 'k' kalau tidak ada keterangan, kartu tetap rapi tanpa baris kosong.",
   "umkm": [
     {
       "id": 0,
@@ -28,32 +28,38 @@
         {
           "e": "💻",
           "n": "Servis Laptop/PC",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Cek & diagnosa gratis sebelum perbaikan"
         },
         {
           "e": "📱",
           "n": "Servis HP",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Ganti LCD, baterai, hingga konektor charger"
         },
         {
           "e": "🖨️",
           "n": "Servis Printer",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Termasuk infus tinta & ganti catridge"
         },
         {
           "e": "🖨️",
           "n": "Print & Scan Dokumen",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Hitam-putih maupun warna, bisa ditunggu"
         },
         {
           "e": "⌨️",
           "n": "Pengetikan Dokumen",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Surat, proposal, hingga tugas sekolah"
         },
         {
           "e": "🌾",
           "n": "Giling Tepung",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Beras, jagung, dan umbi-umbian"
         }
       ],
       "testimoni": [],
@@ -108,22 +114,26 @@
         {
           "e": "🌿",
           "n": "Bibit Variegata",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Corak daun unik, incaran kolektor"
         },
         {
           "e": "🪴",
           "n": "Tanaman Hias Koleksi",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Dipilih & dirawat sebelum dijual"
         },
         {
           "e": "🌱",
           "n": "Bibit Tanaman Langka",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Stok terbatas, hubungi untuk ketersediaan"
         },
         {
           "e": "🌳",
           "n": "Bibit Buah",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Alpukat, durian & mangga siap tanam"
         }
       ],
       "testimoni": [],
@@ -177,27 +187,32 @@
         {
           "e": "🥭",
           "n": "Bibit Mangga",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Berbagai varietas, cocok pekarangan"
         },
         {
           "e": "🥑",
           "n": "Bibit Alpukat",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Tahan kering, cepat berbuah"
         },
         {
           "e": "🍑",
           "n": "Bibit Durian",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Bibit unggul siap kebun produktif"
         },
         {
           "e": "🍈",
           "n": "Bibit Kelengkeng",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Genjah, bisa berbuah di lahan sempit"
         },
         {
           "e": "🍓",
           "n": "Bibit Jambu",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Cocok untuk pekarangan rumah"
         }
       ],
       "testimoni": [],
@@ -253,22 +268,26 @@
         {
           "e": "🍎",
           "n": "Bibit Buah",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Harga grosir untuk pembelian banyak"
         },
         {
           "e": "🌲",
           "n": "Bibit Tanaman Keras",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Investasi kayu jangka panjang"
         },
         {
           "e": "🌱",
           "n": "Bibit Penghijauan",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Cocok untuk program reboisasi"
         },
         {
           "e": "🌿",
           "n": "Bibit Produktif",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Pilihan beragam, satu tempat"
         }
       ],
       "testimoni": [],
@@ -323,22 +342,26 @@
         {
           "e": "🌳",
           "n": "Bibit Mahoni",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Kayu keras, nilai jual tinggi saat panen"
         },
         {
           "e": "🌲",
           "n": "Bibit Sengon",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Cepat tumbuh, favorit petani kayu"
         },
         {
           "e": "🌿",
           "n": "Bibit Trembesi",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Pohon peneduh, akar kuat"
         },
         {
           "e": "🪵",
           "n": "Bibit Jati",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Kayu kelas atas, investasi puluhan tahun"
         }
       ],
       "testimoni": [],
@@ -393,22 +416,26 @@
         {
           "e": "🌲",
           "n": "Bibit Sengon",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Cepat tumbuh, panen lebih singkat"
         },
         {
           "e": "🌳",
           "n": "Bibit Mahoni",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Tahan hama, kayu bernilai tinggi"
         },
         {
           "e": "🪵",
           "n": "Bibit Jati",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Investasi kayu jangka panjang"
         },
         {
           "e": "🌿",
           "n": "Bibit Trembesi",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Cocok untuk penghijauan lahan luas"
         }
       ],
       "testimoni": [],
@@ -463,22 +490,26 @@
         {
           "e": "🌾",
           "n": "Bibit Rumput Gajah",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Pakan ternak, hasil panen melimpah"
         },
         {
           "e": "🌿",
           "n": "Bibit Kaliandra",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Pakan kambing/domba bernutrisi tinggi"
         },
         {
           "e": "🌱",
           "n": "Bibit Indigofera",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Pakan ternak, kandungan protein tinggi"
         },
         {
           "e": "🌍",
           "n": "Tanaman Penutup Tanah",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Cegah erosi, perbaiki kesuburan tanah"
         }
       ],
       "testimoni": [],
@@ -533,17 +564,20 @@
         {
           "e": "🍎",
           "n": "Bibit Buah",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Alpukat, durian & mangga pilihan"
         },
         {
           "e": "🌲",
           "n": "Bibit Kayu Keras",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Sengon & mahoni untuk investasi"
         },
         {
           "e": "🌿",
           "n": "Bibit Perkebunan",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Berbagai jenis, satu lokasi"
         }
       ],
       "testimoni": [],
@@ -598,22 +632,26 @@
         {
           "e": "🍎",
           "n": "Bibit Buah",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Pilihan lengkap dalam satu tempat"
         },
         {
           "e": "🌲",
           "n": "Tanaman Keras",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Untuk investasi & penghijauan"
         },
         {
           "e": "🌿",
           "n": "Tanaman Produktif",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Mendukung kebun & lahan usaha"
         },
         {
           "e": "🌱",
           "n": "Bibit Penghijauan",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Cocok proyek reboisasi skala besar"
         }
       ],
       "testimoni": [],
@@ -668,17 +706,20 @@
         {
           "e": "🍎",
           "n": "Bibit Buah",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Paling dekat untuk warga RT 01 & 02"
         },
         {
           "e": "🌲",
           "n": "Bibit Kayu",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Untuk kebutuhan bangunan & investasi"
         },
         {
           "e": "🌿",
           "n": "Bibit Tanaman Produktif",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Cocok kebun & pekarangan rumah"
         }
       ],
       "testimoni": [],
@@ -733,17 +774,20 @@
         {
           "e": "🌺",
           "n": "Tanaman Hias",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Aneka warna, percantik taman & teras"
         },
         {
           "e": "🍃",
           "n": "Tanaman Daun",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Daun unik, cocok untuk indoor"
         },
         {
           "e": "🌸",
           "n": "Tanaman Koleksi",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Stok terbatas sesuai ketersediaan"
         }
       ],
       "testimoni": [],
@@ -798,22 +842,26 @@
         {
           "e": "🌾",
           "n": "Bibit Perkebunan",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Harga langsung dari petani, tanpa tengkulak"
         },
         {
           "e": "🍎",
           "n": "Bibit Buah",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Sudah dipercaya puluhan pembeli"
         },
         {
           "e": "🌲",
           "n": "Bibit Penghijauan",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Cocok program reboisasi & konservasi"
         },
         {
           "e": "🌿",
           "n": "Bibit Tanaman Keras",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Investasi kayu jangka panjang"
         }
       ],
       "testimoni": [],
@@ -869,17 +917,20 @@
         {
           "e": "🌶️",
           "n": "Bibit Cabai Rawit",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Tahan hama, hasil panen lebat"
         },
         {
           "e": "🫑",
           "n": "Bibit Cabai Merah",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Cocok untuk lahan sawah & tegalan"
         },
         {
           "e": "🌶️",
           "n": "Bibit Cabai Keriting",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Permintaan pasar tinggi, hasil stabil"
         }
       ],
       "testimoni": [],
@@ -934,22 +985,26 @@
         {
           "e": "🌲",
           "n": "Bibit Sengon",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Sering dipakai program reboisasi"
         },
         {
           "e": "🌳",
           "n": "Bibit Mahoni",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Tahan hama, nilai kayu tinggi"
         },
         {
           "e": "🌿",
           "n": "Bibit Jabon",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Cepat tumbuh, cocok lahan gundul"
         },
         {
           "e": "🪵",
           "n": "Bibit Trembesi",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Akar kuat, ideal untuk konservasi"
         }
       ],
       "testimoni": [],
@@ -1004,22 +1059,26 @@
         {
           "e": "🌱",
           "n": "Bibit Perkebunan",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Rating 5.0 dari pembeli asli"
         },
         {
           "e": "🍎",
           "n": "Bibit Buah",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Kualitas terjamin, siap tanam"
         },
         {
           "e": "🌲",
           "n": "Bibit Penghijauan",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Mendukung program reboisasi"
         },
         {
           "e": "🌾",
           "n": "Bibit Pertanian",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Untuk skala kecil hingga partai besar"
         }
       ],
       "testimoni": [],
@@ -1074,17 +1133,20 @@
         {
           "e": "🍎",
           "n": "Bibit Buah",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Alpukat, durian, mangga & kelengkeng"
         },
         {
           "e": "🌺",
           "n": "Tanaman Hias",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Percantik pekarangan rumah"
         },
         {
           "e": "🌿",
           "n": "Tanaman Produktif",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Cocok kebun rumahan & komersial"
         }
       ],
       "testimoni": [],
@@ -1140,22 +1202,26 @@
         {
           "e": "🪑",
           "n": "Kursi & Meja",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Bisa custom ukuran & model"
         },
         {
           "e": "🛏️",
           "n": "Dipan & Tempat Tidur",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Material kayu pilihan, kuat & rapi"
         },
         {
           "e": "🚪",
           "n": "Pintu & Kusen",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Pengerjaan presisi, sesuai bukaan rumah"
         },
         {
           "e": "🗄️",
           "n": "Lemari",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Custom ukuran, sesuai ruangan"
         }
       ],
       "testimoni": [],
@@ -1210,22 +1276,26 @@
         {
           "e": "🐑",
           "n": "Domba Aqiqah",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Sehat & terawat, bisa pilih langsung"
         },
         {
           "e": "🐏",
           "n": "Domba Kurban",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Memenuhi syarat kurban, kondisi prima"
         },
         {
           "e": "🐐",
           "n": "Kambing Jawa",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Pakan terjaga, siap konsumsi/ternak"
         },
         {
           "e": "🐣",
           "n": "Bibit Ternak",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Untuk yang ingin mulai usaha ternak"
         }
       ],
       "testimoni": [],
@@ -1279,27 +1349,32 @@
         {
           "e": "🥑",
           "n": "Bibit Alpukat",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Cepat berbuah, cocok investasi kebun"
         },
         {
           "e": "🍑",
           "n": "Bibit Durian",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Bibit unggul, siap kebun produktif"
         },
         {
           "e": "🥭",
           "n": "Bibit Mangga",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Berbagai varietas pilihan"
         },
         {
           "e": "🍈",
           "n": "Bibit Kelengkeng",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Genjah, hasil panen cepat"
         },
         {
           "e": "🍓",
           "n": "Bibit Jambu",
-          "p": "Hubungi WA"
+          "p": "Hubungi WA",
+          "k": "Cocok pekarangan & kebun kecil"
         }
       ],
       "testimoni": [],
