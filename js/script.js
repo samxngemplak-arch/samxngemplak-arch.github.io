@@ -1023,28 +1023,6 @@ function showUMKM(id, updateUrl) {
     }).join('');
   }
 
-  /* ── Render testimoni warga (cek dulu array-nya ada) ──
-     Beda dari "Review Google" — ini testimoni manual yang
-     dikumpulkan Zen dari pembeli asli, bukan API Google. */
-  const testimoniEl = document.getElementById('ud-testimoni');
-  if (testimoniEl) {
-    const list = u.testimoni || [];
-    if (!list.length) {
-      testimoniEl.innerHTML = `<div style="font-size:11px; color:var(--tx3); padding:4px 0 8px">Belum ada testimoni warga untuk usaha ini.</div>`;
-    } else {
-      testimoniEl.innerHTML = list.map(function(t) {
-        return `
-          <div class="rv">
-            <div class="rv-top">
-              <span class="rv-name">${t.nama}</span>
-              <span class="rv-date">${t.tanggal}</span>
-            </div>
-            <div class="rv-txt">${t.teks}</div>
-          </div>`;
-      }).join('');
-    }
-  }
-
   /* ── Render Usaha Terkait ──
      List vertikal compact tanpa foto — lebih ringan dan tidak
      mendistraksi dari konten utama. Pakai class .terkait-list /
