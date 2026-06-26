@@ -568,12 +568,13 @@
         </button>
       </div>
 
-      <!-- Strip logo + nama -->
+      <!-- Strip logo + nama + tagline + rating -->
       <div class="ud-logo-strip">
         <div class="ud-logo-box" id="ud-logo">🍪</div>
-        <div>
+        <div class="ud-name-group">
           <div class="ud-bname" id="ud-name">Nama Usaha</div>
           <div class="ud-bcat" id="ud-cat">Kategori</div>
+          <div class="ud-tagline" id="ud-tagline"></div>
         </div>
         <div class="rating-pill">
           <span>⭐</span>
@@ -588,10 +589,22 @@
           <!-- Deskripsi -->
           <div class="ud-desc" id="ud-desc">Deskripsi usaha...</div>
 
-          <!-- Tombol WA & Maps -->
+          <!-- Tombol WA & Maps (1 baris, Maps sekaligus pengganti mapsbox) -->
           <div class="cta-grp">
             <a class="cta-wa" id="ud-wa-btn" href="#" target="_blank">💬 Chat WhatsApp</a>
-            <a class="cta-map" id="ud-map-btn" href="#" target="_blank">📍 Buka Maps</a>
+            <a class="cta-map" id="ud-map-btn" href="#" target="_blank">📍 Lihat di Maps</a>
+          </div>
+
+          <!-- Galeri Foto — naik ke atas, paling "menjual" secara visual -->
+          <div class="ud-sec">
+            <div class="ud-sec-ttl">Galeri Foto</div>
+            <div class="galeri" id="ud-galeri"></div>
+          </div>
+
+          <!-- Produk/Jasa — tepat setelah galeri -->
+          <div class="ud-sec">
+            <div class="ud-sec-ttl">Produk & Jasa</div>
+            <div class="prow" id="ud-products"></div>
           </div>
 
           <!-- Info operasional -->
@@ -613,28 +626,10 @@
               <div class="irico">🗺️</div>
               <div><div class="irlbl">Area Layanan</div><div class="irval" id="ud-area">-</div></div>
             </div>
-          </div>
-
-          <!-- Peta lokasi + Review Google -->
-          <a class="mapsbox" id="ud-maps-link" href="#" target="_blank">
-            <div class="mico">🗺️</div>
-            <div class="mlbl">Buka di Google Maps</div>
-            <div class="maddr" id="ud-maps-addr">-</div>
-          </a>
-          <a class="kas-detail" id="ud-review-link" href="#" target="_blank" style="display:block; margin-bottom:8px">
-            ⭐ Lihat Rating & Review Asli di Google Maps →
-          </a>
-
-          <!-- Galeri -->
-          <div class="ud-sec">
-            <div class="ud-sec-ttl">Galeri Foto</div>
-            <div class="galeri" id="ud-galeri"></div>
-          </div>
-
-          <!-- Produk/Jasa -->
-          <div class="ud-sec">
-            <div class="ud-sec-ttl">Produk & Jasa</div>
-            <div class="prow" id="ud-products"></div>
+            <div class="irow" id="ud-rating-row">
+              <div class="irico">⭐</div>
+              <div><div class="irlbl">Rating Google</div><div class="irval" id="ud-rating-info">-</div></div>
+            </div>
           </div>
 
           <!-- FAQ -->

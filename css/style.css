@@ -1596,12 +1596,16 @@ body {
 /* Strip logo + nama UMKM */
 .ud-logo-strip {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 12px;
   padding: 12px 16px 10px;
   border-bottom: 1px solid var(--iv2);
   background: var(--wh);
   flex-shrink: 0;
+}
+.ud-name-group {
+  flex: 1;
+  min-width: 0;
 }
 .ud-logo-box {
   width: 50px;
@@ -1628,6 +1632,13 @@ body {
   font-weight: 600;
   margin-top: 2px;
 }
+.ud-tagline {
+  font-size: 11px;
+  color: var(--tx3);
+  font-style: italic;
+  margin-top: 4px;
+  line-height: 1.4;
+}
 
 /* Pill rating bintang */
 .rating-pill {
@@ -1639,6 +1650,7 @@ body {
   padding: 4px 8px;
   margin-left: auto;
   flex-shrink: 0;
+  align-self: flex-start;
 }
 .rn { font-size: 13px; font-weight: 700; color: var(--br); }
 

@@ -886,16 +886,42 @@ function showUMKM(id, updateUrl) {
   isiTeks('ud-logo', u.emoji);
   isiTeks('ud-name', u.name);
   isiTeks('ud-cat', u.cat);
+
+  /* ── Tagline — 1 baris hook antara nama & deskripsi ── */
+  const taglineEl = document.getElementById('ud-tagline');
+  if (taglineEl) {
+    if (u.tagline) {
+      taglineEl.textContent = u.tagline;
+      taglineEl.style.display = '';
+    } else {
+      taglineEl.style.display = 'none';
+    }
+  }
+
   /* Rating pill — kalau 0 atau kosong tampilkan badge "Baru", kalau ada tampilkan bintang + jumlah ulasan */
   const ratingEl = document.getElementById('ud-rating');
   const ratingPill = ratingEl ? ratingEl.closest('.rating-pill') : null;
+  const adaRating = u.rating && u.rating !== '0';
+  const jumlahUlasan = u.ulasan || 0;
   if (ratingPill) {
-    const adaRating = u.rating && u.rating !== '0';
-    const jumlahUlasan = u.ulasan || 0;
     if (adaRating) {
       ratingPill.innerHTML = `<span>⭐</span><span class="rn">${u.rating}</span>${jumlahUlasan ? `<span class="rn-ulasan">(${jumlahUlasan})</span>` : ''}`;
     } else {
       ratingPill.innerHTML = `<span class="rn-new">Baru</span>`;
+    }
+  }
+
+  /* Rating row di Info Operasional */
+  const ratingRow = document.getElementById('ud-rating-row');
+  const ratingInfo = document.getElementById('ud-rating-info');
+  if (ratingRow && ratingInfo) {
+    if (adaRating) {
+      ratingInfo.textContent = jumlahUlasan
+        ? `${u.rating} dari ${jumlahUlasan} ulasan`
+        : `${u.rating} bintang`;
+      ratingRow.style.display = '';
+    } else {
+      ratingRow.style.display = 'none';
     }
   }
 
@@ -924,14 +950,6 @@ function showUMKM(id, updateUrl) {
 
   /* ── Link "Lihat Review di Google Maps" — reuse link Maps yang sama.
      CATATAN: ini mengarahkan ke profil Maps usaha (kalau linknya sudah
-     diisi link asli oleh Zen), BUKAN review yang ditampilkan langsung
-     di website ini. Kita gak fetch data review asli dari Google API
-     karena itu butuh API key berbayar + backend — lihat diskusi PR. ── */
-  const reviewLink = document.getElementById('ud-review-link');
-  if (reviewLink) {
-    if (adaMaps) { reviewLink.href = u.maps; reviewLink.style.display = ''; }
-    else { reviewLink.style.display = 'none'; }
-  }
 
   /* ── Info operasional (alamat, jam, telepon) ── */
   isiTeks('ud-alamat', u.alamat);
@@ -945,12 +963,6 @@ function showUMKM(id, updateUrl) {
   } else {
     if (areaRow) areaRow.style.display = 'none';
   }
-  const mapsBox = document.getElementById('ud-maps-link');
-  if (mapsBox) {
-    if (adaMaps) { mapsBox.href = u.maps; mapsBox.style.display = ''; }
-    else { mapsBox.style.display = 'none'; }
-  }
-  isiTeks('ud-maps-addr', u.alamat);
 
   /* ── Link sosmed & marketplace — otomatis sembunyi kalau kosong ── */
   isiLinkSosmed('ud-ig', u.ig);
