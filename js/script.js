@@ -1052,22 +1052,21 @@ function showUMKM(id, updateUrl) {
     const idTerkait = u.terkait || [];
     const dataTerkait = idTerkait
       .map(function(tid) { return UMKM.find(function(x) { return x.id === tid; }); })
-      .filter(Boolean); /* buang kalau id tidak ketemu (data tidak konsisten) */
+      .filter(Boolean);
 
     if (dataTerkait.length) {
       terkaitList.innerHTML = dataTerkait.map(function(t) {
-        var thumbHtml = t.cover
-          ? '<img src="' + t.cover + '" alt="' + t.name + '" loading="lazy">'
-          : t.emoji;
         return `
-          <div class="ucard" onclick="showUMKM(${t.id})">
-            <div class="uimg">${thumbHtml}</div>
-            <div class="uinfo">
-              <div class="uname">${t.name}</div>
-              <div class="ucat">${t.cat}</div>
+          <div class="terkait-item" onclick="showUMKM(${t.id})">
+            <div class="terkait-ico">${t.emoji}</div>
+            <div class="terkait-info">
+              <div class="terkait-nm">${t.name}</div>
+              <div class="terkait-cat">${t.cat}</div>
             </div>
+            <span class="terkait-arr">›</span>
           </div>`;
       }).join('');
+      terkaitList.className = 'terkait-list';
       terkaitSec.style.display = '';
     } else {
       terkaitSec.style.display = 'none';
