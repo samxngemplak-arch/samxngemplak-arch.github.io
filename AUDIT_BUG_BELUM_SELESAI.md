@@ -41,6 +41,17 @@
 
 ---
 
+## ✅ SELESAI (sesi 27 Juni 2026 — lanjutan)
+
+- [x] **[RISIKO-01]** Preload `hero-bg.webp` — `<link rel="preload">` ditambah di `<head>` index.html
+- [x] **[RISIKO-02]** `manifest.json` dibuat di root + `<link rel="manifest">` + `<meta name="theme-color">` di index.html
+- [x] **[RISIKO-03]** Cache-Control img/css/js ditambah di `vercel.json`
+- [x] **[KONTEN-02]** Teks tombol Maps → "📍 Lihat Maps & Ulasan" di index.html
+- [x] **[OPT-01]** Stat hardcode `18` → `19` dan `18+` → `19+` di index.html
+- [x] **[OPT-02]** Sudah OK di kode aktual — `.uimg` & `.ug-img` keduanya sudah punya `position: relative`
+
+---
+
 ## 🔴 KERJAKAN BERIKUTNYA
 
 ### [RISIKO-01] Tidak ada `<link rel="preload">` untuk hero background
@@ -185,20 +196,20 @@ PRIORITAS 1 — Bug aktif — ✅ SEMUA SELESAI
   BUG-03  → Twitter Card summary_large_image      ✅ Selesai
   BUG-04  → Hapus setTimeout di goToUMKM()        ✅ Selesai
 
-PRIORITAS 2 — Risiko teknis (minggu ini)
-  RISIKO-01 → preload hero-bg.webp               (index.html — 1 baris)
-  RISIKO-02 → buat manifest.json                 (file baru + index.html)
-  RISIKO-03 → Cache-Control di vercel.json        (vercel.json)
+PRIORITAS 2 — Risiko teknis — ✅ SEMUA SELESAI
+  RISIKO-01 → preload hero-bg.webp               ✅ Selesai
+  RISIKO-02 → buat manifest.json                 ✅ Selesai
+  RISIKO-03 → Cache-Control di vercel.json        ✅ Selesai
 
 PRIORITAS 3 — Konten UMKM
-  KONTEN-01 → Tagline 19 UMKM                    (umkm.json + script.js + style.css)
-  KONTEN-02 → Teks tombol Maps                   (index.html — 1 kata, 5 menit)
+  KONTEN-01 → Tagline 19 UMKM                    (umkm.json + script.js + style.css) ← BERIKUTNYA
+  KONTEN-02 → Teks tombol Maps                   ✅ Selesai
 
-PRIORITAS 4 — Optimasi kecil (kapanpun)
-  OPT-01  → Update stat hardcode 18 → 19         (index.html)
-  OPT-02  → position: relative ke .uimg          (style.css)
+PRIORITAS 4 — Optimasi kecil — ✅ SEMUA SELESAI
+  OPT-01  → Update stat hardcode 18 → 19         ✅ Selesai
+  OPT-02  → position: relative ke .uimg          ✅ Sudah OK di kode
   OPT-03  → Konfirmasi kategori Pertanian         (tanya Zen dulu)
-  OPT-04  → <image:image> di sitemap.xml          (sitemap.xml)
+  OPT-04  → <image:image> di sitemap.xml          (sitemap.xml — prioritas rendah)
 
 --- menunggu data dari Zen ---
   D-01  → Nomor kontak → aktifkan tombol Nyuwun Tulung
