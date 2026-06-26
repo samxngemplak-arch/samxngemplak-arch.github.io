@@ -28,7 +28,8 @@ ke search engine — lihat `<link rel="canonical">` di `index.html`.)
 ├── 404.html            ← halaman error custom, auto-redirect ke Beranda
 │                           setelah 5 detik
 ├── sitemap.xml         ← daftar URL untuk Google (SEO) — 1 beranda +
-│                           18 URL UMKM individual (?umkm=slug-nama)
+│                           19 URL UMKM individual (?umkm=slug-nama),
+│                           masing-masing sudah punya <image:image> cover
 ├── robots.txt          ← izin crawl untuk search engine
 ├── favicon.ico + img/favicon-*.png, icon-*.png, apple-touch-icon.png
 │                           ← ikon tab browser & home screen HP
@@ -236,7 +237,7 @@ Alasan detail dan daftar fitur yang ditolak permanen ada di
 
 ---
 
-## 📊 Status Saat Ini (27 Juni 2026)
+## 📊 Status Saat Ini (27 Juni 2026 — audit total bersih)
 
 | Komponen | Status |
 |---|---|
@@ -255,5 +256,4 @@ Alasan detail dan daftar fitur yang ditolak permanen ada di
 | Nomor kontak dusun | ⏳ Menunggu data lapangan (nama pejabat sudah asli, nomor belum) |
 | Nama pengurus organisasi | ⏳ Menunggu data lapangan |
 | Foto hero beranda | ⏳ Masih ilustratif, menunggu foto asli Ngemplak |
-| Bug aktif (27 Juni) | 🔴 4 bug ditemukan audit — filter chip, variable `history`, Twitter Card, setTimeout UMKM. Lihat `AUDIT_BUG_BELUM_SELESAI.md` |
-| Risiko teknis (27 Juni) | 🟠 3 risiko — tidak ada preload hero, tidak ada manifest.json, tidak ada Cache-Control Vercel. Lihat `AUDIT_BUG_BELUM_SELESAI.md` |
+| Bug aktif | ✅ Tidak ada — semua bug dan risiko teknis sudah diselesaikan (lihat `AUDIT_BUG_BELUM_SELESAI.md`) |
