@@ -1714,26 +1714,28 @@ body {
 
 /* Galeri foto produk */
 .galeri {
-  display: flex;
-  gap: 8px;
-  overflow-x: auto;
+  display: grid;
+  gap: 6px;
   padding: 10px 0;
-  scrollbar-width: none;
-  justify-content: center;
-  flex-wrap: wrap;
+  /* default: 3 kolom (untuk 3 foto) */
+  grid-template-columns: repeat(3, 1fr);
 }
-.galeri::-webkit-scrollbar { display: none; }
+
+/* 4 foto atau lebih: 2 kolom, baris otomatis */
+.galeri-banyak {
+  grid-template-columns: repeat(2, 1fr);
+}
 
 .gfoto {
-  width: 100px;
-  height: 100px;
+  width: 100%;
+  aspect-ratio: 1 / 1;
   border-radius: 8px;
   background: var(--iv3);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 28px;
-  flex-shrink: 0;
+  overflow: hidden;
   border: 1px solid rgba(0, 0, 0, .05);
 }
 
@@ -2801,7 +2803,8 @@ body {
     margin-left: auto;
     margin-right: auto;
   }
-  .ud-cover { height: 300px; font-size: 90px; }
+  .ud-cover { height: 360px; font-size: 90px; }
+  .ud-cover img { object-position: center 20%; }
 
   /* ====================================================
      LAYOUT 2-KOLOM BERANDA (DESKTOP SAJA)
