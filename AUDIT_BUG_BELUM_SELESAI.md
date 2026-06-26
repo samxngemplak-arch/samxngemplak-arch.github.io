@@ -1,6 +1,6 @@
 # SIMBAH — Audit & Next Step
 
-> Diperbarui: 25 Juni 2026 — audit total setelah baca semua dokumen (katalog v2, v3, profil sentra, panduan SEO, Excel data UMKM)
+> Diperbarui: 26 Juni 2026 — setelah sesi internal linking + sitemap audit
 > Cara pakai: kerjakan dari atas ke bawah. Coret kalau sudah deploy & dicek live.
 
 ---
@@ -9,12 +9,14 @@
 
 - [x] Domain canonical → `simbahngemplak.vercel.app` (OG, Twitter, Schema, sitemap, robots)
 - [x] Sitemap — URL `?page=...` dihapus, 19 URL UMKM individual `?umkm=slug` ditambahkan
+- [x] Sitemap slug — dicek ulang, semua 19 slug 100% match dengan output `slugify()` di `script.js`
 - [x] Heading semantik — `<div>` judul → `<h1>`/`<h2>`/`<h3>`
 - [x] `preconnect` Google Fonts, `aria-label` tombol ikon, `loading="lazy/eager"` logo
 - [x] SEO per-UMKM — title, desc, OG, Twitter, canonical, Schema `LocalBusiness` dinamis per UMKM
 - [x] Schema `GovernmentOrganization` statis di `<head>` untuk profil dusun
 - [x] Shuffle berbobot Beranda — semua kategori terwakili, tidak lagi 8 bibit pertama terus
-- [x] Jam operasional — ganti "Buka 24 jam" → "Hubungi untuk jam buka" (kecuali yang memang ada jam asli)
+- [x] Jam operasional — ganti "Buka 24 jam" → "Hubungi untuk jam buka" (kecuali yang ada jam asli)
+- [x] Plandemic Space jam — diperbarui ke "Setiap hari, hubungi WA untuk ketersediaan"
 - [x] Deskripsi 19 UMKM — ditulis ulang per karakter usaha, tidak lagi template generik
 - [x] Filter chip `data-filter` — tidak lagi bergantung pada teks tombol
 - [x] Data dari katalog PDF, v2, v3, Excel — produk spesifik, koreksi karakter & kategori per UMKM
@@ -25,35 +27,25 @@
 - [x] Area layanan per UMKM — field `area` di `umkm.json`, tampil di info operasional, Schema `areaServed` spesifik per UMKM
 - [x] Isron Furniture — deskripsi diperbaiki (sebelumnya < 200 karakter)
 - [x] Meta `google-site-verification` dijaga — tidak boleh hilang saat update `index.html`
+- [x] Disclaimer Agenda — label "contoh ilustrasi" tampil di Beranda & halaman Agenda penuh
+- [x] Disclaimer Kas — label "ilustrasi sementara" tampil di Beranda & halaman Kas penuh
+- [x] Internal linking "Usaha Terkait" — field `terkait` (array of id) ditambah ke semua 19 UMKM di `umkm.json`, render card horizontal scroll di halaman detail (`script.js` + `index.html`), section otomatis sembunyi kalau kosong
 
 ---
 
 ## 🔴 KERJAKAN BERIKUTNYA
 
-### 1. Internal linking "UMKM Terkait"
-**Kenapa penting:** Memperkuat SEO internal + UX — pengunjung halaman Heri Bibit bisa langsung loncat ke Khanza Bibit atau Trijaya Bibit tanpa balik ke daftar.
-**Data:** Sudah ada di katalog v3 per UMKM (field "UMKM Terkait"), tinggal dipindahkan.
-**Yang perlu dikerjakan:**
-- Tambah field `terkait` (array of id) di `umkm.json`
-- Render section "Usaha Terkait" di halaman detail UMKM (`script.js` + `index.html`)
-- Styling card terkait di `style.css`
-
-### 2. Sitemap — perlu dicek ulang setelah semua perubahan
-**Catatan:** Setelah banyak perubahan data UMKM (koreksi slug, tambah Rahman id=3), perlu verifikasi semua 19 slug di sitemap cocok dengan slug yang dihasilkan fungsi `slugify()` di `script.js`. Kalau ada yang tidak cocok, link share UMKM itu tidak akan terbuka otomatis.
-**Yang perlu dikerjakan:**
-- Jalankan `slugify()` untuk semua 19 nama UMKM
-- Bandingkan dengan yang ada di `sitemap.xml`
-- Perbaiki yang tidak cocok
+Tidak ada bug aktif saat ini. Semua item sebelumnya sudah selesai.
 
 ---
 
 ## 🟡 MENUNGGU DATA LAPANGAN (tugas Zen)
 
-- [ ] **Foto asli** UMKM & dusun — sedang disiapkan *(begitu siap, ganti emoji galeri → `<img>` + `loading="lazy"` di `script.js`)*
-- [ ] **Nomor kontak** Nyuwun Tulung (Kades, RW, RT, Bidan, Babinsa)
-- [ ] **Nama pengurus** organisasi (BPD, Takmir, PKK, Posyandu, Karang Taruna)
-- [ ] **Jam buka asli** tiap UMKM — sementara "Hubungi untuk jam buka"
-- [ ] **Luas wilayah** & KK/penduduk terverifikasi
+- [ ] **Foto asli** UMKM & dusun — sedang disiapkan *(begitu siap, ganti path di field `galeri` & `cover` di `umkm.json`, render otomatis sebagai `<img>` — lihat catatan di `script.js` bagian render galeri)*
+- [ ] **Nomor kontak** Nyuwun Tulung (Kades, RW, RT, Bidan, Babinsa) — cara aktifkan: isi `href` di `index.html` dengan nomor asli, hapus atribut `data-kontak-publik`
+- [ ] **Nama pengurus** organisasi (BPD, Takmir, PKK, Posyandu, Karang Taruna) — cara isi: Ctrl+F nama jabatan di `index.html`, ganti `—` dengan nama asli
+- [ ] **Jam buka asli** tiap UMKM — update field `jam` per UMKM di `umkm.json`
+- [ ] **Luas wilayah** & KK/penduduk terverifikasi — update di `index.html` section Data Wilayah
 
 ---
 
@@ -71,10 +63,9 @@
 ## 📌 URUTAN KERJA BERIKUTNYA
 
 ```
-1 → Cek & fix sitemap slug (cepat, ~10 menit)
-2 → Internal linking UMKM Terkait (data sudah siap di katalog v3)
---- setelah foto dari Zen tiba ---
-3 → Ganti emoji galeri → <img> asli + loading="lazy" di script.js
---- setelah nomor kontak dari Zen ---
-4 → Aktifkan tombol Nyuwun Tulung di index.html
+--- menunggu data dari Zen ---
+1 → Foto UMKM tiba → update field galeri & cover di umkm.json
+                   → ganti render emoji ke <img> di script.js
+2 → Nomor kontak tiba → aktifkan tombol Nyuwun Tulung di index.html
+3 → Nama pengurus tiba → isi tanda — di index.html tab Pengurus
 ```

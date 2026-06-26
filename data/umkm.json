@@ -11,7 +11,7 @@
       "rating": "4.9",
       "ulasan": 28,
       "alamat": "Ngemplak 02/02, Dusun III, Samping, Kec. Kemiri, Kab. Purworejo, Jawa Tengah 54262",
-      "jam": "Buka 24 jam",
+      "jam": "Setiap hari, hubungi WA untuk ketersediaan",
       "maps": "https://maps.app.goo.gl/W6FxkN82ArRKb5NT9",
       "ig": "https://www.instagram.com/zns.srr/",
       "fb": "https://www.facebook.com/zainus.surur/",
@@ -74,7 +74,11 @@
         }
       ],
       "area": "Kemiri, Purworejo, Kutoarjo, Banyuurip",
-      "cover": "img/umkm/plandemic-space/cover.webp"
+      "cover": "img/umkm/plandemic-space/cover.webp",
+      "terkait": [
+        16,
+        17
+      ]
     },
     {
       "id": 1,
@@ -140,7 +144,11 @@
         }
       ],
       "area": "Purworejo, Kebumen, Magelang, Wonosobo",
-      "cover": "img/umkm/heri-bibit/cover.webp"
+      "cover": "img/umkm/heri-bibit/cover.webp",
+      "terkait": [
+        15,
+        10
+      ]
     },
     {
       "id": 2,
@@ -210,7 +218,12 @@
         }
       ],
       "area": "Purworejo, Kebumen, Magelang, Wonosobo",
-      "cover": "img/umkm/bibit-tanaman-buah-terdekat/cover.webp"
+      "cover": "img/umkm/bibit-tanaman-buah-terdekat/cover.webp",
+      "terkait": [
+        1,
+        15,
+        18
+      ]
     },
     {
       "id": 3,
@@ -276,7 +289,12 @@
         }
       ],
       "area": "Purworejo, Kebumen, Magelang, Wonosobo",
-      "cover": "img/umkm/rahman-grosir-bibit/cover.webp"
+      "cover": "img/umkm/rahman-grosir-bibit/cover.webp",
+      "terkait": [
+        9,
+        11,
+        8
+      ]
     },
     {
       "id": 4,
@@ -341,7 +359,12 @@
         }
       ],
       "area": "Purworejo, Kebumen, Magelang, Wonosobo",
-      "cover": "img/umkm/jamil-bibit/cover.webp"
+      "cover": "img/umkm/jamil-bibit/cover.webp",
+      "terkait": [
+        5,
+        13,
+        14
+      ]
     },
     {
       "id": 5,
@@ -406,7 +429,12 @@
         }
       ],
       "area": "Purworejo, Kebumen, Magelang, Wonosobo",
-      "cover": "img/umkm/jamil-arya-tani/cover.webp"
+      "cover": "img/umkm/jamil-arya-tani/cover.webp",
+      "terkait": [
+        4,
+        13,
+        14
+      ]
     },
     {
       "id": 6,
@@ -471,7 +499,12 @@
         }
       ],
       "area": "Purworejo, Kebumen, Magelang, Wonosobo",
-      "cover": "img/umkm/naza-bibit/cover.webp"
+      "cover": "img/umkm/naza-bibit/cover.webp",
+      "terkait": [
+        17,
+        13,
+        14
+      ]
     },
     {
       "id": 7,
@@ -531,7 +564,12 @@
         }
       ],
       "area": "Purworejo, Kebumen, Magelang, Wonosobo",
-      "cover": "img/umkm/alfarizie-bibit/cover.webp"
+      "cover": "img/umkm/alfarizie-bibit/cover.webp",
+      "terkait": [
+        1,
+        15,
+        8
+      ]
     },
     {
       "id": 8,
@@ -596,7 +634,12 @@
         }
       ],
       "area": "Purworejo, Kebumen, Magelang, Wonosobo",
-      "cover": "img/umkm/ardelia-bibit/cover.webp"
+      "cover": "img/umkm/ardelia-bibit/cover.webp",
+      "terkait": [
+        9,
+        11,
+        14
+      ]
     },
     {
       "id": 9,
@@ -656,7 +699,12 @@
         }
       ],
       "area": "Purworejo, Kebumen, Magelang, Yogyakarta",
-      "cover": "img/umkm/martin-bibit-jaya/cover.webp"
+      "cover": "img/umkm/martin-bibit-jaya/cover.webp",
+      "terkait": [
+        8,
+        11,
+        3
+      ]
     },
     {
       "id": 10,
@@ -716,7 +764,12 @@
         }
       ],
       "area": "Purworejo, Kebumen, Magelang, Wonosobo",
-      "cover": "img/umkm/trijaya-bibit/cover.webp"
+      "cover": "img/umkm/trijaya-bibit/cover.webp",
+      "terkait": [
+        1,
+        15,
+        8
+      ]
     },
     {
       "id": 11,
@@ -781,7 +834,12 @@
         }
       ],
       "area": "Purworejo, Kebumen, Magelang",
-      "cover": "img/umkm/samuji-bibit/cover.webp"
+      "cover": "img/umkm/samuji-bibit/cover.webp",
+      "terkait": [
+        8,
+        9,
+        14
+      ]
     },
     {
       "id": 12,
@@ -842,7 +900,12 @@
         }
       ],
       "area": "Purworejo, Jawa Tengah, DIY",
-      "cover": "img/umkm/bibit-cabai-alip-sihmanto/cover.webp"
+      "cover": "img/umkm/bibit-cabai-alip-sihmanto/cover.webp",
+      "terkait": [
+        14,
+        6,
+        11
+      ]
     },
     {
       "id": 13,
@@ -907,7 +970,12 @@
         }
       ],
       "area": "Purworejo, Kebumen, Magelang, Wonosobo",
-      "cover": "img/umkm/muhtar-bibit-unggul/cover.webp"
+      "cover": "img/umkm/muhtar-bibit-unggul/cover.webp",
+      "terkait": [
+        4,
+        5,
+        14
+      ]
     },
     {
       "id": 14,
@@ -972,7 +1040,12 @@
         }
       ],
       "area": "Purworejo, Kebumen, Magelang, Wonosobo",
-      "cover": "img/umkm/primatani-bibit/cover.webp"
+      "cover": "img/umkm/primatani-bibit/cover.webp",
+      "terkait": [
+        11,
+        8,
+        13
+      ]
     },
     {
       "id": 15,
@@ -1032,7 +1105,12 @@
         }
       ],
       "area": "Purworejo, Kebumen, Magelang, Yogyakarta",
-      "cover": "img/umkm/khanza-bibit/cover.webp"
+      "cover": "img/umkm/khanza-bibit/cover.webp",
+      "terkait": [
+        1,
+        18,
+        10
+      ]
     },
     {
       "id": 16,
@@ -1098,7 +1176,11 @@
         }
       ],
       "area": "Purworejo, Kebumen, Magelang, Wonosobo",
-      "cover": "img/umkm/isron-furniture/cover.webp"
+      "cover": "img/umkm/isron-furniture/cover.webp",
+      "terkait": [
+        0,
+        17
+      ]
     },
     {
       "id": 17,
@@ -1164,7 +1246,11 @@
         }
       ],
       "area": "Purworejo, Kebumen, Magelang, Wonosobo",
-      "cover": "img/umkm/dombaku/cover.webp"
+      "cover": "img/umkm/dombaku/cover.webp",
+      "terkait": [
+        6,
+        16
+      ]
     },
     {
       "id": 18,
@@ -1234,7 +1320,12 @@
         }
       ],
       "area": "Purworejo, Kebumen, Magelang, Wonosobo",
-      "cover": "img/umkm/sapu-jagad-fruits/cover.webp"
+      "cover": "img/umkm/sapu-jagad-fruits/cover.webp",
+      "terkait": [
+        15,
+        1,
+        2
+      ]
     }
   ]
 }

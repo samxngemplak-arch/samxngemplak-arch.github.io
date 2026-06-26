@@ -1053,6 +1053,40 @@ function showUMKM(id, updateUrl) {
     }
   }
 
+  /* ── Render Usaha Terkait ──
+     Baca array id dari field terkait, cari data UMKM-nya, render
+     sebagai card horizontal scroll pakai class .ucard yang sudah ada
+     (sama persis dengan card di beranda — tidak perlu CSS baru).
+     Section disembunyikan otomatis kalau field terkait kosong atau
+     tidak ada satu pun id yang cocok di data. */
+  const terkaitSec = document.getElementById('ud-terkait-sec');
+  const terkaitList = document.getElementById('ud-terkait-list');
+  if (terkaitSec && terkaitList) {
+    const idTerkait = u.terkait || [];
+    const dataTerkait = idTerkait
+      .map(function(tid) { return UMKM.find(function(x) { return x.id === tid; }); })
+      .filter(Boolean); /* buang kalau id tidak ketemu (data tidak konsisten) */
+
+    if (dataTerkait.length) {
+      terkaitList.innerHTML = dataTerkait.map(function(t) {
+        var thumbHtml = t.cover
+          ? '<img src="' + t.cover + '" alt="' + t.name + '" loading="lazy">'
+          : t.emoji;
+        return `
+          <div class="ucard" onclick="showUMKM(${t.id})">
+            <div class="uimg">${thumbHtml}</div>
+            <div class="uinfo">
+              <div class="uname">${t.name}</div>
+              <div class="ucat">${t.cat}</div>
+            </div>
+          </div>`;
+      }).join('');
+      terkaitSec.style.display = '';
+    } else {
+      terkaitSec.style.display = 'none';
+    }
+  }
+
   /* Pindah ke halaman detail */
   nav('umkm-detail');
 }
