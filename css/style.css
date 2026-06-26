@@ -1596,7 +1596,7 @@ body {
 /* Strip logo + nama UMKM */
 .ud-logo-strip {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 12px;
   padding: 12px 16px 10px;
   border-bottom: 1px solid var(--iv2);
@@ -1606,6 +1606,12 @@ body {
 .ud-name-group {
   flex: 1;
   min-width: 0;
+}
+.ud-name-row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex-wrap: wrap;
 }
 .ud-logo-box {
   width: 50px;
@@ -1647,10 +1653,8 @@ body {
   gap: 3px;
   background: var(--brl);
   border-radius: 8px;
-  padding: 4px 8px;
-  margin-left: auto;
+  padding: 3px 7px;
   flex-shrink: 0;
-  align-self: flex-start;
 }
 .rn { font-size: 13px; font-weight: 700; color: var(--br); }
 
@@ -1715,6 +1719,18 @@ body {
   scrollbar-width: none;
 }
 .galeri::-webkit-scrollbar { display: none; }
+
+/* Layout khusus kalau foto ≤ 3 — jadi grid besar, tidak scroll */
+.galeri-besar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  overflow-x: unset;
+}
+.galeri-besar .gfoto {
+  width: auto;
+  height: 110px;
+  flex-shrink: unset;
+}
 
 .gfoto {
   width: 80px;
@@ -2793,7 +2809,7 @@ body {
     margin-left: auto;
     margin-right: auto;
   }
-  .ud-cover { height: 220px; font-size: 90px; }
+  .ud-cover { height: 300px; font-size: 90px; }
 
   /* ====================================================
      LAYOUT 2-KOLOM BERANDA (DESKTOP SAJA)

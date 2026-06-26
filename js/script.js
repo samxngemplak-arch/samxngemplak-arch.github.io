@@ -899,15 +899,16 @@ function showUMKM(id, updateUrl) {
   }
 
   /* Rating pill — kalau 0 atau kosong tampilkan badge "Baru", kalau ada tampilkan bintang + jumlah ulasan */
-  const ratingEl = document.getElementById('ud-rating');
-  const ratingPill = ratingEl ? ratingEl.closest('.rating-pill') : null;
+  const ratingPill = document.getElementById('ud-rating-pill');
   const adaRating = u.rating && u.rating !== '0';
   const jumlahUlasan = u.ulasan || 0;
   if (ratingPill) {
     if (adaRating) {
       ratingPill.innerHTML = `<span>⭐</span><span class="rn">${u.rating}</span>${jumlahUlasan ? `<span class="rn-ulasan">(${jumlahUlasan})</span>` : ''}`;
+      ratingPill.style.display = '';
     } else {
       ratingPill.innerHTML = `<span class="rn-new">Baru</span>`;
+      ratingPill.style.display = '';
     }
   }
 
@@ -1013,7 +1014,10 @@ function showUMKM(id, updateUrl) {
      aman dibiarkan untuk kompatibilitas). loading="lazy" wajib dijaga. */
   const galeriEl = document.getElementById('ud-galeri');
   if (galeriEl) {
-    galeriEl.innerHTML = (u.galeri || []).map(function(e) {
+    const fotoArr = (u.galeri || []).filter(function(e) { return e; });
+    const sedikit = fotoArr.length > 0 && fotoArr.length <= 3;
+    galeriEl.className = sedikit ? 'galeri galeri-besar' : 'galeri';
+    galeriEl.innerHTML = fotoArr.map(function(e) {
       if (e && e.includes('img/')) {
         return '<div class="gfoto"><img src="' + e + '" alt="' + u.name + ' - foto" loading="lazy"></div>';
       }
