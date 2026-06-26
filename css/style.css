@@ -2991,6 +2991,32 @@ body {
   object-fit: cover;
 }
 
+/* Fallback cover kalau tidak ada foto — gradien + emoji + nama */
+.ud-cover-fallback {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  height: 100%;
+}
+.ud-cover-emoji {
+  font-size: 56px;
+  line-height: 1;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,.3));
+}
+.ud-cover-name {
+  font-family: 'Lora', serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: rgba(255,255,255,.9);
+  text-shadow: 0 1px 4px rgba(0,0,0,.4);
+  text-align: center;
+  padding: 0 24px;
+  line-height: 1.3;
+}
+
 /* Thumbnail di grid UMKM (halaman Lapak Warga) */
 .ug-img img {
   position: absolute;

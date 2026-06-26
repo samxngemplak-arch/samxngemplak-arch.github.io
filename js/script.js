@@ -266,6 +266,9 @@ async function muatDataUMKM() {
     UMKM = hasil.umkm;
     console.log('✓ Data UMKM berhasil dimuat:', UMKM.length, 'usaha');
 
+    /* Generate chip filter dinamis dari kategori yang ada di data */
+    renderFilterChips();
+
     /* Render grid (halaman UMKM) + card unggulan (Beranda) setelah data siap */
     renderGrid('');
     renderUMKMBeranda();
@@ -877,8 +880,19 @@ function showUMKM(id, updateUrl) {
     const shareBtn = cover.querySelector('.ud-share');
     if (u.cover) {
       cover.innerHTML = '<img src="' + u.cover + '" alt="' + u.name + '" loading="eager">';
+      cover.style.background = '';
     } else {
-      cover.innerHTML = u.emoji;
+      /* Fallback: gradien berdasarkan kategori, emoji besar di tengah */
+      const gradienKat = {
+        'Perkebunan':  'linear-gradient(135deg, #1a3d2b 0%, #2d6a4f 60%, #52b788 100%)',
+        'Pertanian':   'linear-gradient(135deg, #2d4a1e 0%, #4a7c3f 60%, #74b560 100%)',
+        'Peternakan':  'linear-gradient(135deg, #3d2b1a 0%, #7c5c3f 60%, #b58b60 100%)',
+        'Pertukangan': 'linear-gradient(135deg, #2b2010 0%, #5c4a28 60%, #8b7040 100%)',
+        'Jasa':        'linear-gradient(135deg, #1a2a3d 0%, #2d4a6a 60%, #5280a8 100%)',
+      };
+      const grad = gradienKat[u.cat] || 'linear-gradient(135deg, #1e3a2f 0%, #2d6a4f 100%)';
+      cover.innerHTML = '<div class="ud-cover-fallback"><span class="ud-cover-emoji">' + u.emoji + '</span><span class="ud-cover-name">' + u.name + '</span></div>';
+      cover.style.background = grad;
     }
     if (backBtn) cover.appendChild(backBtn);
     if (shareBtn) cover.appendChild(shareBtn);
@@ -1122,6 +1136,47 @@ function shareUMKM() {
    6. FILTER UMKM
    Tombol filter kategori di halaman UMKM
    ================================================ */
+
+/**
+ * Generate chip filter UMKM secara dinamis dari kategori yang ada di data.
+ * Chip "Semua" sudah ada di HTML — fungsi ini hanya tambah chip per kategori
+ * yang muncul di umkm.json, diurutkan alfabet.
+ * Kalau nanti ada UMKM baru dengan kategori baru, chip-nya otomatis muncul.
+ */
+function renderFilterChips() {
+  const row = document.getElementById('filter-row');
+  if (!row) return;
+
+  /* Kumpulkan kategori unik, urutkan alfabet */
+  const cats = [...new Set(UMKM.map(function(u) { return u.cat; }).filter(Boolean))].sort();
+
+  /* Hapus chip lama kecuali "Semua" (chip pertama) */
+  const semua = row.querySelector('.fchip');
+  row.innerHTML = '';
+  if (semua) row.appendChild(semua);
+
+  cats.forEach(function(cat) {
+    const btn = document.createElement('button');
+    btn.className = 'fchip';
+    btn.dataset.filter = cat;
+    btn.textContent = cat;
+    btn.addEventListener('click', function() {
+      row.querySelectorAll('.fchip').forEach(function(x) { x.classList.remove('active'); });
+      btn.classList.add('active');
+      filterUMKM(cat);
+    });
+    row.appendChild(btn);
+  });
+
+  /* Pastikan chip "Semua" juga punya event listener yang bener */
+  if (semua) {
+    semua.onclick = function() {
+      row.querySelectorAll('.fchip').forEach(function(x) { x.classList.remove('active'); });
+      semua.classList.add('active');
+      filterUMKM('');
+    };
+  }
+}
 
 /**
  * Filter UMKM berdasarkan kategori yang diklik
@@ -1722,20 +1777,8 @@ document.getElementById('search-input')?.addEventListener('input', function(e) {
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape' && _searchOpen) closeSearch();
 });
-/* Filter chip UMKM — pakai atribut data-filter, bukan textContent.
-   Dengan begitu teks tombol ("Semua", "Produk Lokal", dst) bisa
-   diubah bebas di index.html tanpa merusak logika filter di sini.
-   data-filter="" (string kosong) = tampilkan semua.
-   data-filter="Perkebunan" = filter kategori Perkebunan, dst. */
-document.querySelectorAll('.fchip').forEach(function(chip) {
-  chip.addEventListener('click', function() {
-    document.querySelectorAll('.fchip').forEach(function(x) {
-      x.classList.remove('active');
-    });
-    this.classList.add('active');
-    filterUMKM(this.dataset.filter || '');
-  });
-});
+/* Filter chip di-generate dan di-attach event listener oleh renderFilterChips()
+   yang dipanggil setelah data UMKM selesai di-fetch. */
 
 /**
  * Tangani tombol Back/Forward BROWSER (bukan tombol "← Kembali" kita
