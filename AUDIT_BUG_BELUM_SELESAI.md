@@ -32,7 +32,7 @@
 - [x] Foto UMKM — 19/19 UMKM sudah punya `cover.webp` + gallery (3–4 foto), field `cover` & `galeri` di `umkm.json` sudah pakai path `img/umkm/...`
 - [x] Internal linking "Usaha Terkait" — field `terkait` (array of id) ditambah ke semua 19 UMKM, render card horizontal scroll di halaman detail (`script.js` + `index.html`)
 - [x] Hapus section Testimoni Warga — `ud-testimoni-sec` dihapus dari `index.html`, render testimoni dihapus dari `showUMKM()` di `script.js`. Field `testimoni` di `umkm.json` dibiarkan ada (tidak mengganggu, tidak dirender)
-- [x] Field `k` (keterangan) di Produk & Jasa — ditambahkan ke semua 75 produk di 19 UMKM, highlight keunggulan singkat (bukan harga). Card produk dilebarkan 110px → 150px di `style.css`, render conditional di `script.js` (kosong = tidak tampil baris)
+- [x] Card Produk & Jasa — redesign total. Field `k` (keterangan) ditambahkan ke semua 75 produk di 19 UMKM (highlight keunggulan, bukan harga). Layout diganti dari scroll horizontal card jadi **grid 2 kolom** (badge emoji bulat kecil + nama + keterangan), label "Hubungi WA" per produk **dihapus** (sudah ada CTA WhatsApp besar di atas & bawah section, jadi tidak perlu diulang). Emoji yang sebelumnya duplikat dalam 1 UMKM yang sama (Plandemic Space: Print&Scan vs Servis Printer; Bibit Cabai Alip Sihmanto: Cabai Rawit vs Cabai Keriting) sudah dibedakan supaya tidak membingungkan pelanggan.
 
 ---
 

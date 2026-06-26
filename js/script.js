@@ -1017,11 +1017,14 @@ function showUMKM(id, updateUrl) {
   }
 
   /* ── Render daftar produk/jasa (cek dulu array-nya ada) ──
-     Field "k" (keterangan) OPSIONAL per produk — kalau diisi di
-     umkm.json, tampil sebagai 1 baris highlight nilai/keunggulan
-     produk (bukan harga) di antara nama dan CTA "Hubungi WA".
-     Kalau kosong/tidak ada, baris ini tidak dirender sama sekali —
-     card tetap rapi seperti sebelumnya, tidak ada celah kosong. */
+     Layout grid 2 kolom (lihat .prow di style.css) — badge emoji kecil
+     di kiri, nama produk + keterangan di kanan. Field "k" (keterangan)
+     OPSIONAL — kalau diisi di umkm.json, tampil sebagai highlight nilai/
+     keunggulan produk (bukan harga). Kalau kosong, baris keterangan
+     tidak dirender sama sekali. Tombol "Hubungi WA" per produk DIHAPUS
+     (26 Juni 2026) — sudah ada CTA WhatsApp besar di atas & bawah section
+     ini, mengulang per produk cuma jadi noise visual. Field "p" di
+     umkm.json boleh dibiarkan ada (tidak dirender, tidak mengganggu). */
   const produkEl = document.getElementById('ud-products');
   if (produkEl) {
     produkEl.innerHTML = (u.products || []).map(function(p) {
@@ -1032,7 +1035,6 @@ function showUMKM(id, updateUrl) {
           <div class="pinfo">
             <div class="pname">${p.n}</div>
             ${adaKeterangan ? `<div class="pket">${p.k}</div>` : ''}
-            <div class="pprice">${p.p}</div>
           </div>
         </div>`;
     }).join('');
