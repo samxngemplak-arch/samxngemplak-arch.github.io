@@ -217,7 +217,27 @@ Jadi target yang sehat: **±90 di kategori yang benar-benar bisa dikontrol dari 
 
 ---
 
-## 📌 STATUS SEKARANG
+### Sesi 27 Juni 2026 (sesi 7) — Bug visual mobile + keputusan estetika
+> Zen lapor tampilan "jelek" di HP fisik setelah eksperimen sendiri menerapkan standar
+> touch-target 44px. Dicek dan ditemukan 2 jenis masalah berbeda:
+
+- [x] **[UI-01]** `.ud-back` (40px) vs `.ud-share` (32px) di halaman detail UMKM — beda ukuran
+      yang TIDAK disengaja (bukan trade-off, murni inkonsistensi kode). → Fix: disamakan jadi
+      36px untuk keduanya, posisi top/left/right juga disamakan 10px supaya simetris.
+- [x] **[UI-02]** `.nt-wa` punya `min-height: 44px` (dari eksperimen Zen ikut standar WCAG)
+      tapi `.nt-telp` tidak — bikin 2 tombol dalam 1 card beda tinggi. **Keputusan Zen:**
+      kembalikan KEDUANYA ke ukuran natural (padding-based, tanpa `min-height` dipaksa) —
+      Zen lebih mementingkan card yang pipih & rapi daripada patuh ketat ke 44px.
+- [x] **[UI-03]** `.fchip` (chip filter kategori UMKM) sempat dinaikkan ke `min-height: 44px`
+      di sesi audit sebelumnya (A11Y improvement) — Zen rasa kegedean di HP. **Keputusan Zen:**
+      kembalikan ke ukuran natural (`padding: 8px 12px`, tanpa height dipaksa), prioritas
+      visual ramping di atas angka standar 44px.
+
+**Catatan untuk audit/sesi berikutnya:** standar 44px touch-target TIDAK lagi diterapkan secara
+ketat di SIMBAH untuk elemen kecil seperti chip/tombol kontak — ini keputusan sadar Zen demi
+konsistensi visual, bukan terlewat. Kalau ada audit baru menemukan ini lagi, ini bukan bug.
+
+
 
 ```
 Item coding outstanding: 0 ✅ (semua temuan valid dari AUDIT_SIMBAH_PROFESSIONAL.md sudah dikerjakan)
