@@ -2415,6 +2415,24 @@ body {
   flex-shrink: 0;
   position: relative;
   overflow: hidden;
+  border-top: 1px solid var(--br);
+}
+
+/* Watermark kiri atas — pasangan diagonal dari watermark kanan bawah.
+   Lebih kecil dan lebih transparan supaya hierarki visual tetap ke kanan bawah. */
+.footer::before {
+  content: '';
+  position: absolute;
+  left: -50px;
+  top: -50px;
+  width: 180px;
+  height: 180px;
+  background-image: url('/img/branding/watermark-logo.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: .07;
+  transform: rotate(165deg);
+  pointer-events: none;
 }
 
 /* Watermark logo SIMBAH — vektor bersih, miring, pojok kanan bawah.
