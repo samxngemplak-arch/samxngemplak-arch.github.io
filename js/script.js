@@ -1797,6 +1797,27 @@ renderInventarisBeranda();
    template (lihat templateFooter() di atas), tidak perlu hardcode lagi. */
 renderFooter();
 
+/* Pasang link WA pendaftaran UMKM dengan pesan template pre-filled */
+(function() {
+  var el = document.getElementById('umkm-daftar-wa');
+  if (!el) return;
+  var pesan = [
+    'Halo Pengelola SIMBAH 👋',
+    'Saya warga Ngemplak dan ingin mendaftarkan usaha saya ke katalog SIMBAH.',
+    '',
+    '📋 *Data Usaha:*',
+    '• Nama usaha:',
+    '• Jenis usaha/produk:',
+    '• Alamat:',
+    '• No. HP/WA pemilik:',
+    '• Link Google Maps (kalau ada):',
+    '• Instagram/medsos (kalau ada):',
+    '',
+    'Mohon bantuannya, terima kasih! 🙏'
+  ].join('\n');
+  el.href = 'https://wa.me/' + WA_UTAMA + '?text=' + encodeURIComponent(pesan);
+})();
+
 /* Pasang event listener ke input pencarian */
 document.getElementById('search-input')?.addEventListener('input', function(e) {
   runSearch(e.target.value);

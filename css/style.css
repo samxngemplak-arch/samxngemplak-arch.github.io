@@ -1075,6 +1075,59 @@ body {
   gap: 10px;
   padding: 12px 16px;
 }
+
+/* CTA pendaftaran UMKM baru */
+.umkm-daftar-cta {
+  margin: 4px 16px 20px;
+  padding: 14px 16px;
+  background: var(--brl);
+  border: 1px solid rgba(139, 105, 20, .2);
+  border-radius: var(--r);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.umkm-daftar-icon { font-size: 22px; flex-shrink: 0; }
+.umkm-daftar-body { flex: 1; min-width: 0; }
+.umkm-daftar-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--tx);
+  margin-bottom: 3px;
+}
+.umkm-daftar-desc {
+  font-size: 11.5px;
+  color: var(--tx2);
+  line-height: 1.6;
+}
+.umkm-daftar-btn {
+  display: inline-flex;
+  align-items: center;
+  background: var(--gr);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 9px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background .15s;
+}
+.umkm-daftar-btn:hover { background: var(--gr2, #3A7050); }
+
+/* Disclaimer inventaris */
+.inv-disclaimer {
+  margin: 0 16px 12px;
+  padding: 11px 14px;
+  background: var(--brl);
+  border-left: 3px solid var(--br2);
+  border-radius: 0 8px 8px 0;
+  font-size: 11.5px;
+  color: var(--tx2);
+  line-height: 1.6;
+}
 .ugcard {
   background: var(--wh);
   border-radius: var(--r);
