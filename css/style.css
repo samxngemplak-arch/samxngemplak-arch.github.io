@@ -2409,30 +2409,28 @@ body {
 .footer {
   background: var(--gr);
   background-image:
-    radial-gradient(circle at 88% 12%, rgba(255, 255, 255, .05) 0%, transparent 45%),
-    repeating-linear-gradient(135deg, rgba(245, 237, 214, .05) 0px, rgba(245, 237, 214, .05) 1px, transparent 1px, transparent 18px);
+    radial-gradient(circle at 88% 12%, rgba(255, 255, 255, .05) 0%, transparent 45%);
   padding: 24px 18px;
   flex-shrink: 0;
   position: relative;
   overflow: hidden;
 }
 
-/* Watermark daun besar transparan di pojok kanan bawah footer —
-   murni dekoratif, pakai SVG inline (bukan file gambar tambahan)
-   supaya tetap Rp0 dan tidak menambah berat halaman. */
+/* Watermark logo SIMBAH — besar, miring, digeser ke pojok kanan
+   bawah (bukan ditengah, supaya tidak terasa seperti template).
+   Pakai file logo.png yang sudah ada, tidak nambah aset baru. */
 .footer::after {
   content: '';
   position: absolute;
-  right: -36px;
-  bottom: -36px;
-  width: 180px;
-  height: 180px;
-  background: var(--brl);
-  opacity: .06;
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2C8 6 6 10 6 14c0 3.3 2.7 6 6 6s6-2.7 6-6c0-4-2-8-6-12z'/%3E%3C/svg%3E");
-  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2C8 6 6 10 6 14c0 3.3 2.7 6 6 6s6-2.7 6-6c0-4-2-8-6-12z'/%3E%3C/svg%3E");
-  -webkit-mask-size: contain;
-  mask-size: contain;
+  right: -52px;
+  bottom: -52px;
+  width: 220px;
+  height: 220px;
+  background-image: url('img/branding/logo.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: .14;
+  transform: rotate(-18deg);
   pointer-events: none;
 }
 
@@ -2968,6 +2966,15 @@ body {
     grid-template-columns: 3fr 2fr;
     gap: 48px;
     max-width: 1100px; /* konten footer tetap dibatasi & center, background-nya full */
+  }
+
+  /* Watermark logo perlu lebih besar di desktop — footer jauh lebih
+     lebar, ukuran mobile (220px) jadi terlalu kecil secara proporsi */
+  .footer::after {
+    width: 340px;
+    height: 340px;
+    right: -70px;
+    bottom: -80px;
   }
 }
 
