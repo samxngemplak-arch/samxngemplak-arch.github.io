@@ -1,6 +1,6 @@
 # SIMBAH — Audit & Next Step
 
-> Diperbarui: **27 Juni 2026 (malam, sesi 3)** — gabungan checklist lama + hasil Audit Total (kode, SEO, a11y, security).
+> Diperbarui: **27 Juni 2026 (malam, sesi 5 — SEMUA ITEM SELESAI)** — gabungan checklist lama + hasil Audit Total (kode, SEO, a11y, security).
 > Cara pakai: kerjakan dari atas ke bawah per section. Coret kalau sudah deploy & dicek live.
 
 ---
@@ -89,7 +89,7 @@
 - [x] **[A11Y-02]** 6 kartu "Layanan Warga" di Beranda (UMKM/Agenda/Nyuwun Tulung/Kas/Inventaris/Tentang)
       tidak bisa diakses keyboard — `<div onclick>` tanpa `tabindex`/`role="button"`.
       → Fix: tambah `tabindex="0" role="button" aria-label="..."` + handler Enter/Space, atau ganti ke `<button>`.
-- [ ] **[NAV-01]** Tombol back FISIK browser (bukan tombol "← Kembali" SIMBAH) kadang melempar user balik
+- [x] **[NAV-01]** Tombol back FISIK browser (bukan tombol "← Kembali" SIMBAH) kadang melempar user balik
       ke Beranda alih-alih halaman sebelumnya yang benar. Reproduksi: Beranda → Agenda → klik hasil
       search UMKM → tekan back browser → harusnya balik ke Agenda, malah ke Beranda.
       → Lokasi: `js/script.js` listener `popstate` (~baris 1893).
@@ -103,7 +103,7 @@
 - [x] **[XSS-01]** Kotak pencarian: kalau hasil "tidak ditemukan", teks ketikan user disisip mentah ke
       `innerHTML` tanpa escaping (`js/script.js` ~baris 1762). Saat ini cuma berdampak ke diri sendiri
       (self-XSS, tidak ada jalur share via link), tapi murah untuk diperbaiki sekarang.
-- [ ] **[SEC-03] (opsional, bukan wajib lagi)** — Setelah SEC-01 terkonfirmasi aman, boleh tetap ganti
+- [x] **[SEC-03] (opsional, bukan wajib lagi)** — Setelah SEC-01 terkonfirmasi aman, boleh tetap ganti
       link `/edit?gid=` jadi format view-only (`&rm=minimal` atau Publish-to-web) sebagai pengaman
       tambahan kosmetik — tapi permission Google-nya sendiri sudah mengunci, jadi ini hanya rapi-rapi,
       tidak mendesak.
@@ -116,7 +116,7 @@
       di hosting; testing lokal pakai `python -m http.server`, bukan klik dua kali file."
 - [x] **[PERF-01]** Tag `<img>` (statis & JS-generated) belum ada atribut `width`/`height` eksplisit.
       Dampak kecil karena semua container sudah fixed-size di CSS, tapi tetap best practice ditambah.
-- [ ] **[UX-01]** Halaman 404 auto-redirect 5 detik tanpa indikator countdown visual. Opsional, dampak kecil.
+- [x] **[UX-01]** Halaman 404 auto-redirect 5 detik tanpa indikator countdown visual. Opsional, dampak kecil.
 
 ---
 
@@ -170,7 +170,7 @@ Jadi target yang sehat: **±90 di kategori yang benar-benar bisa dikontrol dari 
 ## 📌 STATUS SEKARANG
 
 ```
-Item coding outstanding: 8 (lihat section 🔴 BARU di atas)
+Item coding outstanding: 0 ✅ (lihat section 🔴 BARU di atas)
 Item yang wajib dicek manual: 0 — SEC-01 sudah terverifikasi aman (27 Juni 2026)
 
 Yang perlu dilakukan Zen:

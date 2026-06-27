@@ -74,6 +74,15 @@
       transition: background .15s;
     }
     .btn:hover { background: #3A7050; }
+    .countdown {
+      margin-top: 20px;
+      font-size: 12px;
+      color: #7A8E82;
+    }
+    .countdown span {
+      font-weight: 700;
+      color: #2D5A3D;
+    }
   </style>
 </head>
 <body>
@@ -95,15 +104,23 @@
       Kembali ke beranda dan coba lagi dari sana.
     </p>
     <a class="btn" href="/">← Kembali ke Beranda</a>
+    <p class="countdown">Otomatis kembali dalam <span id="cd">5</span> detik…</p>
   </div>
 
   <script>
     /* GitHub Pages akan render 404.html ini, tapi URL-nya tetap
        path yang salah. Redirect otomatis ke beranda setelah 5 detik
        supaya pengunjung yang bingung tidak nyangkut. */
-    setTimeout(function () {
-      window.location.href = '/';
-    }, 5000);
+    var sisa = 5;
+    var cdEl = document.getElementById('cd');
+    var interval = setInterval(function () {
+      sisa--;
+      if (cdEl) cdEl.textContent = sisa;
+      if (sisa <= 0) {
+        clearInterval(interval);
+        window.location.href = '/';
+      }
+    }, 1000);
   </script>
 </body>
 </html>
