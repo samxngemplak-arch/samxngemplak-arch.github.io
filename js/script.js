@@ -415,10 +415,16 @@ function nav(key) {
   if (el) {
     el.classList.add('active');
   }
-  /* Scroll window ke atas saat pindah halaman.
-     el.scrollTop = 0 tidak efek karena scroll container
-     adalah window (body), bukan elemen .page itu sendiri. */
+  /* Scroll ke atas saat pindah halaman.
+     Dua cara sekaligus:
+     1. window.scrollTo — untuk halaman yang scroll di body (beranda, umkm, agenda)
+     2. reset scrollTop div inner — untuk halaman yang punya inner scroll container
+        (kas, nyuwun, tentang — pakai div style="overflow-y:auto") */
   window.scrollTo(0, 0);
+  if (el) {
+    var innerScroll = el.querySelector('[style*="overflow-y"]');
+    if (innerScroll) { innerScroll.scrollTop = 0; }
+  }
 
   /* Aktifkan SEMUA tombol nav yang sesuai (bisa lebih dari 1) */
   (navMap[key] || []).forEach(function(id) {
