@@ -959,6 +959,8 @@ body {
   cursor: pointer;
   border: 2px solid var(--gr);
   transition: transform .12s, background .12s;
+  font-family: inherit; /* reset button */
+  width: 100%;          /* button default tidak full-width */
 }
 .srv-hero:active { transform: scale(.95); }
 .srv-hero span {
@@ -989,6 +991,8 @@ body {
   border: 1px solid #DDD7C8;
   box-shadow: 0 1px 3px rgba(0,0,0,.06);
   transition: transform .12s;
+  font-family: inherit; /* reset button */
+  width: 100%;          /* button default tidak full-width */
 }
 .srv-mini:active { transform: scale(.95); }
 .srv-mini span {
