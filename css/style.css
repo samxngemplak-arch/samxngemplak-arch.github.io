@@ -1188,7 +1188,7 @@ body {
 
 /* CTA pendaftaran UMKM baru */
 .umkm-daftar-cta {
-  margin: 4px 16px 20px;
+  margin: 4px 16px 64px;   /* bottom 64px = ruang aman dari BTT (40px) + jarak */
   padding: 10px 13px;
   background: var(--grl);
   border: 1px solid rgba(45, 90, 61, .15);

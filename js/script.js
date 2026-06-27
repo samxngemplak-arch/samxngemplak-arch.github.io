@@ -414,8 +414,11 @@ function nav(key) {
   const el = document.getElementById(pageMap[key]);
   if (el) {
     el.classList.add('active');
-    el.scrollTop = 0; /* scroll ke atas saat pindah halaman */
   }
+  /* Scroll window ke atas saat pindah halaman.
+     el.scrollTop = 0 tidak efek karena scroll container
+     adalah window (body), bukan elemen .page itu sendiri. */
+  window.scrollTo(0, 0);
 
   /* Aktifkan SEMUA tombol nav yang sesuai (bisa lebih dari 1) */
   (navMap[key] || []).forEach(function(id) {
@@ -486,8 +489,8 @@ function goBack() {
   const el = document.getElementById(pageMap[currentPage]);
   if (el) {
     el.classList.add('active');
-    el.scrollTop = 0;
   }
+  window.scrollTo(0, 0);
 
   /* Aktifkan SEMUA tombol nav yang sesuai */
   (navMap[currentPage] || []).forEach(function(id) {
