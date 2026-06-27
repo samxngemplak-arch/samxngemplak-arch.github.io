@@ -1,6 +1,6 @@
 # SIMBAH — Audit & Next Step
 
-> Diperbarui: 27 Juni 2026 — audit total clean, OPT-04 selesai, jam buka diubah jadi "Fleksibel".
+> Diperbarui: 27 Juni 2026 — sesi sore, trust strip + UI fixes selesai.
 > Cara pakai: kerjakan dari atas ke bawah. Coret kalau sudah deploy & dicek live.
 
 ---
@@ -40,7 +40,21 @@
 - [x] **[KONTEN-02]** Teks tombol Maps → "📍 Lihat Maps & Ulasan"
 - [x] **[OPT-01]** Stat hardcode `18` → `19`
 - [x] **[OPT-02]** `.uimg` & `.ug-img` sudah punya `position: relative`
-- [x] **[OPT-03]** Kategori "Pertanian" → **tidak perlu ditambah**. Semua UMKM bibit di Ngemplak masuk "Perkebunan" (bibit buah, keras, penghijauan = komoditas perkebunan). "Pertanian" biasanya sawah/padi — tidak ada di Ngemplak. Keputusan final: kategori saat ini sudah tepat.
+- [x] **[OPT-03]** Kategori "Pertanian" → tidak perlu ditambah (semua UMKM bibit masuk "Perkebunan", keputusan final)
+
+### Sesi 27 Juni 2026 (pagi)
+- [x] SEO `index.html` — `<title>`, meta description, OG/Twitter desc, Schema description disinkronkan; ada angka & keyword spesifik
+- [x] Footer watermark — ganti PNG+filter → SVG vektor bersih (`watermark-logo.svg`), opacity 13%, rotate -15°, pojok kanan bawah; tambah `::before` kiri atas lebih kecil diagonal balance
+- [x] Footer border-top emas tipis, ukuran logo & teks dinaikkan sedikit
+- [x] Banner CTA UMKM — "Usahamu belum ada di sini?" + tombol "Daftar via WA →" dengan pesan template pre-filled
+- [x] Inventaris disclaimer — catatan "data ilustrasi awal, belum real" di atas daftar
+
+### Sesi 27 Juni 2026 (sore)
+- [x] Trust strip beranda — kalkulasi otomatis rata-rata rating & total ulasan dari `umkm.json` (weighted average); statis "1825 Dusun Bersejarah"
+- [x] Trust strip warna — angka hijau (`--gr`), bintang & plus emas (`--br`) via `<span class="ts-star">` / `<span class="ts-sup">`; JS inject `innerHTML` bukan `textContent`
+- [x] Desktop trust strip — pindah masuk ke dalam hero (`div.hero-trust`), trust strip standalone disembunyikan (`display:none` di `@media 1024px`); angka putih di atas foto hero
+- [x] Hero desktop padding dikompres (`28px/24px`) supaya ticker toa masih in-fold setelah hero-trust ditambah
+- [x] Mini card border — dari `rgba(0,0,0,.06)` (nyaris invisible) → `1px solid #DDD7C8` + `box-shadow: 0 1px 3px rgba(0,0,0,.06)`; hierarki tetap terjaga vs hero card yang hijau tebal
 
 ---
 
@@ -50,15 +64,14 @@
       → cara aktifkan: isi `href` di `index.html`, hapus atribut `data-kontak-publik`
 - [ ] **Nama pengurus** organisasi (BPD, Takmir, PKK, Posyandu, Karang Taruna)
       → Ctrl+F nama jabatan di `index.html`, ganti `—` dengan nama asli
-- [ ] **Foto hero beranda** → keputusan: **tetap ilustrasi** (tidak perlu foto asli Ngemplak,
-      ilustrasi yang ada sudah mewakili karakter desa; ganti hanya kalau ada foto asli yang jauh lebih bagus)
+- [ ] **Foto hero beranda** → keputusan: tetap ilustrasi; ganti hanya kalau ada foto asli Ngemplak yang jauh lebih bagus
 
 ---
 
 ## 🔵 GOOGLE SEARCH CONSOLE — pantau terus
 
 - [x] Sitemap sudah disubmit ke GSC
-- [ ] Indexing masih proses (normal 4 hari–4 minggu untuk domain baru)
+- [ ] Indexing masih proses (normal 4 hari–4 minggu)
       → kalau setelah 4 minggu nol: buka URL Inspection Tool → Request Indexing
 
 ---
@@ -67,9 +80,9 @@
 
 | Item | Catatan |
 |---|---|
-| Schema `BreadcrumbList` | Berguna kalau nanti ada struktur multi-level (kategori/subpage). Untuk SPA 1 halaman saat ini manfaatnya kecil karena Google tidak bisa crawl JS-rendered breadcrumb dengan andal. Revisit kalau ada domain `.id` + SSR/prerender. |
+| Schema `BreadcrumbList` | Revisit kalau ada domain `.id` + SSR/prerender |
 | Domain `.id` | Keputusan Zen & perangkat dusun |
-| Backlink lokal | Bukan coding — minta pengelola website Desa Samping / Kec. Kemiri / Kab. Purworejo untuk cantumkan link ke SIMBAH. Backlink = tautan dari situs lain ke situs kita, sinyal kepercayaan ke Google. |
+| Backlink lokal | Koordinasi dengan web Desa Samping / Kec. Kemiri / Kab. Purworejo |
 | Halaman Sentra Bibit | Butuh diskusi arsitektur, keluar dari SPA |
 
 ---
@@ -80,11 +93,10 @@
 Tidak ada item coding yang outstanding.
 
 Yang perlu dilakukan Zen:
-  → Upload sitemap.xml baru ke GitHub (OPT-04)
-  → Submit ulang sitemap di GSC setelah upload
+  → Upload index.html, style.css, script.js dari sesi sore ke GitHub
   → Kumpulkan nomor kontak Nyuwun Tulung
   → Kumpulkan nama pengurus organisasi
 
 Yang perlu dipantau:
-  → GSC indexing report (~4 minggu dari submit sitemap)
+  → GSC indexing report (~4 minggu dari submit sitemap, deadline ~25 Juli 2026)
 ```
