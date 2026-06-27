@@ -2966,7 +2966,7 @@ body {
 
   /* ---- HERO — lebih besar & lega di desktop, foto keliatan lebih luas ---- */
   .hero {
-    padding: 72px var(--side) 80px;
+    padding: 40px var(--side) 36px;
     border-radius: 0;
     min-height: 420px;
     background-position: center 25%;
@@ -2984,11 +2984,12 @@ body {
     display: flex;
     align-items: center;
     gap: 28px;
-    margin-top: 28px;
-    padding-top: 20px;
+    margin-top: 24px;
+    padding-top: 18px;
     border-top: 1px solid rgba(255,255,255,.18);
+    max-width: 400px;
   }
-  .ht-num { font-size: 26px; }
+  .ht-num { font-size: 24px; }
   .ht-lbl { font-size: 9.5px; }
 
   /* ---- Section judul lebih besar ---- */
