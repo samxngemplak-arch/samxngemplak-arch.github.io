@@ -779,6 +779,9 @@ function renderTrustStrip() {
   var ratingEl  = document.getElementById('trust-rating');
   var ulasanEl  = document.getElementById('trust-ulasan');
   var stripEl   = document.getElementById('trust-strip');
+  /* elemen desktop di dalam hero */
+  var ratingElD = document.getElementById('trust-rating-d');
+  var ulasanElD = document.getElementById('trust-ulasan-d');
 
   if (!ratingEl || !ulasanEl || !stripEl) return;
 
@@ -799,8 +802,13 @@ function renderTrustStrip() {
   /* Bulatkan 1 desimal (4.85 → 4.9, 4.94 → 4.9, dst) */
   var avgTampil = avgRating.toFixed(1);
 
-  ratingEl.textContent = avgTampil + '★';
-  ulasanEl.textContent = totalUlasan + '+';
+  /* Mobile strip — inject innerHTML supaya bintang & plus bisa diberi warna emas */
+  ratingEl.innerHTML = avgTampil + '<span class="ts-star">★</span>';
+  ulasanEl.innerHTML = totalUlasan + '<span class="ts-sup">+</span>';
+
+  /* Desktop hero-trust — angka putih, bintang emas (sudah di HTML, cukup update angkanya) */
+  if (ratingElD) ratingElD.innerHTML = avgTampil + '<span class="ht-star">★</span>';
+  if (ulasanElD) ulasanElD.innerHTML = totalUlasan + '<span class="ht-sup">+</span>';
 }
 
 /**
