@@ -93,9 +93,11 @@ Edit di sini saja — **tidak perlu** sentuh bagian lain dari kode.
   `<url>` baru di `sitemap.xml`. Cara dapat slug yang benar: nama usaha
   → huruf kecil → spasi jadi `-` → hapus tanda baca.
   Contoh: "Toko Kelontong Bu Siti" → `toko-kelontong-bu-siti`
-- `fetch()` UMKM hanya berjalan kalau dibuka lewat server
-  (Laragon/localhost atau GitHub Pages) — **tidak bisa** dibuka
-  langsung klik dua kali dari File Explorer.
+- `fetch()` UMKM hanya berjalan kalau dibuka lewat server HTTP.
+  Di hosting (GitHub Pages / Vercel) sudah otomatis terpenuhi.
+  Testing lokal: jalankan `python -m http.server 8000` di folder
+  project, lalu buka `http://localhost:8000/` — **jangan** klik
+  dua kali `index.html` dari File Explorer.
 
 ### 2. Agenda Dusun — `const AGENDA` di `js/script.js`
 

@@ -229,12 +229,12 @@ const KAS_TOTAL  = 'Rp 905.000';
    ini tidak perlu disentuh sama sekali.
 
    CATATAN PENTING:
-   fetch() HANYA bisa jalan kalau dibuka lewat server
-   (Laragon / localhost). Kalau index.html dibuka
-   langsung dengan klik dua kali dari File Explorer,
-   fetch() akan GAGAL karena browser memblokirnya demi
-   keamanan (CORS policy). Selalu akses lewat:
-   http://localhost/simbah/
+   fetch() HANYA bisa jalan kalau dibuka lewat server HTTP.
+   Di hosting (GitHub Pages / Vercel) sudah otomatis terpenuhi.
+   Untuk testing lokal, jalankan: python -m http.server 8000
+   lalu buka http://localhost:8000/ di browser.
+   JANGAN buka index.html dengan klik dua kali dari File Explorer —
+   fetch() akan GAGAL karena browser memblokirnya (CORS policy).
    ================================================ */
 
 /* Array kosong dulu — diisi otomatis oleh muatDataUMKM() */
@@ -298,7 +298,7 @@ async function muatDataUMKM() {
         <div style="grid-column:1/-1; text-align:center; padding:30px 16px; color:#7A8E82">
           <div style="font-size:32px; margin-bottom:8px">⚠️</div>
           <div style="font-size:13px; font-weight:600; margin-bottom:4px; color:#1A2E23">Data UMKM gagal dimuat</div>
-          <div style="font-size:11px; line-height:1.5">Pastikan website dibuka lewat Laragon<br>(http://localhost/simbah/), bukan klik file langsung.</div>
+          <div style="font-size:11px; line-height:1.5">Website sudah live di hosting — kalau error ini muncul, coba refresh.<br>Testing lokal: jalankan <code>python -m http.server</code>, bukan klik file langsung.</div>
         </div>`;
     }
 
