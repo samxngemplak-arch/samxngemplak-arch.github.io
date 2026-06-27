@@ -2966,7 +2966,7 @@ body {
 
   /* ---- HERO — lebih besar & lega di desktop, foto keliatan lebih luas ---- */
   .hero {
-    padding: 40px var(--side) 36px;
+    padding: 28px var(--side) 24px;
     border-radius: 0;
     min-height: 420px;
     background-position: center 25%;
