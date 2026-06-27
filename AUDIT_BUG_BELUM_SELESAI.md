@@ -1,6 +1,6 @@
 # SIMBAH — Audit & Next Step
 
-> Diperbarui: **27 Juni 2026 (malam, sesi 2)** — gabungan checklist lama + hasil Audit Total (kode, SEO, a11y, security).
+> Diperbarui: **27 Juni 2026 (malam, sesi 3)** — gabungan checklist lama + hasil Audit Total (kode, SEO, a11y, security).
 > Cara pakai: kerjakan dari atas ke bawah per section. Coret kalau sudah deploy & dicek live.
 
 ---
@@ -86,7 +86,7 @@
 - [x] **[A11Y-01]** Kontras teks kecil gagal standar baca — `--tx3` (#7A8E82) cuma 2.85–3.08 rasio kontras
       (butuh 4.5). Dipakai di label bottom nav, label "Alamat/Telepon", tanggal update kas, dll (29 tempat).
       → Fix: ganti `--tx3` di `:root` jadi warna lebih gelap (±`#5C6F64`), otomatis berlaku semua halaman.
-- [ ] **[A11Y-02]** 6 kartu "Layanan Warga" di Beranda (UMKM/Agenda/Nyuwun Tulung/Kas/Inventaris/Tentang)
+- [x] **[A11Y-02]** 6 kartu "Layanan Warga" di Beranda (UMKM/Agenda/Nyuwun Tulung/Kas/Inventaris/Tentang)
       tidak bisa diakses keyboard — `<div onclick>` tanpa `tabindex`/`role="button"`.
       → Fix: tambah `tabindex="0" role="button" aria-label="..."` + handler Enter/Space, atau ganti ke `<button>`.
 - [ ] **[NAV-01]** Tombol back FISIK browser (bukan tombol "← Kembali" SIMBAH) kadang melempar user balik
@@ -97,7 +97,7 @@
 ### Perbaikan kode — prioritas sedang
 - [x] **[A11Y-03]** Tidak ada style `:focus-visible` custom di seluruh CSS — keyboard user sulit lihat
       posisi fokusnya. Fix: tambah 1 rule global `:focus-visible { outline: 2px solid var(--gr2); outline-offset:2px; }`.
-- [ ] **[SEC-02]** `vercel.json` belum punya header keamanan standar (X-Frame-Options, CSP, Referrer-Policy,
+- [x] **[SEC-02]** `vercel.json` belum punya header keamanan standar (X-Frame-Options, CSP, Referrer-Policy,
       HSTS) — cuma ada `X-Content-Type-Options`. *Catatan: ini HANYA bisa diperbaiki di sisi Vercel,
       GitHub Pages tidak mendukung custom header sama sekali (sudah dicek dokumentasinya).*
 - [x] **[XSS-01]** Kotak pencarian: kalau hasil "tidak ditemukan", teks ketikan user disisip mentah ke
@@ -111,10 +111,10 @@
 ### Perbaikan kode — boleh nanti (low priority)
 - [x] **[DOC-01]** Komentar di `js/script.js` baris ~1031 ada kalimat yang nggak selesai ditulis (sudah
       dicek pakai `node -c`, TIDAK bikin error, cuma typo dokumentasi). Selesaikan atau hapus saja.
-- [ ] **[DOC-02]** Komentar & README masih nyebut "fetch butuh Laragon/localhost" — sebagian usang karena
+- [x] **[DOC-02]** Komentar & README masih nyebut "fetch butuh Laragon/localhost" — sebagian usang karena
       sekarang udah live di GitHub Pages/Vercel. Update jadi: "butuh server HTTP, sudah otomatis terpenuhi
       di hosting; testing lokal pakai `python -m http.server`, bukan klik dua kali file."
-- [ ] **[PERF-01]** Tag `<img>` (statis & JS-generated) belum ada atribut `width`/`height` eksplisit.
+- [x] **[PERF-01]** Tag `<img>` (statis & JS-generated) belum ada atribut `width`/`height` eksplisit.
       Dampak kecil karena semua container sudah fixed-size di CSS, tapi tetap best practice ditambah.
 - [ ] **[UX-01]** Halaman 404 auto-redirect 5 detik tanpa indikator countdown visual. Opsional, dampak kecil.
 
