@@ -455,11 +455,13 @@ function nav(key) {
   /* Bersihkan parameter ?umkm=... dari URL kalau pindah ke halaman
      LAIN (bukan detail UMKM) — supaya URL gak nyangkut nunjuk UMKM
      lama padahal sudah pindah halaman lain. Sekalian kembalikan
-     title/meta/Schema.org ke default SIMBAH (bukan UMKM tertentu). */
-  if (key !== 'umkm-detail' && window.location.search) {
-    window.history.pushState({ page: key }, '', window.location.pathname);
-  }
+     title/meta/Schema.org ke default SIMBAH (bukan UMKM tertentu).
+     [NAV-01] pushState selalu dipanggil (tidak hanya saat ada ?umkm=)
+     supaya tombol back browser bisa restore halaman yang benar via
+     popstate handler di bawah. */
   if (key !== 'umkm-detail') {
+    var urlBersih = window.location.pathname + (window.location.search.includes('umkm') ? '' : window.location.search);
+    window.history.pushState({ page: key }, '', window.location.pathname);
     resetMetaDefault();
   }
 }
@@ -517,11 +519,11 @@ function goBack() {
 
   /* Bersihkan parameter ?umkm=... dari URL kalau yang dituju
      bukan halaman detail UMKM (sama seperti di nav() di atas).
-     Sekalian kembalikan title/meta/Schema.org ke default. */
-  if (currentPage !== 'umkm-detail' && window.location.search) {
-    window.history.pushState({ page: currentPage }, '', window.location.pathname);
-  }
+     Sekalian kembalikan title/meta/Schema.org ke default.
+     [NAV-01] pushState selalu dipanggil supaya popstate bisa
+     restore halaman yang benar. */
   if (currentPage !== 'umkm-detail') {
+    window.history.pushState({ page: currentPage }, '', window.location.pathname);
     resetMetaDefault();
   }
 }
