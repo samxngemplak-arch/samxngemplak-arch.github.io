@@ -53,7 +53,7 @@ const DEBUG = false;
    ikut benar.
    ================================================ */
 const DOMAIN_SIMBAH = 'https://simbahngemplak.vercel.app';
-const TITLE_DEFAULT = 'SIMBAH Ngemplak — 19 UMKM Lokal, Agenda & Info Dusun';
+const TITLE_DEFAULT = 'SIMBAH Ngemplak — UMKM Lokal, Agenda & Info Dusun';
 const DESC_DEFAULT  = 'Dusun Ngemplak, Desa Samping, Kemiri, Purworejo — sejarah panjang, tradisi terjaga, dan puluhan UMKM yang terus bergerak maju bersama. Portal digital resmi warga Ngemplak.';
 
 /**

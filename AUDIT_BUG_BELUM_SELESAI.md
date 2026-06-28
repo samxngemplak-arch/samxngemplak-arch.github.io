@@ -71,7 +71,6 @@
 - [x] **[INFO-03]** `loading="lazy"` ditambah ke footer logo di `templateFooter()`
 
 **Ditinjau, sengaja tidak dikerjakan:**
-- **[SEO-02]** postalCode `55751` vs `54262` — **menunggu verifikasi Pak Zen** dulu (lihat bagian Menunggu Data)
 - **[PERF-02]** Critical CSS inline — pekerjaan besar, gain kecil di koneksi normal. Tunda ke nanti
 - **[L-03]** Maskable icon — butuh aset logo dengan safe-zone 40%. Menunggu Zen siapkan logo versi baru
 
@@ -79,10 +78,7 @@
 
 ## 🟡 MENUNGGU DATA LAPANGAN (tugas Pak Zen)
 
-- [ ] **[SEO-02] Verifikasi postalCode Kemiri**
-  Schema.org di `index.html` pakai `"55751"`, tapi `umkm.json` (alamat Plandemic Space) pakai `"54262"`.
-  → Cek kode pos resmi Desa Samping, Kec. Kemiri, Kab. Purworejo (bisa lewat situs pos.id atau tanya ke kelurahan).
-  → Kalau `54262` benar: update baris 72 `index.html` (`"postalCode": "55751"` → `"54262"`).
+- [x] **[SEO-02] postalCode diverifikasi & diupdate ke `54262`**
 
 - [ ] **Nomor kontak** Nyuwun Tulung (Kades, RW, RT 01, RT 02, Bidan, Babinsa)
   → Cara aktifkan: isi `href` di `index.html`, hapus atribut `data-kontak-publik` dari tombol itu
